@@ -110,10 +110,10 @@ export default function Footer() {
             © {new Date().getFullYear()} Kumru Köseler. Tüm hakları saklıdır.
           </p>
           <div className="flex gap-6 text-sm">
-            <Link href="/privacy" className="text-[var(--lavender)] hover:text-white transition-colors">
+            <Link href="/gizlilik" className="text-[var(--lavender)] hover:text-white transition-colors">
               Gizlilik Politikası
             </Link>
-            <Link href="/terms" className="text-[var(--lavender)] hover:text-white transition-colors">
+            <Link href="/kullanim-sartlari" className="text-[var(--lavender)] hover:text-white transition-colors">
               Kullanım Şartları
             </Link>
           </div>
