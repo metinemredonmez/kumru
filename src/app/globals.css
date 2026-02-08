@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+:root {
+  /* Mor/Indigo Renk Paleti - Kumru Yaşam Koçu */
+
+  /* Primary Colors */
+  --indigo: #5B2EFF;
+  --purple: #8B5CF6;
+  --violet: #A78BFA;
+  --lavender: #C4B5FD;
+
+  /* Background Colors */
+  --dark: #1E1B4B;
+  --dark-secondary: #2E2A5E;
+  --soft: #EDE9FE;
+  --snow: #FAFAFE;
+  --white: #FFFFFF;
+
+  /* CTA Colors */
+  --amber: #F59E0B;
+  --amber-hover: #D97706;
+  --emerald: #10B981;
+  --rose: #F43F5E;
+
+  /* Text Colors */
+  --text-dark: #1E1B4B;
+  --text-body: #4B5563;
+  --text-muted: #9CA3AF;
+  --text-light: #FFFFFF;
+
+  /* Theme */
+  --background: var(--snow);
+  --foreground: var(--text-dark);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Custom Colors */
+  --color-indigo: var(--indigo);
+  --color-purple: var(--purple);
+  --color-violet: var(--violet);
+  --color-lavender: var(--lavender);
+  --color-dark: var(--dark);
+  --color-dark-secondary: var(--dark-secondary);
+  --color-soft: var(--soft);
+  --color-snow: var(--snow);
+  --color-amber: var(--amber);
+  --color-amber-hover: var(--amber-hover);
+  --color-emerald: var(--emerald);
+  --color-rose: var(--rose);
+
+  /* Fonts */
+  --font-sans: var(--font-plus-jakarta);
+  --font-heading: var(--font-plus-jakarta);
+  --font-accent: var(--font-caveat);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--dark);
+    --foreground: var(--text-light);
+  }
+}
+
+/* Base Styles */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection Color */
+::selection {
+  background-color: var(--violet);
+  color: var(--white);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--purple);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--indigo);
+}
+
+/* Gradient Classes */
+.gradient-hero {
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--purple) 50%, var(--violet) 100%);
+}
+
+.gradient-dark {
+  background: linear-gradient(180deg, var(--dark) 0%, var(--dark-secondary) 100%);
+}
+
+.gradient-soft {
+  background: linear-gradient(180deg, var(--snow) 0%, var(--soft) 100%);
+}
+
+.gradient-cta {
+  background: linear-gradient(135deg, var(--amber) 0%, #FBBF24 100%);
+}
+
+/* Text Gradient */
+.text-gradient {
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Animation Classes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(91, 46, 255, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(91, 46, 255, 0.6); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
