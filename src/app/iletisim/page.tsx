@@ -73,20 +73,25 @@ export default function ContactPage() {
       <Header />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-20 gradient-soft">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="py-32 relative overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/iletisim-bg.jpg')" }}
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-[var(--indigo)] font-semibold tracking-wider uppercase text-sm">
+              <span className="text-[var(--amber)] font-semibold tracking-wider uppercase text-sm">
                 İletişim
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-[var(--dark)] mt-4 mb-6">
-                Benimle <span className="text-gradient">İletişime Geçin</span>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+                Benimle <span className="text-[var(--amber)]">İletişime Geçin</span>
               </h1>
-              <p className="text-lg text-[var(--text-body)] max-w-2xl mx-auto">
+              <p className="text-lg text-white/90 max-w-2xl mx-auto">
                 Sorularınız mı var? Ücretsiz keşif görüşmesi ayarlamak mı istiyorsunuz?
                 Hemen iletişime geçin!
               </p>
