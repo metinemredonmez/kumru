@@ -21,8 +21,8 @@ const mediaAppearances = [
     title: "Ödül Töreni",
     subtitle: "Instagram Reel",
     date: "2024",
-    description: "Yılın Yaşam Koçu ödülü töreni görüntüleri.",
-    image: null,
+    description: "Yılın Spiritüel Yaşam Koçu ve Davranış Bilimleri Uzmanı ödülü töreni.",
+    image: "/odul-toreni.jpg",
     link: "https://www.instagram.com/reel/DJq0jUptijh/",
   },
 ];
@@ -140,13 +140,25 @@ export default function MediaPage() {
                   className="bg-[var(--soft)] rounded-2xl overflow-hidden"
                 >
                   {item.image && (
-                    <div className="aspect-video relative overflow-hidden">
+                    <a
+                      href={item.link || "#"}
+                      target={item.link ? "_blank" : undefined}
+                      rel={item.link ? "noopener noreferrer" : undefined}
+                      className="aspect-video relative overflow-hidden block group"
+                    >
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                      {item.type === "video" && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <Play size={28} className="text-[var(--indigo)] ml-1" />
+                          </div>
+                        </div>
+                      )}
                       <div className="absolute bottom-4 left-4 flex items-center gap-2">
                         {item.type === "magazine" ? (
                           <Newspaper size={20} className="text-white" />
@@ -155,7 +167,7 @@ export default function MediaPage() {
                         )}
                         <span className="text-white text-sm font-medium">{item.subtitle}</span>
                       </div>
-                    </div>
+                    </a>
                   )}
 
                   {!item.image && item.link && (
