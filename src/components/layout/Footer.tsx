@@ -10,9 +10,9 @@ export default function Footer() {
           <div>
             <div className="mb-6">
               <img
-                src="/logo-footer.png"
+                src="/logo-white.png"
                 alt="Kumru Köseler - Grow Bold, Every Day"
-                className="h-20 w-auto brightness-0 invert"
+                className="h-20 w-auto"
               />
             </div>
             <p className="text-[var(--lavender)] leading-relaxed">
