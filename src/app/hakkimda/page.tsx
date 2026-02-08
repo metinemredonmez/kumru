@@ -36,7 +36,7 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <main className="pt-20">
+      <main className="pt-28">
         {/* Hero Section */}
         <section className="py-20 gradient-soft">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

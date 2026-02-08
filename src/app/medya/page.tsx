@@ -98,7 +98,7 @@ export default function MediaPage() {
   return (
     <>
       <Header />
-      <main className="pt-20">
+      <main className="pt-28">
         {/* Hero Section */}
         <section className="py-24 relative overflow-hidden">
           <div

@@ -200,7 +200,7 @@ export default function ResourcesPage() {
   return (
     <>
       <Header />
-      <main className="pt-20">
+      <main className="pt-28">
         {/* Hero Section */}
         <section className="py-32 relative overflow-hidden">
           <div

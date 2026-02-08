@@ -9,7 +9,7 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center pt-28 overflow-hidden">
       {/* Background Gradient */}
       <div className="absolute inset-0 gradient-soft" />
 
