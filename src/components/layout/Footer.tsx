@@ -26,28 +26,33 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-6">Hızlı Bağlantılar</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="#about" className="text-[var(--lavender)] hover:text-white transition-colors">
+                <Link href="/hakkimda" className="text-[var(--lavender)] hover:text-white transition-colors">
                   Hakkımda
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="text-[var(--lavender)] hover:text-white transition-colors">
+                <Link href="/hizmetler" className="text-[var(--lavender)] hover:text-white transition-colors">
                   Hizmetler
                 </Link>
               </li>
               <li>
-                <Link href="#programs" className="text-[var(--lavender)] hover:text-white transition-colors">
+                <Link href="/programlar" className="text-[var(--lavender)] hover:text-white transition-colors">
                   Programlar
                 </Link>
               </li>
               <li>
-                <Link href="#resources" className="text-[var(--lavender)] hover:text-white transition-colors">
+                <Link href="/medya" className="text-[var(--lavender)] hover:text-white transition-colors">
+                  Medya
+                </Link>
+              </li>
+              <li>
+                <Link href="/kaynaklar" className="text-[var(--lavender)] hover:text-white transition-colors">
                   Kaynaklar
                 </Link>
               </li>
               <li>
-                <Link href="#faq" className="text-[var(--lavender)] hover:text-white transition-colors">
-                  SSS
+                <Link href="/iletisim" className="text-[var(--lavender)] hover:text-white transition-colors">
+                  İletişim
                 </Link>
               </li>
             </ul>

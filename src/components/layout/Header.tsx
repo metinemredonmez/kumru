@@ -6,13 +6,13 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { name: "Ana Sayfa", href: "#home" },
-  { name: "Hakkımda", href: "#about" },
-  { name: "Hizmetler", href: "#services" },
-  { name: "Programlar", href: "#programs" },
-  { name: "Kaynaklar", href: "#resources" },
-  { name: "SSS", href: "#faq" },
-  { name: "İletişim", href: "#contact" },
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Hakkımda", href: "/hakkimda" },
+  { name: "Hizmetler", href: "/hizmetler" },
+  { name: "Programlar", href: "/programlar" },
+  { name: "Medya", href: "/medya" },
+  { name: "Kaynaklar", href: "/kaynaklar" },
+  { name: "İletişim", href: "/iletisim" },
 ];
 
 export default function Header() {
@@ -47,7 +47,7 @@ export default function Header() {
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-4">
             <Link
-              href="#contact"
+              href="/iletisim"
               className="px-6 py-3 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-colors"
             >
               Ücretsiz Görüşme
@@ -83,7 +83,7 @@ export default function Header() {
                 </Link>
               ))}
               <Link
-                href="#contact"
+                href="/iletisim"
                 onClick={() => setIsOpen(false)}
                 className="px-6 py-3 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-colors text-center mt-2"
               >

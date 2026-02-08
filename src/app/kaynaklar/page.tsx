@@ -1,0 +1,329 @@
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  BookOpen, Video, FileText, Download, ArrowRight,
+  Headphones, Lightbulb, Heart, Target, Brain
+} from "lucide-react";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import Link from "next/link";
+
+const resources = [
+  {
+    icon: FileText,
+    title: "Hedef Belirleme Rehberi",
+    description: "SMART hedefler oluşturma ve takip etme üzerine kapsamlı rehber.",
+    type: "PDF",
+    category: "Rehber",
+  },
+  {
+    icon: Video,
+    title: "Sabah Rutini Oluşturma",
+    description: "Güne enerjik başlamanızı sağlayacak sabah rutini videosu.",
+    type: "Video",
+    category: "Video",
+  },
+  {
+    icon: Headphones,
+    title: "5 Dakikalık Meditasyon",
+    description: "Günlük stresi azaltmak için kısa ve etkili meditasyon.",
+    type: "Ses",
+    category: "Meditasyon",
+  },
+  {
+    icon: FileText,
+    title: "Öz Değerlendirme Testi",
+    description: "Güçlü yönlerinizi ve gelişim alanlarınızı keşfedin.",
+    type: "PDF",
+    category: "Test",
+  },
+  {
+    icon: BookOpen,
+    title: "Günlük Tutma Şablonu",
+    description: "Düşüncelerinizi ve duygularınızı organize etmek için şablon.",
+    type: "PDF",
+    category: "Şablon",
+  },
+  {
+    icon: Video,
+    title: "Nefes Teknikleri",
+    description: "Kaygı anlarında kullanabileceğiniz nefes egzersizleri.",
+    type: "Video",
+    category: "Video",
+  },
+];
+
+const blogPosts = [
+  {
+    title: "Hayatınızı Değiştirmek İçin 5 Adım",
+    excerpt: "Gerçek değişim küçük adımlarla başlar. İşte başlamanız için 5 pratik öneri...",
+    category: "Kişisel Gelişim",
+    readTime: "5 dk",
+  },
+  {
+    title: "Stres Yönetiminde Mindfulness",
+    excerpt: "Farkındalık pratiği ile stresi nasıl yönetebileceğinizi keşfedin...",
+    category: "Mindfulness",
+    readTime: "4 dk",
+  },
+  {
+    title: "Hedeflerinize Ulaşmanın Sırları",
+    excerpt: "Başarılı insanların ortak özelliği: Net hedefler ve kararlılık...",
+    category: "Hedef Belirleme",
+    readTime: "6 dk",
+  },
+  {
+    title: "İlişkilerde İletişimin Gücü",
+    excerpt: "Sağlıklı ilişkilerin temelinde etkili iletişim yatıyor...",
+    category: "İlişkiler",
+    readTime: "5 dk",
+  },
+];
+
+const tips = [
+  {
+    icon: Brain,
+    title: "Zihin Temizliği",
+    tip: "Her gün 10 dakika sessizlikle geçirin. Düşüncelerinizi gözlemleyin, yargılamayın.",
+  },
+  {
+    icon: Heart,
+    title: "Minnettarlık",
+    tip: "Her akşam 3 şey için minnettar olduğunuzu yazın. Pozitif bakış açısı geliştirin.",
+  },
+  {
+    icon: Target,
+    title: "Küçük Adımlar",
+    tip: "Büyük hedefleri küçük, yapılabilir adımlara bölün. Her gün bir adım atın.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Öğrenme",
+    tip: "Her gün yeni bir şey öğrenin. Beyin plastisitesini koruyun ve geliştirin.",
+  },
+];
+
+export default function ResourcesPage() {
+  return (
+    <>
+      <Header />
+      <main className="pt-20">
+        {/* Hero Section */}
+        <section className="py-20 gradient-soft">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="text-[var(--indigo)] font-semibold tracking-wider uppercase text-sm">
+                Kaynaklar
+              </span>
+              <h1 className="text-4xl md:text-5xl font-bold text-[var(--dark)] mt-4 mb-6">
+                Ücretsiz <span className="text-gradient">Kaynaklar</span>
+              </h1>
+              <p className="text-lg text-[var(--text-body)] max-w-2xl mx-auto">
+                Kişisel gelişim yolculuğunuzda size yardımcı olacak ücretsiz
+                rehberler, videolar ve araçlar
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Daily Tips */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {tips.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="bg-[var(--soft)] p-6 rounded-2xl"
+                >
+                  <div className="w-12 h-12 mb-4 rounded-xl bg-[var(--lavender)] flex items-center justify-center">
+                    <item.icon size={24} className="text-[var(--indigo)]" />
+                  </div>
+                  <h3 className="font-semibold text-[var(--dark)] mb-2">{item.title}</h3>
+                  <p className="text-sm text-[var(--text-body)]">{item.tip}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Free Resources */}
+        <section className="py-20 bg-[var(--soft)]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl font-bold text-[var(--dark)] mb-4">
+                Ücretsiz İndirilebilir Kaynaklar
+              </h2>
+              <p className="text-[var(--text-body)] max-w-2xl mx-auto">
+                E-posta listemize katılarak tüm kaynaklara ücretsiz erişin
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {resources.map((resource, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="bg-white p-6 rounded-2xl hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-[var(--lavender)] flex items-center justify-center flex-shrink-0">
+                      <resource.icon size={24} className="text-[var(--indigo)]" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-xs font-medium px-2 py-1 bg-[var(--soft)] rounded-full text-[var(--indigo)]">
+                          {resource.type}
+                        </span>
+                      </div>
+                      <h3 className="font-semibold text-[var(--dark)] mb-2">
+                        {resource.title}
+                      </h3>
+                      <p className="text-sm text-[var(--text-body)] mb-4">
+                        {resource.description}
+                      </p>
+                      <button className="inline-flex items-center gap-2 text-[var(--indigo)] font-medium text-sm hover:gap-3 transition-all">
+                        <Download size={16} /> İndir
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Blog Posts */}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl font-bold text-[var(--dark)] mb-4">
+                Blog Yazıları
+              </h2>
+              <p className="text-[var(--text-body)] max-w-2xl mx-auto">
+                Kişisel gelişim, mindfulness ve yaşam koçluğu üzerine yazılar
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {blogPosts.map((post, index) => (
+                <motion.article
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="bg-[var(--soft)] p-6 rounded-2xl hover:shadow-lg transition-shadow cursor-pointer"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-xs font-medium px-3 py-1 bg-[var(--indigo)]/10 rounded-full text-[var(--indigo)]">
+                      {post.category}
+                    </span>
+                    <span className="text-xs text-[var(--text-muted)]">
+                      {post.readTime} okuma
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-[var(--dark)] mb-3">
+                    {post.title}
+                  </h3>
+                  <p className="text-[var(--text-body)] mb-4">
+                    {post.excerpt}
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-[var(--indigo)] font-medium">
+                    Devamını Oku <ArrowRight size={16} />
+                  </span>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter */}
+        <section className="py-20 gradient-dark text-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl font-bold mb-6">
+                Haftalık İlham Bülteni
+              </h2>
+              <p className="text-[var(--lavender)] mb-8 max-w-2xl mx-auto">
+                Her hafta motivasyon, ipuçları ve özel içerikler için e-posta listemize katılın.
+                Abone olanlara özel indirimler ve erken erişim fırsatları!
+              </p>
+              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input
+                  type="email"
+                  placeholder="E-posta adresiniz"
+                  className="flex-1 px-6 py-4 rounded-full text-[var(--dark)] focus:outline-none focus:ring-2 focus:ring-[var(--violet)]"
+                />
+                <button
+                  type="submit"
+                  className="px-8 py-4 bg-[var(--violet)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-colors"
+                >
+                  Abone Ol
+                </button>
+              </form>
+              <p className="text-sm text-[var(--lavender)]/70 mt-4">
+                Spam göndermiyoruz. İstediğiniz zaman abonelikten çıkabilirsiniz.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-20 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl font-bold text-[var(--dark)] mb-6">
+                Daha Fazlasını mı İstiyorsunuz?
+              </h2>
+              <p className="text-[var(--text-body)] mb-8">
+                Birebir koçluk ile kişisel gelişiminizi hızlandırın.
+                Ücretsiz keşif görüşmesi için hemen iletişime geçin.
+              </p>
+              <Link
+                href="/iletisim"
+                className="inline-flex items-center justify-center px-8 py-4 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-all hover:shadow-lg"
+              >
+                Ücretsiz Görüşme Ayarla
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}
