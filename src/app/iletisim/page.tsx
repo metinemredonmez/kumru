@@ -145,7 +145,7 @@ export default function ContactPage() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all bg-white text-[var(--dark)]"
                         placeholder={t.contact.form.name}
                       />
                     </div>
@@ -158,7 +158,7 @@ export default function ContactPage() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all bg-white text-[var(--dark)]"
                         placeholder={language === 'tr' ? "ornek@email.com" : "example@email.com"}
                       />
                     </div>
@@ -173,7 +173,7 @@ export default function ContactPage() {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all bg-white text-[var(--dark)]"
                         placeholder="+90 5XX XXX XX XX"
                       />
                     </div>
@@ -185,7 +185,7 @@ export default function ContactPage() {
                         required
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all bg-white"
+                        className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all bg-white text-[var(--dark)]"
                       >
                         <option value="">{t.contact.form.subjectPlaceholder}</option>
                         <option value="kesif">{t.contact.form.subjects.discovery}</option>
@@ -206,7 +206,7 @@ export default function ContactPage() {
                       rows={5}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all resize-none bg-white text-[var(--dark)]"
                       placeholder={t.contact.form.messagePlaceholder}
                     />
                   </div>
