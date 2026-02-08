@@ -55,6 +55,39 @@ const awards = [
   },
 ];
 
+const instagramPosts = [
+  {
+    image: "/instagram/post1.jpg",
+    title: "Hayatındaki İlişkiler",
+    description: "Birbirine karışıyorsa, sınırlarını çizme zamanı...",
+  },
+  {
+    image: "/instagram/post2.jpg",
+    title: "Farkındalık",
+    description: "İç sesin dinle, cevaplar sende...",
+  },
+  {
+    image: "/instagram/post3.jpg",
+    title: "Dönüşüm",
+    description: "Değişim cesaret ister, sen hazırsın...",
+  },
+  {
+    image: "/instagram/post4.jpg",
+    title: "Öz Sevgi",
+    description: "Kendine sevgiyle bakmayı öğren...",
+  },
+  {
+    image: "/instagram/post5.jpg",
+    title: "Hedefler",
+    description: "Hayallerini gerçeğe dönüştür...",
+  },
+  {
+    image: "/instagram/post6.jpg",
+    title: "Bilinçli Yaşam",
+    description: "Her an farkında ol, şimdi ile bağlan...",
+  },
+];
+
 export default function MediaPage() {
   return (
     <>
@@ -239,6 +272,54 @@ export default function MediaPage() {
                   <p className="text-sm text-[var(--text-muted)]">{award.organization}</p>
                   <p className="text-sm text-[var(--indigo)] font-medium mt-2">{award.year}</p>
                 </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Instagram Posts */}
+        <section className="py-20 bg-[var(--soft)]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl font-bold text-[var(--dark)] mb-4">
+                Instagram Paylaşımları
+              </h2>
+              <p className="text-[var(--text-body)]">
+                @kumrukoseler'dan güncel içerikler
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {instagramPosts.map((post, index) => (
+                <motion.a
+                  key={index}
+                  href="https://www.instagram.com/kumrukoseler/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="group relative aspect-square rounded-xl overflow-hidden"
+                >
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <div className="text-center text-white p-4">
+                      <p className="font-semibold mb-1">{post.title}</p>
+                      <p className="text-sm text-white/80">{post.description}</p>
+                    </div>
+                  </div>
+                </motion.a>
               ))}
             </div>
           </div>
