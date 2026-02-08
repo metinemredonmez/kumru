@@ -81,13 +81,49 @@ export default function ContactPage() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ success: boolean; message: string } | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
-    alert(language === 'tr'
-      ? "Mesajınız gönderildi! En kısa sürede size dönüş yapacağız."
-      : "Your message has been sent! We will get back to you as soon as possible."
-    );
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch("https://kumrukoseler.com/api/contact.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus({
+          success: true,
+          message: language === 'tr'
+            ? "Mesajınız gönderildi! En kısa sürede size dönüş yapacağız."
+            : "Your message has been sent! We will get back to you as soon as possible."
+        });
+        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      } else {
+        setSubmitStatus({
+          success: false,
+          message: result.message || (language === 'tr' ? "Bir hata oluştu." : "An error occurred.")
+        });
+      }
+    } catch {
+      setSubmitStatus({
+        success: false,
+        message: language === 'tr'
+          ? "Bağlantı hatası. Lütfen tekrar deneyin."
+          : "Connection error. Please try again."
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -213,11 +249,25 @@ export default function ContactPage() {
 
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-all hover:shadow-lg w-full md:w-auto"
+                    disabled={isSubmitting}
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-all hover:shadow-lg w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send size={18} />
-                    {t.contact.form.send}
+                    {isSubmitting
+                      ? (language === 'tr' ? "Gönderiliyor..." : "Sending...")
+                      : t.contact.form.send
+                    }
                   </button>
+
+                  {submitStatus && (
+                    <div className={`mt-4 p-4 rounded-xl ${
+                      submitStatus.success
+                        ? "bg-green-50 text-green-700 border border-green-200"
+                        : "bg-red-50 text-red-700 border border-red-200"
+                    }`}>
+                      {submitStatus.message}
+                    </div>
+                  )}
                 </form>
               </motion.div>
 
