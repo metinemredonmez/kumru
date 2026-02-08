@@ -77,7 +77,7 @@ export default function Header() {
                       }`}
                     >
                       <span className="text-lg">{languageLabels[lang].flag}</span>
-                      <span className="text-sm font-medium">{languageLabels[lang].name}</span>
+                      <span className="text-sm font-medium text-[var(--dark)]">{languageLabels[lang].name}</span>
                     </button>
                   ))}
                 </motion.div>
@@ -134,7 +134,7 @@ export default function Header() {
                     }`}
                   >
                     <span>{languageLabels[lang].flag}</span>
-                    <span className="text-sm">{languageLabels[lang].name}</span>
+                    <span className="text-sm text-[var(--dark)]">{languageLabels[lang].name}</span>
                   </button>
                 ))}
               </div>
