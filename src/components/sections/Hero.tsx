@@ -53,10 +53,15 @@ export default function Hero() {
                 Ücretsiz Keşif Görüşmesi
                 <ArrowRight size={20} />
               </Link>
-              <button className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[var(--dark)] rounded-full font-semibold border-2 border-[var(--lavender)] hover:border-[var(--indigo)] transition-colors">
+              <a
+                href="https://www.instagram.com/reel/DJq0jUptijh/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[var(--dark)] rounded-full font-semibold border-2 border-[var(--lavender)] hover:border-[var(--indigo)] transition-colors"
+              >
                 <Play size={20} className="text-[var(--indigo)]" />
                 Tanıtım Videosu
-              </button>
+              </a>
             </div>
 
             {/* Stats */}
