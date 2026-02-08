@@ -7,38 +7,66 @@ import Testimonials from "@/components/sections/Testimonials";
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Video, Calendar, Target, CheckCircle, Star } from "lucide-react";
 import Link from "next/link";
-
-const services = [
-  {
-    icon: Users,
-    title: "Birebir Koçluk",
-    description: "Kişiye özel, yoğun ve dönüştürücü koçluk seansları.",
-  },
-  {
-    icon: Video,
-    title: "Online Seanslar",
-    description: "Dünyanın her yerinden video görüşme ile koçluk.",
-  },
-  {
-    icon: Calendar,
-    title: "Retreat Programları",
-    description: "Otel konaklamalı grup dönüşüm programları.",
-  },
-  {
-    icon: Target,
-    title: "Kurumsal Koçluk",
-    description: "Şirketler için özel liderlik programları.",
-  },
-];
-
-const stats = [
-  { value: "500+", label: "Mutlu Danışan" },
-  { value: "10+", label: "Yıl Deneyim" },
-  { value: "98%", label: "Memnuniyet" },
-  { value: "50+", label: "Retreat" },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Home() {
+  const { t, language } = useLanguage();
+
+  const services = [
+    {
+      icon: Users,
+      title: t.services.servicesList.oneOnOne.title,
+      description: t.services.servicesList.oneOnOne.shortDesc,
+    },
+    {
+      icon: Video,
+      title: t.services.servicesList.online.title,
+      description: t.services.servicesList.online.shortDesc,
+    },
+    {
+      icon: Calendar,
+      title: language === 'tr' ? "Retreat Programları" : "Retreat Programs",
+      description: language === 'tr' ? "Otel konaklamalı grup dönüşüm programları." : "Group transformation programs with hotel accommodation.",
+    },
+    {
+      icon: Target,
+      title: t.services.servicesList.corporate.title,
+      description: t.services.servicesList.corporate.shortDesc,
+    },
+  ];
+
+  const stats = [
+    { value: "500+", label: t.hero.stats.clients },
+    { value: "10+", label: t.hero.stats.experience },
+    { value: "98%", label: t.hero.stats.satisfaction },
+    { value: "50+", label: "Retreat" },
+  ];
+
+  const programs = [
+    {
+      title: t.programs.programsList.oneOnOne.title,
+      duration: t.programs.programsList.oneOnOne.duration,
+      features: language === 'tr'
+        ? ["60 dk seanslar", "WhatsApp destek", "Kişiye özel program"]
+        : ["60 min sessions", "WhatsApp support", "Personalized program"],
+    },
+    {
+      title: t.programs.programsList.transformationRetreat.title,
+      duration: t.programs.programsList.transformationRetreat.duration,
+      features: language === 'tr'
+        ? ["5 yıldızlı otel", "Grup seansları", "Meditasyon"]
+        : ["5-star hotel", "Group sessions", "Meditation"],
+      featured: true,
+    },
+    {
+      title: t.programs.programsList.vipRetreat.title,
+      duration: t.programs.programsList.vipRetreat.duration,
+      features: language === 'tr'
+        ? ["Lüks konaklama", "Birebir seans", "Spa & wellness"]
+        : ["Luxury accommodation", "One-on-one session", "Spa & wellness"],
+    },
+  ];
+
   return (
     <>
       <Header />
@@ -65,7 +93,7 @@ export default function Home() {
                 </div>
                 <div className="absolute -bottom-6 -right-6 bg-[var(--indigo)] text-white p-6 rounded-2xl shadow-xl">
                   <div className="text-4xl font-bold">10+</div>
-                  <div className="text-sm opacity-80">Yıl Deneyim</div>
+                  <div className="text-sm opacity-80">{t.about.experience}</div>
                 </div>
               </motion.div>
 
@@ -76,27 +104,23 @@ export default function Home() {
                 transition={{ duration: 0.6 }}
               >
                 <span className="text-[var(--indigo)] font-semibold tracking-wider uppercase text-sm">
-                  Hakkımda
+                  {t.about.subtitle}
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-[var(--dark)] mt-4 mb-6">
-                  Merhaba, Ben{" "}
-                  <span className="text-gradient">Kumru Köseler</span>
+                  {t.about.title}{" "}
+                  <span className="text-gradient">{t.about.name}</span>
                 </h2>
                 <p className="text-[var(--text-body)] leading-relaxed mb-6">
-                  10 yılı aşkın deneyimimle, bireylerin ve profesyonellerin hayatlarında
-                  anlamlı dönüşümler yaratmalarına yardımcı oluyorum. Bilimsel yöntemler
-                  ve empatik bir yaklaşımla, her danışanımın benzersiz yolculuğuna
-                  eşlik ediyorum.
+                  {t.about.description1}
                 </p>
                 <p className="text-[var(--text-body)] leading-relaxed mb-8">
-                  İnsanların hayatlarının pozitif yönde değişimine vesile olabilen
-                  spiritüel bir rehber ve davranış bilimleri uzmanıyım.
+                  {t.about.description2}
                 </p>
                 <Link
                   href="/hakkimda"
                   className="inline-flex items-center gap-2 text-[var(--indigo)] font-semibold hover:gap-3 transition-all"
                 >
-                  Daha Fazla Bilgi <ArrowRight size={18} />
+                  {t.about.cta} <ArrowRight size={18} />
                 </Link>
               </motion.div>
             </div>
@@ -114,10 +138,10 @@ export default function Home() {
               className="text-center mb-16"
             >
               <span className="text-[var(--indigo)] font-semibold tracking-wider uppercase text-sm">
-                Hizmetler
+                {t.services.subtitle}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-[var(--dark)] mt-4 mb-6">
-                Size Nasıl <span className="text-gradient">Yardımcı Olabilirim?</span>
+                {t.services.title} <span className="text-gradient">{t.services.titleHighlight}</span>
               </h2>
             </motion.div>
 
@@ -155,7 +179,7 @@ export default function Home() {
                 href="/hizmetler"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-all"
               >
-                Tüm Hizmetleri Gör <ArrowRight size={18} />
+                {language === 'tr' ? 'Tüm Hizmetleri Gör' : 'View All Services'} <ArrowRight size={18} />
               </Link>
             </motion.div>
           </div>
@@ -198,36 +222,18 @@ export default function Home() {
               className="text-center mb-16"
             >
               <span className="text-[var(--indigo)] font-semibold tracking-wider uppercase text-sm">
-                Programlar
+                {t.programs.subtitle}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-[var(--dark)] mt-4 mb-6">
-                Dönüşüm <span className="text-gradient">Programları</span>
+                {t.programs.title} <span className="text-gradient">{t.programs.titleHighlight}</span>
               </h2>
               <p className="text-[var(--text-body)] max-w-2xl mx-auto">
-                Birebir koçluktan otel konaklamalı retreat programlarına kadar
-                size uygun seçenekler
+                {t.programs.description}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "Birebir Koçluk",
-                  duration: "4-12 Hafta",
-                  features: ["60 dk seanslar", "WhatsApp destek", "Kişiye özel program"],
-                },
-                {
-                  title: "Dönüşüm Retreati",
-                  duration: "3 Gün 2 Gece",
-                  features: ["5 yıldızlı otel", "Grup seansları", "Meditasyon"],
-                  featured: true,
-                },
-                {
-                  title: "VIP Retreat",
-                  duration: "4 Gün 3 Gece",
-                  features: ["Lüks konaklama", "Birebir seans", "Spa & wellness"],
-                },
-              ].map((program, index) => (
+              {programs.map((program, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -242,7 +248,7 @@ export default function Home() {
                 >
                   {program.featured && (
                     <span className="inline-block px-3 py-1 bg-[var(--amber)] text-[var(--dark)] text-xs font-bold rounded-full mb-4">
-                      En Popüler
+                      {t.programs.mostPopular}
                     </span>
                   )}
                   <h3 className={`text-xl font-bold mb-2 ${program.featured ? "text-white" : "text-[var(--dark)]"}`}>
@@ -276,7 +282,7 @@ export default function Home() {
                 href="/programlar"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-all"
               >
-                Tüm Programları Gör <ArrowRight size={18} />
+                {language === 'tr' ? 'Tüm Programları Gör' : 'View All Programs'} <ArrowRight size={18} />
               </Link>
             </motion.div>
           </div>
@@ -297,18 +303,17 @@ export default function Home() {
                 ))}
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-[var(--dark)] mb-6">
-                Dönüşüm Yolculuğunuza Başlayın
+                {t.programs.ctaTitle}
               </h2>
               <p className="text-lg text-[var(--text-body)] mb-8 max-w-2xl mx-auto">
-                Hayatınızda pozitif bir değişim yaratmak için ilk adımı atın.
-                Ücretsiz 30 dakikalık keşif görüşmesi ile tanışalım.
+                {t.about.ctaDescription}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/iletisim"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-all hover:shadow-lg"
                 >
-                  Ücretsiz Görüşme Ayarla <ArrowRight size={18} />
+                  {t.about.ctaButton} <ArrowRight size={18} />
                 </Link>
                 <a
                   href="https://wa.me/905343675669"
@@ -316,7 +321,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] text-white rounded-full font-semibold hover:bg-[#128C7E] transition-all"
                 >
-                  WhatsApp'tan Yaz
+                  {language === 'tr' ? "WhatsApp'tan Yaz" : "Message on WhatsApp"}
                 </a>
               </div>
             </motion.div>

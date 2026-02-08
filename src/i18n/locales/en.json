@@ -1,0 +1,513 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "programs": "Programs",
+    "media": "Media",
+    "resources": "Resources",
+    "contact": "Contact",
+    "cta": "Free Consultation"
+  },
+  "hero": {
+    "badge": "Professional Life Coach",
+    "title1": "Transform",
+    "title2": "Your Life,",
+    "title3": "Discover Your Potential",
+    "description": "I help you achieve the life of your dreams through one-on-one coaching sessions, personalized programs, and proven methods.",
+    "cta1": "Free Discovery Session",
+    "cta2": "Introduction Video",
+    "stats": {
+      "clients": "Happy Clients",
+      "experience": "Years Experience",
+      "satisfaction": "Satisfaction"
+    },
+    "googleReview": "10 Reviews on Google"
+  },
+  "about": {
+    "subtitle": "About Me",
+    "title": "Hello, I'm",
+    "name": "Kumru Köseler",
+    "description1": "With over 10 years of experience, I help individuals and professionals create meaningful transformations in their lives. Using scientific methods and an empathetic approach, I accompany each client on their unique journey.",
+    "description2": "I am a spiritual guide and behavioral sciences expert who can help bring positive change to people's lives.",
+    "cta": "Learn More",
+    "experience": "Years Experience",
+    "pageTitle": "About Me",
+    "heroDescription": "A mother who says \"all children in the world are mine,\" a spiritual guide and behavioral sciences expert who studied behavioral sciences in England and Canada.",
+    "heroDescription2": "We visited Kumru Köseler at her office in Akmerkez, with all my attention on my book \"Magic Wish Diary\" which I believe can become real, and the new year will bring beautiful things.",
+    "appointment": "Book Appointment",
+    "mediaButton": "Media Appearances",
+    "storyTitle": "My Story",
+    "story1": "I discovered the mystical power within me at a very young age. To pursue education in this direction, I chose management and behavioral sciences at Kingsley State (England) and York University in Canada, and graduated.",
+    "story2": "Additionally, to further develop myself in my field, I obtained certifications by participating in certificate programs. As a guide and behavioral sciences expert, I continue to elevate my mystical consciousness to the highest level through my work.",
+    "story3": "Today, whatever you think, you can attract to yourself, you can use the energy of intention. You live what you feel, observing people in front of you only through thought, I am a spiritual guide and behavioral sciences expert who has achieved amazing things with countless clients and can help bring positive change to their lives.",
+    "story4": "One of the most important reasons I chose this profession is the shaping of consciousness at a young age and its effect on our entire life. My goal is to ensure our consciousness is formed healthily and with love, to help our children continue their lives as much happier individuals.",
+    "valuesTitle": "My Values",
+    "valuesDescription": "The values that form the foundation of every relationship I build with my clients",
+    "values": {
+      "empathy": {
+        "title": "Empathy",
+        "description": "I see each client as a unique individual and listen to their story."
+      },
+      "honesty": {
+        "title": "Honesty",
+        "description": "Open and transparent communication is the foundation of trust."
+      },
+      "transformation": {
+        "title": "Transformation",
+        "description": "We work together for real and lasting change."
+      },
+      "excellence": {
+        "title": "Excellence",
+        "description": "I provide the best service through continuous learning and growth."
+      }
+    },
+    "certificationsTitle": "Certifications & Training",
+    "certifications": [
+      {
+        "title": "ICF Certified Coach",
+        "organization": "International Coach Federation",
+        "year": "2018"
+      },
+      {
+        "title": "NLP Practitioner",
+        "organization": "NLP Academy",
+        "year": "2016"
+      },
+      {
+        "title": "Behavioral Sciences Expert",
+        "organization": "York University, Canada",
+        "year": "2015"
+      },
+      {
+        "title": "Life Coaching Certificate",
+        "organization": "Kingsley State, England",
+        "year": "2014"
+      }
+    ],
+    "journeyTitle": "My Journey",
+    "timeline": [
+      {
+        "year": "2014",
+        "title": "Beginning of Coaching Journey",
+        "description": "Completed my life coaching training in England."
+      },
+      {
+        "year": "2016",
+        "title": "NLP Expertise",
+        "description": "Enriched my coaching methodology with NLP techniques."
+      },
+      {
+        "year": "2018",
+        "title": "ICF Accreditation",
+        "description": "Received International Coach Federation certification."
+      },
+      {
+        "year": "2020",
+        "title": "Online Coaching",
+        "description": "Launched online coaching programs during the pandemic."
+      },
+      {
+        "year": "2023",
+        "title": "Retreat Programs",
+        "description": "Implemented group retreat programs with hotel accommodation."
+      }
+    ],
+    "ctaTitle": "Let's Work Together",
+    "ctaDescription": "Take the first step to create positive change in your life. Let's meet with a free discovery session.",
+    "ctaButton": "Schedule Free Consultation"
+  },
+  "services": {
+    "subtitle": "Services",
+    "title": "How Can I",
+    "titleHighlight": "Help You?",
+    "description": "I accompany you in reaching your goals with different coaching formats suitable for your needs.",
+    "specializations": {
+      "personal": {
+        "title": "Personal Development",
+        "description": "Self-awareness, confidence, and personal transformation"
+      },
+      "relationship": {
+        "title": "Relationship Coaching",
+        "description": "Building healthy relationships and communication skills"
+      },
+      "career": {
+        "title": "Career Coaching",
+        "description": "Career planning, work-life balance"
+      },
+      "goal": {
+        "title": "Goal-Focused Coaching",
+        "description": "Setting clear goals and achieving them"
+      }
+    },
+    "optionsTitle": "Service Options",
+    "optionsDescription": "Different coaching formats for every need",
+    "servicesList": {
+      "oneOnOne": {
+        "title": "One-on-One Coaching",
+        "shortDesc": "Personalized, intensive, and transformative coaching sessions.",
+        "fullDesc": "In one-on-one coaching sessions conducted online or in person, we create a program completely tailored to you. We clarify your goals and ensure your step-by-step progress.",
+        "duration": "4-12 Weeks",
+        "features": [
+          "60-minute intensive sessions",
+          "Personal action plan",
+          "24/7 WhatsApp support",
+          "Weekly progress tracking",
+          "Homework and exercises"
+        ]
+      },
+      "online": {
+        "title": "Online Sessions",
+        "shortDesc": "Coaching via video call from anywhere in the world.",
+        "fullDesc": "With online sessions conducted via Zoom or Google Meet, you can receive professional coaching support wherever you are. Flexible scheduling options.",
+        "duration": "45-60 Minutes",
+        "features": [
+          "Flexible time options",
+          "Recording option",
+          "Mobile compatible",
+          "Technical support",
+          "Secure connection"
+        ]
+      },
+      "messaging": {
+        "title": "Instant Messaging Support",
+        "shortDesc": "Continuous support and guidance between sessions.",
+        "fullDesc": "With the WhatsApp support line included in your coaching packages, I'm with you between sessions. I answer your questions and keep your motivation high.",
+        "duration": "Continuous",
+        "features": [
+          "Daily check-in",
+          "Quick feedback",
+          "Motivation support",
+          "Crisis support",
+          "Resource sharing"
+        ]
+      },
+      "corporate": {
+        "title": "Corporate Coaching",
+        "shortDesc": "Programs specially designed for companies.",
+        "fullDesc": "I offer leadership development, team coaching, and performance enhancement programs for corporate clients. Solutions tailored to your company culture.",
+        "duration": "Custom Program",
+        "features": [
+          "Leadership development",
+          "Team harmony",
+          "Performance increase",
+          "Stress management",
+          "Communication skills"
+        ]
+      },
+      "goalTracking": {
+        "title": "Goal Tracking System",
+        "shortDesc": "Goal setting and tracking with digital tools.",
+        "fullDesc": "With a specially developed tracking system, we set your goals, measure your progress, and celebrate your achievements. Increase your motivation with visual reports.",
+        "duration": "Continuous",
+        "features": [
+          "Daily tracking",
+          "Progress reports",
+          "Achievement badges",
+          "Reminders",
+          "Visual graphs"
+        ]
+      },
+      "group": {
+        "title": "Group Programs",
+        "shortDesc": "Learn together with people who have similar goals.",
+        "fullDesc": "In programs conducted with small groups, benefit from community power. Keep your motivation high with peer support.",
+        "duration": "8 Weeks",
+        "features": [
+          "Weekly meetings",
+          "Peer support",
+          "Common goals",
+          "Group dynamics",
+          "Affordable price"
+        ]
+      }
+    },
+    "moreInfo": "More Info",
+    "processTitle": "How Do We Work?",
+    "processDescription": "Our coaching process progresses in 4 simple steps",
+    "process": [
+      {
+        "step": "01",
+        "title": "Discovery Session",
+        "desc": "Free 30-minute introduction"
+      },
+      {
+        "step": "02",
+        "title": "Program Selection",
+        "desc": "We determine the right program for you"
+      },
+      {
+        "step": "03",
+        "title": "Coaching Process",
+        "desc": "Progress with regular sessions"
+      },
+      {
+        "step": "04",
+        "title": "Transformation",
+        "desc": "Reach your goals"
+      }
+    ],
+    "ctaTitle": "Which Service Is Right for You?",
+    "ctaDescription": "Let's evaluate your needs in a free discovery session and determine the most suitable program together.",
+    "ctaButton": "Schedule Free Consultation"
+  },
+  "programs": {
+    "subtitle": "Programs",
+    "title": "Transformation",
+    "titleHighlight": "Programs",
+    "description": "Options suitable for you from one-on-one coaching to hotel-inclusive retreat programs",
+    "hotelIncluded": "Hotel Included",
+    "mostPopular": "Most Popular",
+    "byConsultation": "By Consultation",
+    "startProgram": "Start Program",
+    "programsList": {
+      "oneOnOne": {
+        "title": "One-on-One Coaching",
+        "subtitle": "Online Session",
+        "duration": "4-12 Weeks",
+        "sessions": "One-on-One",
+        "description": "Online or face-to-face one-on-one coaching sessions. Custom program focused on your personal goals.",
+        "includes": [
+          "60-minute one-on-one sessions",
+          "Personal evaluation report",
+          "Goal setting work",
+          "WhatsApp support line",
+          "Personalized exercises"
+        ]
+      },
+      "transformationRetreat": {
+        "title": "Transformation Retreat",
+        "subtitle": "3 Days - Hotel Stay",
+        "duration": "3 Days 2 Nights",
+        "sessions": "Group Session",
+        "description": "Intensive transformation program including luxury hotel accommodation. Powerful change with group dynamics.",
+        "includes": [
+          "2 nights at 5-star hotel",
+          "Daily group sessions",
+          "Meditation and breathing exercises",
+          "One-on-one mini sessions",
+          "Breakfast and lunch included",
+          "Special gift package"
+        ]
+      },
+      "vipRetreat": {
+        "title": "VIP Retreat",
+        "subtitle": "4 Days - Premium Experience",
+        "duration": "4 Days 3 Nights",
+        "sessions": "VIP Group",
+        "description": "Limited attendance, intensive and transformative premium retreat experience.",
+        "includes": [
+          "3 nights at luxury hotel",
+          "All meals included",
+          "2 group sessions per day",
+          "Private one-on-one coaching session",
+          "Spa & wellness activities",
+          "1-month follow-up session",
+          "VIP gift set"
+        ]
+      }
+    },
+    "retreatExperience": {
+      "title": "Retreat Experience",
+      "description": "What awaits you in our hotel-inclusive programs?",
+      "features": {
+        "accommodation": {
+          "title": "Luxury Accommodation",
+          "description": "Comfortable rooms at 5-star hotels"
+        },
+        "meals": {
+          "title": "Meals Included",
+          "description": "Healthy and delicious meals"
+        },
+        "smallGroups": {
+          "title": "Small Groups",
+          "description": "Maximum 12-person groups"
+        },
+        "wellness": {
+          "title": "Wellness",
+          "description": "Spa and relaxation activities"
+        }
+      }
+    },
+    "upcomingTitle": "Upcoming Retreats",
+    "upcomingDescription": "Upcoming programs in our calendar",
+    "spots": "spots available",
+    "register": "Register",
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      {
+        "q": "Who can attend retreat programs?",
+        "a": "Our retreat programs are open to everyone over 18 years old. Anyone who wants to take a new step in their personal development journey can participate."
+      },
+      {
+        "q": "Are accommodation and meals included?",
+        "a": "Yes, hotel accommodation and specified meals are included in the price for all our retreat programs."
+      },
+      {
+        "q": "What is the group size?",
+        "a": "Our groups are limited to a maximum of 12 people for a quality experience. For VIP retreats, this number is 6-8 people."
+      },
+      {
+        "q": "What are the cancellation and refund conditions?",
+        "a": "Full refund is provided up to 14 days before the program start date. Please contact us for detailed information."
+      }
+    ],
+    "ctaTitle": "Start Your Transformation Journey",
+    "ctaDescription": "All programs start with a free discovery session. Installment options available.",
+    "ctaButton": "Schedule Free Consultation"
+  },
+  "media": {
+    "subtitle": "Media",
+    "title": "Kumru Köseler",
+    "titleHighlight": "in the Press",
+    "description": "Interviews, media appearances, and awards",
+    "featuredTitle": "Featured Media",
+    "mediaItems": {
+      "magazine": {
+        "type": "magazine",
+        "title": "Quality of Magazine",
+        "subtitle": "Interview",
+        "date": "November 2023",
+        "description": "Cover interview titled \"Everything that makes us who we are starts in the family.\" In-depth conversation on behavioral sciences and family dynamics."
+      },
+      "award": {
+        "type": "video",
+        "title": "Award Ceremony",
+        "subtitle": "Instagram Reel",
+        "date": "2024",
+        "description": "Spiritual Life Coach and Behavioral Sciences Expert of the Year award ceremony."
+      }
+    },
+    "quotesTitle": "Press Quotes",
+    "quotes": [
+      {
+        "quote": "I am a spiritual guide and behavioral sciences expert who can help bring positive change to people's lives.",
+        "source": "Quality of Magazine"
+      },
+      {
+        "quote": "Today, whatever you think, you can attract to yourself, you can use the energy of intention. You live what you feel.",
+        "source": "Interview"
+      },
+      {
+        "quote": "One of the most important reasons I chose this profession is the shaping of consciousness at a young age and its effect on our entire life.",
+        "source": "Quality of Magazine"
+      }
+    ],
+    "awardsTitle": "Awards & Achievements",
+    "awards": [
+      {
+        "title": "Life Coach of the Year",
+        "organization": "Turkish Coaching Association",
+        "year": "2024"
+      },
+      {
+        "title": "Best Online Coaching Program",
+        "organization": "Digital Coaching Awards",
+        "year": "2023"
+      }
+    ],
+    "instagramTitle": "From Instagram",
+    "instagramDescription": "Latest posts and inspiring content",
+    "followInstagram": "Follow on Instagram",
+    "ctaTitle": "Media Collaborations",
+    "ctaDescription": "You can contact me for interviews, speaker invitations, or collaboration proposals.",
+    "ctaButton": "Get in Touch"
+  },
+  "resources": {
+    "subtitle": "Resources",
+    "title": "Helpful",
+    "titleHighlight": "Resources",
+    "description": "Free resources to help you on your personal development journey",
+    "categories": {
+      "ebook": "E-Book",
+      "worksheet": "Worksheet",
+      "meditation": "Meditation"
+    },
+    "downloadFree": "Download Free",
+    "blogTitle": "Blog Posts",
+    "blogDescription": "My writings on personal development, relationships, and conscious living",
+    "readMore": "Read More",
+    "readTime": "min read",
+    "newsletterTitle": "Join My Newsletter",
+    "newsletterDescription": "Subscribe to my newsletter for inspiring content, practical tips, and special offers every week.",
+    "emailPlaceholder": "Your email address",
+    "subscribe": "Subscribe",
+    "ctaTitle": "Want More Resources?",
+    "ctaDescription": "Subscribe to my newsletter to be the first to access exclusive content and resources.",
+    "ctaButton": "Subscribe to Newsletter"
+  },
+  "contact": {
+    "subtitle": "Contact",
+    "title": "Get in",
+    "titleHighlight": "Touch",
+    "description": "You can contact me for questions or to schedule a free discovery session.",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "phone": "Your Phone Number",
+      "subject": "Subject",
+      "subjectPlaceholder": "Select subject",
+      "subjects": {
+        "discovery": "Free Discovery Session",
+        "oneOnOne": "One-on-One Coaching",
+        "retreat": "Retreat Programs",
+        "corporate": "Corporate Coaching",
+        "other": "Other"
+      },
+      "message": "Your Message",
+      "messagePlaceholder": "Write your message here...",
+      "send": "Send Message",
+      "sending": "Sending..."
+    },
+    "info": {
+      "title": "Contact Information",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "addressValue": "Akmerkez, Etiler\nIstanbul, Turkey",
+      "hours": "Working Hours",
+      "hoursValue": "Monday - Friday: 09:00 - 18:00\nSaturday: 10:00 - 14:00"
+    },
+    "social": {
+      "title": "Social Media",
+      "followMe": "Follow me"
+    },
+    "freeConsultation": {
+      "title": "Free Discovery Session",
+      "description": "Let's meet with a 30-minute free discovery session. Let's discuss your goals and determine the most suitable program for you together.",
+      "benefits": [
+        "Clarify your goals",
+        "Discover the right program for you",
+        "Get your questions answered",
+        "No commitment"
+      ],
+      "button": "Schedule Session"
+    }
+  },
+  "testimonials": {
+    "title": "Client",
+    "titleHighlight": "Testimonials",
+    "description": "Experiences from clients we've worked with"
+  },
+  "footer": {
+    "description": "Transform your life with professional life coaching. One-on-one coaching, online sessions, and retreat programs.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us",
+    "viewAll": "View All",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  }
+}

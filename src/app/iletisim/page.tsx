@@ -5,54 +5,74 @@ import { Mail, Phone, MapPin, Clock, Send, MessageCircle } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { useState } from "react";
-
-const contactInfo = [
-  {
-    icon: Mail,
-    title: "E-posta",
-    value: "kumrukoseler@gmail.com",
-    link: "mailto:kumrukoseler@gmail.com",
-  },
-  {
-    icon: Phone,
-    title: "Telefon",
-    value: "+90 534 367 56 69",
-    link: "tel:+905343675669",
-  },
-  {
-    icon: MapPin,
-    title: "Adres",
-    value: "Akmerkez Residens, Kültür, Nisbetiye Cd, 34100 Beşiktaş/İstanbul",
-    link: "https://maps.google.com/?q=Akmerkez+Residens+Beşiktaş+İstanbul",
-  },
-  {
-    icon: Clock,
-    title: "Çalışma Saatleri",
-    value: "Pazartesi - Cumartesi: 09:00 - 19:00",
-    link: null,
-  },
-];
-
-const faqItems = [
-  {
-    q: "İlk görüşme ücretsiz mi?",
-    a: "Evet, 30 dakikalık keşif görüşmesi tamamen ücretsizdir. Bu görüşmede tanışır, ihtiyaçlarınızı değerlendirir ve size uygun programı belirleriz.",
-  },
-  {
-    q: "Online seans yapıyor musunuz?",
-    a: "Evet, Zoom veya Google Meet üzerinden online seanslar yapıyorum. Dünyanın her yerinden katılabilirsiniz.",
-  },
-  {
-    q: "Seans süresi ne kadar?",
-    a: "Birebir koçluk seansları genellikle 60 dakikadır. Grup seansları ve retreatlar için süre değişkenlik gösterir.",
-  },
-  {
-    q: "Ödeme seçenekleri neler?",
-    a: "Nakit, havale/EFT ve kredi kartı ile ödeme yapabilirsiniz. Taksit imkanı mevcuttur.",
-  },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function ContactPage() {
+  const { t, language } = useLanguage();
+
+  const contactInfo = [
+    {
+      icon: Mail,
+      title: t.contact.info.email,
+      value: "kumrukoseler@gmail.com",
+      link: "mailto:kumrukoseler@gmail.com",
+    },
+    {
+      icon: Phone,
+      title: t.contact.info.phone,
+      value: "+90 534 367 56 69",
+      link: "tel:+905343675669",
+    },
+    {
+      icon: MapPin,
+      title: t.contact.info.address,
+      value: "Akmerkez Residens, Kültür, Nisbetiye Cd, 34100 Beşiktaş/İstanbul",
+      link: "https://maps.google.com/?q=Akmerkez+Residens+Beşiktaş+İstanbul",
+    },
+    {
+      icon: Clock,
+      title: t.contact.info.hours,
+      value: language === 'tr' ? "Pazartesi - Cumartesi: 09:00 - 19:00" : "Monday - Saturday: 09:00 - 19:00",
+      link: null,
+    },
+  ];
+
+  const faqItems = language === 'tr' ? [
+    {
+      q: "İlk görüşme ücretsiz mi?",
+      a: "Evet, 30 dakikalık keşif görüşmesi tamamen ücretsizdir. Bu görüşmede tanışır, ihtiyaçlarınızı değerlendirir ve size uygun programı belirleriz.",
+    },
+    {
+      q: "Online seans yapıyor musunuz?",
+      a: "Evet, Zoom veya Google Meet üzerinden online seanslar yapıyorum. Dünyanın her yerinden katılabilirsiniz.",
+    },
+    {
+      q: "Seans süresi ne kadar?",
+      a: "Birebir koçluk seansları genellikle 60 dakikadır. Grup seansları ve retreatlar için süre değişkenlik gösterir.",
+    },
+    {
+      q: "Ödeme seçenekleri neler?",
+      a: "Nakit, havale/EFT ve kredi kartı ile ödeme yapabilirsiniz. Taksit imkanı mevcuttur.",
+    },
+  ] : [
+    {
+      q: "Is the first consultation free?",
+      a: "Yes, the 30-minute discovery session is completely free. In this meeting, we get to know each other, evaluate your needs, and determine the right program for you.",
+    },
+    {
+      q: "Do you offer online sessions?",
+      a: "Yes, I conduct online sessions via Zoom or Google Meet. You can join from anywhere in the world.",
+    },
+    {
+      q: "How long is a session?",
+      a: "One-on-one coaching sessions are usually 60 minutes. Duration varies for group sessions and retreats.",
+    },
+    {
+      q: "What are the payment options?",
+      a: "You can pay by cash, bank transfer, or credit card. Installment options are available.",
+    },
+  ];
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -63,9 +83,11 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic here
     console.log(formData);
-    alert("Mesajınız gönderildi! En kısa sürede size dönüş yapacağız.");
+    alert(language === 'tr'
+      ? "Mesajınız gönderildi! En kısa sürede size dönüş yapacağız."
+      : "Your message has been sent! We will get back to you as soon as possible."
+    );
   };
 
   return (
@@ -86,14 +108,13 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
             >
               <span className="text-[var(--amber)] font-semibold tracking-wider uppercase text-sm">
-                İletişim
+                {t.contact.subtitle}
               </span>
               <h1 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
-                Benimle <span className="text-[var(--amber)]">İletişime Geçin</span>
+                {t.contact.title} <span className="text-[var(--amber)]">{t.contact.titleHighlight}</span>
               </h1>
               <p className="text-lg text-white/90 max-w-2xl mx-auto">
-                Sorularınız mı var? Ücretsiz keşif görüşmesi ayarlamak mı istiyorsunuz?
-                Hemen iletişime geçin!
+                {t.contact.description}
               </p>
             </motion.div>
           </div>
@@ -111,13 +132,13 @@ export default function ContactPage() {
                 transition={{ duration: 0.6 }}
               >
                 <h2 className="text-2xl font-bold text-[var(--dark)] mb-6">
-                  Mesaj Gönderin
+                  {t.contact.form.send}
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-[var(--dark)] mb-2">
-                        Ad Soyad *
+                        {t.contact.form.name} *
                       </label>
                       <input
                         type="text"
@@ -125,12 +146,12 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all"
-                        placeholder="Adınız Soyadınız"
+                        placeholder={t.contact.form.name}
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-[var(--dark)] mb-2">
-                        E-posta *
+                        {t.contact.form.email} *
                       </label>
                       <input
                         type="email"
@@ -138,7 +159,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all"
-                        placeholder="ornek@email.com"
+                        placeholder={language === 'tr' ? "ornek@email.com" : "example@email.com"}
                       />
                     </div>
                   </div>
@@ -146,7 +167,7 @@ export default function ContactPage() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-[var(--dark)] mb-2">
-                        Telefon
+                        {t.contact.form.phone}
                       </label>
                       <input
                         type="tel"
@@ -158,7 +179,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-[var(--dark)] mb-2">
-                        Konu *
+                        {t.contact.form.subject} *
                       </label>
                       <select
                         required
@@ -166,19 +187,19 @@ export default function ContactPage() {
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all bg-white"
                       >
-                        <option value="">Seçiniz</option>
-                        <option value="kesif">Ücretsiz Keşif Görüşmesi</option>
-                        <option value="birebir">Birebir Koçluk</option>
-                        <option value="retreat">Retreat Programları</option>
-                        <option value="kurumsal">Kurumsal Koçluk</option>
-                        <option value="diger">Diğer</option>
+                        <option value="">{t.contact.form.subjectPlaceholder}</option>
+                        <option value="kesif">{t.contact.form.subjects.discovery}</option>
+                        <option value="birebir">{t.contact.form.subjects.oneOnOne}</option>
+                        <option value="retreat">{t.contact.form.subjects.retreat}</option>
+                        <option value="kurumsal">{t.contact.form.subjects.corporate}</option>
+                        <option value="diger">{t.contact.form.subjects.other}</option>
                       </select>
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-[var(--dark)] mb-2">
-                      Mesajınız *
+                      {t.contact.form.message} *
                     </label>
                     <textarea
                       required
@@ -186,7 +207,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl border border-[var(--lavender)] focus:outline-none focus:ring-2 focus:ring-[var(--indigo)] transition-all resize-none"
-                      placeholder="Mesajınızı yazın..."
+                      placeholder={t.contact.form.messagePlaceholder}
                     />
                   </div>
 
@@ -195,7 +216,7 @@ export default function ContactPage() {
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-all hover:shadow-lg w-full md:w-auto"
                   >
                     <Send size={18} />
-                    Mesaj Gönder
+                    {t.contact.form.send}
                   </button>
                 </form>
               </motion.div>
@@ -208,7 +229,7 @@ export default function ContactPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <h2 className="text-2xl font-bold text-[var(--dark)] mb-6">
-                  İletişim Bilgileri
+                  {t.contact.info.title}
                 </h2>
 
                 <div className="space-y-6 mb-8">
@@ -246,10 +267,10 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-[var(--dark)]">
-                        WhatsApp ile Ulaşın
+                        {language === 'tr' ? "WhatsApp ile Ulaşın" : "Contact via WhatsApp"}
                       </h4>
                       <p className="text-sm text-[var(--text-muted)]">
-                        Hızlı yanıt için WhatsApp'tan yazın
+                        {language === 'tr' ? "Hızlı yanıt için WhatsApp'tan yazın" : "Message on WhatsApp for quick response"}
                       </p>
                     </div>
                   </div>
@@ -260,7 +281,7 @@ export default function ContactPage() {
                     className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#25D366] text-white rounded-full font-semibold hover:bg-[#128C7E] transition-colors"
                   >
                     <MessageCircle size={18} />
-                    WhatsApp'tan Yaz
+                    {language === 'tr' ? "WhatsApp'tan Yaz" : "Message on WhatsApp"}
                   </a>
                 </div>
 
@@ -292,7 +313,7 @@ export default function ContactPage() {
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-[var(--dark)] mb-4">
-                Sık Sorulan Sorular
+                {language === 'tr' ? "Sık Sorulan Sorular" : "Frequently Asked Questions"}
               </h2>
             </motion.div>
 
@@ -324,11 +345,13 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl font-bold mb-6">
-                Dönüşüm Yolculuğunuz Burada Başlıyor
+                {language === 'tr' ? "Dönüşüm Yolculuğunuz Burada Başlıyor" : "Your Transformation Journey Starts Here"}
               </h2>
               <p className="text-[var(--lavender)] mb-8">
-                Ücretsiz 30 dakikalık keşif görüşmesi ile tanışalım ve
-                size en uygun programı birlikte belirleyelim.
+                {language === 'tr'
+                  ? "Ücretsiz 30 dakikalık keşif görüşmesi ile tanışalım ve size en uygun programı birlikte belirleyelim."
+                  : "Let's meet with a free 30-minute discovery session and determine the most suitable program for you together."
+                }
               </p>
               <a
                 href="https://wa.me/905343675669?text=Merhaba,%20ücretsiz%20keşif%20görüşmesi%20için%20randevu%20almak%20istiyorum."
@@ -336,7 +359,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--dark)] rounded-full font-semibold hover:bg-[var(--lavender)] transition-all"
               >
-                Hemen Randevu Al
+                {language === 'tr' ? "Hemen Randevu Al" : "Book Appointment Now"}
               </a>
             </motion.div>
           </div>

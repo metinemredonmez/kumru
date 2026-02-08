@@ -8,136 +8,138 @@ import {
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
-
-const programs = [
-  {
-    title: "Birebir Koçluk",
-    subtitle: "Online Seans",
-    duration: "4-12 Hafta",
-    sessions: "Birebir",
-    price: "Görüşme ile",
-    description:
-      "Online veya yüz yüze birebir koçluk seansları. Kişisel hedeflerinize odaklı özel program.",
-    includes: [
-      "60 dakikalık birebir seanslar",
-      "Kişisel değerlendirme raporu",
-      "Hedef belirleme çalışması",
-      "WhatsApp destek hattı",
-      "Kişiye özel egzersizler",
-    ],
-    color: "var(--violet)",
-    featured: false,
-    isRetreat: false,
-  },
-  {
-    title: "Dönüşüm Retreati",
-    subtitle: "3 Gün - Otel Konaklama",
-    duration: "3 Gün 2 Gece",
-    sessions: "Grup Seans",
-    price: "Görüşme ile",
-    description:
-      "Lüks otelde konaklama dahil yoğun dönüşüm programı. Grup dinamiği ile güçlü değişim.",
-    includes: [
-      "5 yıldızlı otelde 2 gece konaklama",
-      "Günlük grup seansları",
-      "Meditasyon ve nefes çalışmaları",
-      "Birebir mini seanslar",
-      "Kahvaltı ve öğle yemeği dahil",
-      "Özel hediye paketi",
-    ],
-    color: "var(--indigo)",
-    featured: true,
-    isRetreat: true,
-  },
-  {
-    title: "VIP Retreat",
-    subtitle: "4 Gün - Premium Deneyim",
-    duration: "4 Gün 3 Gece",
-    sessions: "VIP Grup",
-    price: "Görüşme ile",
-    description:
-      "Sınırlı katılımlı, yoğun ve dönüştürücü premium retreat deneyimi.",
-    includes: [
-      "Lüks otelde 3 gece konaklama",
-      "Tüm öğünler dahil",
-      "Günde 2 grup seansı",
-      "Özel birebir koçluk seansı",
-      "Spa & wellness aktiviteleri",
-      "1 ay sonrası takip seansı",
-      "VIP hediye seti",
-    ],
-    color: "var(--purple)",
-    featured: false,
-    isRetreat: true,
-  },
-];
-
-const retreatFeatures = [
-  {
-    icon: Hotel,
-    title: "Lüks Konaklama",
-    description: "5 yıldızlı otellerde konforlu odalar",
-  },
-  {
-    icon: Utensils,
-    title: "Öğünler Dahil",
-    description: "Sağlıklı ve lezzetli yemekler",
-  },
-  {
-    icon: Users,
-    title: "Küçük Gruplar",
-    description: "Maksimum 12 kişilik gruplar",
-  },
-  {
-    icon: Sparkles,
-    title: "Wellness",
-    description: "Spa ve rahatlama aktiviteleri",
-  },
-];
-
-const upcomingRetreats = [
-  {
-    title: "Dönüşüm Retreati",
-    date: "15-17 Mart 2025",
-    location: "İstanbul",
-    spots: 8,
-  },
-  {
-    title: "VIP Retreat",
-    date: "5-8 Nisan 2025",
-    location: "Antalya",
-    spots: 6,
-  },
-  {
-    title: "Dönüşüm Retreati",
-    date: "10-12 Mayıs 2025",
-    location: "Bodrum",
-    spots: 10,
-  },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function ProgramsPage() {
+  const { t, language } = useLanguage();
+
+  const programs = [
+    {
+      title: t.programs.programsList.oneOnOne.title,
+      subtitle: t.programs.programsList.oneOnOne.subtitle,
+      duration: t.programs.programsList.oneOnOne.duration,
+      sessions: t.programs.programsList.oneOnOne.sessions,
+      price: t.programs.byConsultation,
+      description: t.programs.programsList.oneOnOne.description,
+      includes: t.programs.programsList.oneOnOne.includes,
+      color: "var(--violet)",
+      featured: false,
+      isRetreat: false,
+    },
+    {
+      title: t.programs.programsList.transformationRetreat.title,
+      subtitle: t.programs.programsList.transformationRetreat.subtitle,
+      duration: t.programs.programsList.transformationRetreat.duration,
+      sessions: t.programs.programsList.transformationRetreat.sessions,
+      price: t.programs.byConsultation,
+      description: t.programs.programsList.transformationRetreat.description,
+      includes: t.programs.programsList.transformationRetreat.includes,
+      color: "var(--indigo)",
+      featured: true,
+      isRetreat: true,
+    },
+    {
+      title: t.programs.programsList.vipRetreat.title,
+      subtitle: t.programs.programsList.vipRetreat.subtitle,
+      duration: t.programs.programsList.vipRetreat.duration,
+      sessions: t.programs.programsList.vipRetreat.sessions,
+      price: t.programs.byConsultation,
+      description: t.programs.programsList.vipRetreat.description,
+      includes: t.programs.programsList.vipRetreat.includes,
+      color: "var(--purple)",
+      featured: false,
+      isRetreat: true,
+    },
+  ];
+
+  const retreatFeatures = [
+    {
+      icon: Hotel,
+      title: t.programs.retreatExperience.features.accommodation.title,
+      description: t.programs.retreatExperience.features.accommodation.description,
+    },
+    {
+      icon: Utensils,
+      title: t.programs.retreatExperience.features.meals.title,
+      description: t.programs.retreatExperience.features.meals.description,
+    },
+    {
+      icon: Users,
+      title: t.programs.retreatExperience.features.smallGroups.title,
+      description: t.programs.retreatExperience.features.smallGroups.description,
+    },
+    {
+      icon: Sparkles,
+      title: t.programs.retreatExperience.features.wellness.title,
+      description: t.programs.retreatExperience.features.wellness.description,
+    },
+  ];
+
+  const upcomingRetreats = language === 'tr' ? [
+    {
+      title: "Dönüşüm Retreati",
+      date: "15-17 Mart 2025",
+      location: "İstanbul",
+      spots: 8,
+    },
+    {
+      title: "VIP Retreat",
+      date: "5-8 Nisan 2025",
+      location: "Antalya",
+      spots: 6,
+    },
+    {
+      title: "Dönüşüm Retreati",
+      date: "10-12 Mayıs 2025",
+      location: "Bodrum",
+      spots: 10,
+    },
+  ] : [
+    {
+      title: "Transformation Retreat",
+      date: "March 15-17, 2025",
+      location: "Istanbul",
+      spots: 8,
+    },
+    {
+      title: "VIP Retreat",
+      date: "April 5-8, 2025",
+      location: "Antalya",
+      spots: 6,
+    },
+    {
+      title: "Transformation Retreat",
+      date: "May 10-12, 2025",
+      location: "Bodrum",
+      spots: 10,
+    },
+  ];
+
   return (
     <>
       <Header />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-20 gradient-soft">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="py-32 relative overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/programlar-bg.jpg')" }}
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-[var(--indigo)] font-semibold tracking-wider uppercase text-sm">
-                Programlar
+              <span className="text-white/80 font-semibold tracking-wider uppercase text-sm">
+                {t.programs.subtitle}
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-[var(--dark)] mt-4 mb-6">
-                Dönüşüm <span className="text-gradient">Programları</span>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+                {t.programs.title} {t.programs.titleHighlight}
               </h1>
-              <p className="text-lg text-[var(--text-body)] max-w-2xl mx-auto">
-                Birebir koçluktan otel konaklamalı retreat programlarına kadar
-                size uygun seçenekler
+              <p className="text-lg text-white/80 max-w-2xl mx-auto">
+                {t.programs.description}
               </p>
             </motion.div>
           </div>
@@ -162,7 +164,7 @@ export default function ProgramsPage() {
                 >
                   {program.featured && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-[var(--amber)] text-[var(--dark)] text-sm font-bold rounded-full">
-                      En Popüler
+                      {t.programs.mostPopular}
                     </div>
                   )}
 
@@ -170,7 +172,7 @@ export default function ProgramsPage() {
                     <div className="flex items-center gap-2 mb-4">
                       <Hotel size={18} className={program.featured ? "text-[var(--violet)]" : "text-[var(--indigo)]"} />
                       <span className={`text-sm font-medium ${program.featured ? "text-[var(--lavender)]" : "text-[var(--indigo)]"}`}>
-                        Otel Konaklamalı
+                        {t.programs.hotelIncluded}
                       </span>
                     </div>
                   )}
@@ -240,7 +242,7 @@ export default function ProgramsPage() {
                   </p>
 
                   <ul className="space-y-3 mb-8">
-                    {program.includes.map((item, iIndex) => (
+                    {program.includes.map((item: string, iIndex: number) => (
                       <li key={iIndex} className="flex items-start gap-3">
                         <CheckCircle
                           size={18}
@@ -265,7 +267,7 @@ export default function ProgramsPage() {
                         : "bg-[var(--indigo)] text-white hover:bg-[var(--purple)]"
                     }`}
                   >
-                    Programa Başla
+                    {t.programs.startProgram}
                     <ArrowRight size={18} />
                   </Link>
                 </motion.div>
@@ -285,10 +287,10 @@ export default function ProgramsPage() {
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-[var(--dark)] mb-4">
-                Retreat Deneyimi
+                {t.programs.retreatExperience.title}
               </h2>
               <p className="text-[var(--text-body)] max-w-2xl mx-auto">
-                Otel konaklamalı programlarımızda sizi neler bekliyor?
+                {t.programs.retreatExperience.description}
               </p>
             </motion.div>
 
@@ -324,10 +326,10 @@ export default function ProgramsPage() {
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-[var(--dark)] mb-4">
-                Yaklaşan Retreatler
+                {t.programs.upcomingTitle}
               </h2>
               <p className="text-[var(--text-body)] max-w-2xl mx-auto">
-                Takvimimizdeki yaklaşan programlar
+                {t.programs.upcomingDescription}
               </p>
             </motion.div>
 
@@ -355,14 +357,14 @@ export default function ProgramsPage() {
                     </div>
                     <div className="flex items-center gap-2 text-[var(--text-body)]">
                       <Users size={16} className="text-[var(--indigo)]" />
-                      <span className="text-sm">{retreat.spots} kişilik yer</span>
+                      <span className="text-sm">{retreat.spots} {t.programs.spots}</span>
                     </div>
                   </div>
                   <Link
                     href="/iletisim"
                     className="inline-flex items-center gap-2 text-[var(--indigo)] font-medium hover:gap-3 transition-all"
                   >
-                    Kayıt Ol <ArrowRight size={16} />
+                    {t.programs.register} <ArrowRight size={16} />
                   </Link>
                 </motion.div>
               ))}
@@ -380,28 +382,11 @@ export default function ProgramsPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl font-bold mb-4">Sık Sorulan Sorular</h2>
+              <h2 className="text-3xl font-bold mb-4">{t.programs.faqTitle}</h2>
             </motion.div>
 
             <div className="space-y-6">
-              {[
-                {
-                  q: "Retreat programlarına kimler katılabilir?",
-                  a: "Retreat programlarımız 18 yaş üstü herkese açıktır. Kişisel gelişim yolculuğunuzda yeni bir adım atmak isteyen herkes katılabilir.",
-                },
-                {
-                  q: "Konaklama ve yemekler dahil mi?",
-                  a: "Evet, tüm retreat programlarımızda otel konaklaması ve belirtilen öğünler fiyata dahildir.",
-                },
-                {
-                  q: "Grup büyüklüğü ne kadar?",
-                  a: "Kaliteli bir deneyim için gruplarımız maksimum 12 kişi ile sınırlıdır. VIP retreatlerde bu sayı 6-8 kişidir.",
-                },
-                {
-                  q: "İptal ve iade koşulları nedir?",
-                  a: "Program başlangıcından 14 gün öncesine kadar tam iade yapılmaktadır. Detaylı bilgi için iletişime geçebilirsiniz.",
-                },
-              ].map((item, index) => (
+              {t.programs.faq.map((item: { q: string; a: string }, index: number) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -428,16 +413,16 @@ export default function ProgramsPage() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl font-bold text-[var(--dark)] mb-6">
-                Dönüşüm Yolculuğunuza Başlayın
+                {t.programs.ctaTitle}
               </h2>
               <p className="text-[var(--text-body)] mb-8">
-                Tüm programlar ücretsiz keşif görüşmesi ile başlar. Taksit imkanı mevcuttur.
+                {t.programs.ctaDescription}
               </p>
               <Link
                 href="/iletisim"
                 className="inline-flex items-center justify-center px-8 py-4 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-all hover:shadow-lg"
               >
-                Ücretsiz Görüşme Ayarla
+                {t.programs.ctaButton}
               </Link>
             </motion.div>
           </div>

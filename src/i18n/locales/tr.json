@@ -1,0 +1,513 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımda",
+    "services": "Hizmetler",
+    "programs": "Programlar",
+    "media": "Medya",
+    "resources": "Kaynaklar",
+    "contact": "İletişim",
+    "cta": "Ücretsiz Görüşme"
+  },
+  "hero": {
+    "badge": "Profesyonel Yaşam Koçu",
+    "title1": "Hayatınızı",
+    "title2": "Dönüştürün,",
+    "title3": "Potansiyelinizi Keşfedin",
+    "description": "Birebir koçluk seansları, kişiye özel programlar ve kanıtlanmış yöntemlerle hayalinizdeki yaşama ulaşmanıza yardımcı oluyorum.",
+    "cta1": "Ücretsiz Keşif Görüşmesi",
+    "cta2": "Tanıtım Videosu",
+    "stats": {
+      "clients": "Mutlu Danışan",
+      "experience": "Yıl Deneyim",
+      "satisfaction": "Memnuniyet"
+    },
+    "googleReview": "Google'da 10 Yorum"
+  },
+  "about": {
+    "subtitle": "Hakkımda",
+    "title": "Merhaba, Ben",
+    "name": "Kumru Köseler",
+    "description1": "10 yılı aşkın deneyimimle, bireylerin ve profesyonellerin hayatlarında anlamlı dönüşümler yaratmalarına yardımcı oluyorum. Bilimsel yöntemler ve empatik bir yaklaşımla, her danışanımın benzersiz yolculuğuna eşlik ediyorum.",
+    "description2": "İnsanların hayatlarının pozitif yönde değişimine vesile olabilen spiritüel bir rehber ve davranış bilimleri uzmanıyım.",
+    "cta": "Daha Fazla Bilgi",
+    "experience": "Yıl Deneyim",
+    "pageTitle": "Hakkımda",
+    "heroDescription": "\"Dünyadaki bütün çocuklar benim\" diyen bir anne, İngiltere ve Kanada'da davranış bilimleri eğitimi alan, spiritüel bir rehber ve davranış bilimleri uzmanıyım.",
+    "heroDescription2": "Tüm dikkatimi gerçek olabileceğinize inandığım, sevgiyle kendi iç neşenizi de ekleyebileceğim \"Sihirli Dilek Defteri\" adlı kitabıma, yeni yılla da güzellikleri olacak olan Kumru Köseler'i Akmerkez'deki ofisinde ziyaret ettik.",
+    "appointment": "Randevu Al",
+    "mediaButton": "Medyada Ben",
+    "storyTitle": "Hikayem",
+    "story1": "Çok genç yaşta içimdeki mistik güçü keşfettim. Eğitimimi de bu yönde almak amacı ile Kingsley State (İngiltere) ile Kanada York Üniversitesi yönetim ve davranış bilimlerini seçtim ve mezun oldum.",
+    "story2": "Ayrıca branşımla ilgili kendimi daha da geliştirebilmek adına, sertifika programlarına katılarak sertifikalar aldım. Bir rehber ve davranış bilimleri uzmanı olarak yaptığım çalışmalarla mistik bilincimi en üst seviyeye taşımaya devam ediyorum.",
+    "story3": "Bugün ne düşünürsen kendine çekebilirsin, niyet enerjisini kullanabilirsin. Hissettiğini yaşarsın, karşındaki insanları gözlemden sadece düşünce yolu ile içinde bulunduğum durumların hislerideğer ve sayısız danışana harika işlere imza atan, pozitif yönde hayatından değişimine vesile olabilecek spiritüel bir rehber ve davranış bilimleri uzmanıyım.",
+    "story4": "Bu mesleği seçmemdeki en önemli sebeplerden biri, bilincin küçük yaşta şekillenmesi ve bunun tüm hayatımıza olan etkisi. Amacım, bilincimizin sağlıklı ve sevgiyle oluşmasını sağlamak, çocuklarımızın gelecekte yaşayabilmeleri için çok daha mutlu bireyler olarak hayatlarına devam edebilmelerine vesile olmak.",
+    "valuesTitle": "Değerlerim",
+    "valuesDescription": "Her danışanımla kurduğum ilişkinin temelini oluşturan değerler",
+    "values": {
+      "empathy": {
+        "title": "Empati",
+        "description": "Her danışanı benzersiz bir birey olarak görür, hikayesini dinlerim."
+      },
+      "honesty": {
+        "title": "Dürüstlük",
+        "description": "Açık ve şeffaf iletişim, güven ilişkisinin temelidir."
+      },
+      "transformation": {
+        "title": "Dönüşüm",
+        "description": "Gerçek ve kalıcı değişim için birlikte çalışırız."
+      },
+      "excellence": {
+        "title": "Mükemmellik",
+        "description": "Sürekli öğrenme ve gelişim ile en iyi hizmeti sunarım."
+      }
+    },
+    "certificationsTitle": "Sertifikalar & Eğitimler",
+    "certifications": [
+      {
+        "title": "ICF Sertifikalı Koç",
+        "organization": "International Coach Federation",
+        "year": "2018"
+      },
+      {
+        "title": "NLP Practitioner",
+        "organization": "NLP Academy",
+        "year": "2016"
+      },
+      {
+        "title": "Davranış Bilimleri Uzmanı",
+        "organization": "York Üniversitesi, Kanada",
+        "year": "2015"
+      },
+      {
+        "title": "Yaşam Koçluğu Sertifikası",
+        "organization": "Kingsley State, İngiltere",
+        "year": "2014"
+      }
+    ],
+    "journeyTitle": "Yolculuğum",
+    "timeline": [
+      {
+        "year": "2014",
+        "title": "Koçluk Yolculuğunun Başlangıcı",
+        "description": "İngiltere'de yaşam koçluğu eğitimimi tamamladım."
+      },
+      {
+        "year": "2016",
+        "title": "NLP Uzmanlığı",
+        "description": "NLP teknikleriyle koçluk metodolojimi zenginleştirdim."
+      },
+      {
+        "year": "2018",
+        "title": "ICF Akreditasyonu",
+        "description": "Uluslararası Koçluk Federasyonu sertifikasını aldım."
+      },
+      {
+        "year": "2020",
+        "title": "Online Koçluk",
+        "description": "Pandemi döneminde online koçluk programlarını başlattım."
+      },
+      {
+        "year": "2023",
+        "title": "Retreat Programları",
+        "description": "Otel konaklamalı grup retreat programlarını hayata geçirdim."
+      }
+    ],
+    "ctaTitle": "Birlikte Çalışalım",
+    "ctaDescription": "Hayatınızda pozitif bir değişim yaratmak için ilk adımı atın. Ücretsiz keşif görüşmesi ile tanışalım.",
+    "ctaButton": "Ücretsiz Görüşme Ayarla"
+  },
+  "services": {
+    "subtitle": "Hizmetler",
+    "title": "Size Nasıl",
+    "titleHighlight": "Yardımcı Olabilirim?",
+    "description": "İhtiyaçlarınıza uygun farklı koçluk formatları ile hedeflerinize ulaşmanızda size eşlik ediyorum.",
+    "specializations": {
+      "personal": {
+        "title": "Kişisel Gelişim",
+        "description": "Öz farkındalık, özgüven ve kişisel dönüşüm"
+      },
+      "relationship": {
+        "title": "İlişki Koçluğu",
+        "description": "Sağlıklı ilişkiler kurma ve iletişim becerileri"
+      },
+      "career": {
+        "title": "Kariyer Koçluğu",
+        "description": "Kariyer planlama, iş-yaşam dengesi"
+      },
+      "goal": {
+        "title": "Hedef Odaklı Koçluk",
+        "description": "Net hedefler belirleme ve gerçekleştirme"
+      }
+    },
+    "optionsTitle": "Hizmet Seçenekleri",
+    "optionsDescription": "Her ihtiyaca uygun farklı koçluk formatları",
+    "servicesList": {
+      "oneOnOne": {
+        "title": "Birebir Koçluk",
+        "shortDesc": "Kişiye özel, yoğun ve dönüştürücü koçluk seansları.",
+        "fullDesc": "Online veya yüz yüze gerçekleştirilen birebir koçluk seanslarında, tamamen size özel bir program oluşturuyoruz. Hedeflerinizi netleştirip, adım adım ilerlemenizi sağlıyoruz.",
+        "duration": "4-12 Hafta",
+        "features": [
+          "60 dakikalık yoğun seanslar",
+          "Kişisel eylem planı",
+          "7/24 WhatsApp desteği",
+          "Haftalık ilerleme takibi",
+          "Ödev ve egzersizler"
+        ]
+      },
+      "online": {
+        "title": "Online Seanslar",
+        "shortDesc": "Dünyanın her yerinden video görüşme ile koçluk.",
+        "fullDesc": "Zoom veya Google Meet üzerinden gerçekleştirilen online seanslarla, nerede olursanız olun profesyonel koçluk desteği alabilirsiniz. Esnek zamanlama imkanı.",
+        "duration": "45-60 Dakika",
+        "features": [
+          "Esnek saat seçenekleri",
+          "Kayıt imkanı",
+          "Mobil uyumlu",
+          "Teknik destek",
+          "Güvenli bağlantı"
+        ]
+      },
+      "messaging": {
+        "title": "Anlık Mesajlaşma Desteği",
+        "shortDesc": "Seanslar arası sürekli destek ve rehberlik.",
+        "fullDesc": "Koçluk paketlerinize dahil olan WhatsApp destek hattı ile seanslar arasında da yanınızdayım. Sorularınızı yanıtlıyor, motivasyonunuzu yüksek tutuyorum.",
+        "duration": "Sürekli",
+        "features": [
+          "Günlük check-in",
+          "Hızlı geri bildirim",
+          "Motivasyon desteği",
+          "Kriz anlarında destek",
+          "Kaynak paylaşımı"
+        ]
+      },
+      "corporate": {
+        "title": "Kurumsal Koçluk",
+        "shortDesc": "Şirketler için özel tasarlanmış programlar.",
+        "fullDesc": "Kurumsal müşteriler için liderlik gelişimi, ekip koçluğu ve performans artırma programları sunuyorum. Şirket kültürünüze özel çözümler.",
+        "duration": "Özel Program",
+        "features": [
+          "Liderlik gelişimi",
+          "Ekip uyumu",
+          "Performans artışı",
+          "Stres yönetimi",
+          "İletişim becerileri"
+        ]
+      },
+      "goalTracking": {
+        "title": "Hedef Takip Sistemi",
+        "shortDesc": "Dijital araçlarla hedef belirleme ve takip.",
+        "fullDesc": "Özel geliştirilen takip sistemi ile hedeflerinizi belirliyor, ilerlemenizi ölçüyor ve başarılarınızı kutluyoruz. Görsel raporlarla motivasyonunuzu artırın.",
+        "duration": "Sürekli",
+        "features": [
+          "Günlük takip",
+          "İlerleme raporları",
+          "Başarı rozetleri",
+          "Hatırlatıcılar",
+          "Görsel grafikler"
+        ]
+      },
+      "group": {
+        "title": "Grup Programları",
+        "shortDesc": "Benzer hedeflere sahip kişilerle birlikte öğrenin.",
+        "fullDesc": "Küçük gruplarla gerçekleştirilen programlarda, topluluk gücünden faydalanın. Akran desteği ile motivasyonunuzu yüksek tutun.",
+        "duration": "8 Hafta",
+        "features": [
+          "Haftalık buluşmalar",
+          "Akran desteği",
+          "Ortak hedefler",
+          "Grup dinamiği",
+          "Uygun fiyat"
+        ]
+      }
+    },
+    "moreInfo": "Detaylı Bilgi",
+    "processTitle": "Nasıl Çalışıyoruz?",
+    "processDescription": "Koçluk sürecimiz 4 basit adımda ilerliyor",
+    "process": [
+      {
+        "step": "01",
+        "title": "Keşif Görüşmesi",
+        "desc": "Ücretsiz 30 dakikalık tanışma"
+      },
+      {
+        "step": "02",
+        "title": "Program Seçimi",
+        "desc": "Size uygun programı belirleriz"
+      },
+      {
+        "step": "03",
+        "title": "Koçluk Süreci",
+        "desc": "Düzenli seanslarla ilerleme"
+      },
+      {
+        "step": "04",
+        "title": "Dönüşüm",
+        "desc": "Hedeflerinize ulaşın"
+      }
+    ],
+    "ctaTitle": "Hangi Hizmet Size Uygun?",
+    "ctaDescription": "Ücretsiz keşif görüşmesinde ihtiyaçlarınızı değerlendirelim ve size en uygun programı birlikte belirleyelim.",
+    "ctaButton": "Ücretsiz Görüşme Ayarla"
+  },
+  "programs": {
+    "subtitle": "Programlar",
+    "title": "Dönüşüm",
+    "titleHighlight": "Programları",
+    "description": "Birebir koçluktan otel konaklamalı retreat programlarına kadar size uygun seçenekler",
+    "hotelIncluded": "Otel Konaklamalı",
+    "mostPopular": "En Popüler",
+    "byConsultation": "Görüşme ile",
+    "startProgram": "Programa Başla",
+    "programsList": {
+      "oneOnOne": {
+        "title": "Birebir Koçluk",
+        "subtitle": "Online Seans",
+        "duration": "4-12 Hafta",
+        "sessions": "Birebir",
+        "description": "Online veya yüz yüze birebir koçluk seansları. Kişisel hedeflerinize odaklı özel program.",
+        "includes": [
+          "60 dakikalık birebir seanslar",
+          "Kişisel değerlendirme raporu",
+          "Hedef belirleme çalışması",
+          "WhatsApp destek hattı",
+          "Kişiye özel egzersizler"
+        ]
+      },
+      "transformationRetreat": {
+        "title": "Dönüşüm Retreati",
+        "subtitle": "3 Gün - Otel Konaklama",
+        "duration": "3 Gün 2 Gece",
+        "sessions": "Grup Seans",
+        "description": "Lüks otelde konaklama dahil yoğun dönüşüm programı. Grup dinamiği ile güçlü değişim.",
+        "includes": [
+          "5 yıldızlı otelde 2 gece konaklama",
+          "Günlük grup seansları",
+          "Meditasyon ve nefes çalışmaları",
+          "Birebir mini seanslar",
+          "Kahvaltı ve öğle yemeği dahil",
+          "Özel hediye paketi"
+        ]
+      },
+      "vipRetreat": {
+        "title": "VIP Retreat",
+        "subtitle": "4 Gün - Premium Deneyim",
+        "duration": "4 Gün 3 Gece",
+        "sessions": "VIP Grup",
+        "description": "Sınırlı katılımlı, yoğun ve dönüştürücü premium retreat deneyimi.",
+        "includes": [
+          "Lüks otelde 3 gece konaklama",
+          "Tüm öğünler dahil",
+          "Günde 2 grup seansı",
+          "Özel birebir koçluk seansı",
+          "Spa & wellness aktiviteleri",
+          "1 ay sonrası takip seansı",
+          "VIP hediye seti"
+        ]
+      }
+    },
+    "retreatExperience": {
+      "title": "Retreat Deneyimi",
+      "description": "Otel konaklamalı programlarımızda sizi neler bekliyor?",
+      "features": {
+        "accommodation": {
+          "title": "Lüks Konaklama",
+          "description": "5 yıldızlı otellerde konforlu odalar"
+        },
+        "meals": {
+          "title": "Öğünler Dahil",
+          "description": "Sağlıklı ve lezzetli yemekler"
+        },
+        "smallGroups": {
+          "title": "Küçük Gruplar",
+          "description": "Maksimum 12 kişilik gruplar"
+        },
+        "wellness": {
+          "title": "Wellness",
+          "description": "Spa ve rahatlama aktiviteleri"
+        }
+      }
+    },
+    "upcomingTitle": "Yaklaşan Retreatler",
+    "upcomingDescription": "Takvimimizdeki yaklaşan programlar",
+    "spots": "kişilik yer",
+    "register": "Kayıt Ol",
+    "faqTitle": "Sık Sorulan Sorular",
+    "faq": [
+      {
+        "q": "Retreat programlarına kimler katılabilir?",
+        "a": "Retreat programlarımız 18 yaş üstü herkese açıktır. Kişisel gelişim yolculuğunuzda yeni bir adım atmak isteyen herkes katılabilir."
+      },
+      {
+        "q": "Konaklama ve yemekler dahil mi?",
+        "a": "Evet, tüm retreat programlarımızda otel konaklaması ve belirtilen öğünler fiyata dahildir."
+      },
+      {
+        "q": "Grup büyüklüğü ne kadar?",
+        "a": "Kaliteli bir deneyim için gruplarımız maksimum 12 kişi ile sınırlıdır. VIP retreatlerde bu sayı 6-8 kişidir."
+      },
+      {
+        "q": "İptal ve iade koşulları nedir?",
+        "a": "Program başlangıcından 14 gün öncesine kadar tam iade yapılmaktadır. Detaylı bilgi için iletişime geçebilirsiniz."
+      }
+    ],
+    "ctaTitle": "Dönüşüm Yolculuğunuza Başlayın",
+    "ctaDescription": "Tüm programlar ücretsiz keşif görüşmesi ile başlar. Taksit imkanı mevcuttur.",
+    "ctaButton": "Ücretsiz Görüşme Ayarla"
+  },
+  "media": {
+    "subtitle": "Medya",
+    "title": "Basında",
+    "titleHighlight": "Kumru Köseler",
+    "description": "Röportajlar, medya çıkışları ve ödüller",
+    "featuredTitle": "Öne Çıkan Medya",
+    "mediaItems": {
+      "magazine": {
+        "type": "magazine",
+        "title": "Quality of Magazine",
+        "subtitle": "Röportaj",
+        "date": "Kasım 2023",
+        "description": "\"Bizi biz yapan her şey ailede başlar\" başlıklı kapak röportajı. Davranış bilimleri ve aile dinamikleri üzerine derinlemesine söyleşi."
+      },
+      "award": {
+        "type": "video",
+        "title": "Ödül Töreni",
+        "subtitle": "Instagram Reel",
+        "date": "2024",
+        "description": "Yılın Spiritüel Yaşam Koçu ve Davranış Bilimleri Uzmanı ödülü töreni."
+      }
+    },
+    "quotesTitle": "Basından Alıntılar",
+    "quotes": [
+      {
+        "quote": "İnsanların hayatlarının pozitif yönde değişimine vesile olabilen spiritüel bir rehber ve davranış bilimleri uzmanıyım.",
+        "source": "Quality of Magazine"
+      },
+      {
+        "quote": "Bugün ne düşünürsen kendine çekebilirsin, niyet enerjisini kullanabilirsin. Hissettiğini yaşarsın.",
+        "source": "Röportaj"
+      },
+      {
+        "quote": "Bu mesleği seçmemdeki en önemli sebeplerden biri, bilincin küçük yaşta şekillenmesi ve bunun tüm hayatımıza olan etkisi.",
+        "source": "Quality of Magazine"
+      }
+    ],
+    "awardsTitle": "Ödüller & Başarılar",
+    "awards": [
+      {
+        "title": "Yılın Yaşam Koçu",
+        "organization": "Türkiye Koçluk Derneği",
+        "year": "2024"
+      },
+      {
+        "title": "En İyi Online Koçluk Programı",
+        "organization": "Digital Coaching Awards",
+        "year": "2023"
+      }
+    ],
+    "instagramTitle": "Instagram'dan",
+    "instagramDescription": "En son paylaşımlarım ve ilham veren içerikler",
+    "followInstagram": "Instagram'da Takip Et",
+    "ctaTitle": "Medya İş Birlikleri",
+    "ctaDescription": "Röportaj, konuşmacı daveti veya iş birliği teklifleri için benimle iletişime geçebilirsiniz.",
+    "ctaButton": "İletişime Geç"
+  },
+  "resources": {
+    "subtitle": "Kaynaklar",
+    "title": "Faydalı",
+    "titleHighlight": "Kaynaklar",
+    "description": "Kişisel gelişim yolculuğunuzda size yardımcı olacak ücretsiz kaynaklar",
+    "categories": {
+      "ebook": "E-Kitap",
+      "worksheet": "Çalışma Kağıdı",
+      "meditation": "Meditasyon"
+    },
+    "downloadFree": "Ücretsiz İndir",
+    "blogTitle": "Blog Yazıları",
+    "blogDescription": "Kişisel gelişim, ilişkiler ve bilinçli yaşam üzerine yazılarım",
+    "readMore": "Devamını Oku",
+    "readTime": "dk okuma",
+    "newsletterTitle": "Bültenime Katılın",
+    "newsletterDescription": "Her hafta ilham verici içerikler, pratik ipuçları ve özel fırsatlar için bültenime abone olun.",
+    "emailPlaceholder": "E-posta adresiniz",
+    "subscribe": "Abone Ol",
+    "ctaTitle": "Daha Fazla Kaynak mı İstiyorsunuz?",
+    "ctaDescription": "Bültenime abone olarak özel içeriklere ve kaynaklara ilk siz ulaşın.",
+    "ctaButton": "Bültene Abone Ol"
+  },
+  "contact": {
+    "subtitle": "İletişim",
+    "title": "Benimle",
+    "titleHighlight": "İletişime Geçin",
+    "description": "Sorularınız için veya ücretsiz keşif görüşmesi ayarlamak için benimle iletişime geçebilirsiniz.",
+    "form": {
+      "name": "Adınız Soyadınız",
+      "email": "E-posta Adresiniz",
+      "phone": "Telefon Numaranız",
+      "subject": "Konu",
+      "subjectPlaceholder": "Konu seçin",
+      "subjects": {
+        "discovery": "Ücretsiz Keşif Görüşmesi",
+        "oneOnOne": "Birebir Koçluk",
+        "retreat": "Retreat Programları",
+        "corporate": "Kurumsal Koçluk",
+        "other": "Diğer"
+      },
+      "message": "Mesajınız",
+      "messagePlaceholder": "Mesajınızı buraya yazın...",
+      "send": "Mesaj Gönder",
+      "sending": "Gönderiliyor..."
+    },
+    "info": {
+      "title": "İletişim Bilgileri",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "address": "Adres",
+      "addressValue": "Akmerkez, Etiler\nİstanbul, Türkiye",
+      "hours": "Çalışma Saatleri",
+      "hoursValue": "Pazartesi - Cuma: 09:00 - 18:00\nCumartesi: 10:00 - 14:00"
+    },
+    "social": {
+      "title": "Sosyal Medya",
+      "followMe": "Beni takip edin"
+    },
+    "freeConsultation": {
+      "title": "Ücretsiz Keşif Görüşmesi",
+      "description": "30 dakikalık ücretsiz keşif görüşmesi ile tanışalım. Hedeflerinizi konuşalım ve size en uygun programı birlikte belirleyelim.",
+      "benefits": [
+        "Hedeflerinizi netleştirin",
+        "Size uygun programı keşfedin",
+        "Sorularınızı yanıtlayalım",
+        "Hiçbir taahhüt yok"
+      ],
+      "button": "Görüşme Ayarla"
+    }
+  },
+  "testimonials": {
+    "title": "Danışanlarımın",
+    "titleHighlight": "Yorumları",
+    "description": "Birlikte çalıştığımız danışanların deneyimleri"
+  },
+  "footer": {
+    "description": "Profesyonel yaşam koçluğu ile hayatınızı dönüştürün. Birebir koçluk, online seanslar ve retreat programları.",
+    "quickLinks": "Hızlı Linkler",
+    "contact": "İletişim",
+    "rights": "Tüm hakları saklıdır.",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Şartları"
+  },
+  "common": {
+    "learnMore": "Daha Fazla",
+    "getStarted": "Başla",
+    "contactUs": "İletişime Geç",
+    "viewAll": "Tümünü Gör",
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "success": "Başarılı",
+    "close": "Kapat",
+    "back": "Geri",
+    "next": "İleri",
+    "previous": "Önceki"
+  }
+}

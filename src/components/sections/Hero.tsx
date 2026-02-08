@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Play, Star } from "lucide-react";
 import Link from "next/link";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background Gradient */}
@@ -26,31 +29,30 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--soft)] rounded-full mb-6">
               <Star size={16} className="text-[var(--amber)] fill-[var(--amber)]" />
               <span className="text-sm font-medium text-[var(--dark)]">
-                Profesyonel Yaşam Koçu
+                {t.hero.badge}
               </span>
             </div>
 
             {/* Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--dark)] leading-tight mb-6">
-              Hayatınızı{" "}
-              <span className="text-gradient">Dönüştürün,</span>
+              {t.hero.title1}{" "}
+              <span className="text-gradient">{t.hero.title2}</span>
               <br />
-              Potansiyelinizi Keşfedin
+              {t.hero.title3}
             </h1>
 
             {/* Description */}
             <p className="text-lg text-[var(--text-body)] leading-relaxed mb-8 max-w-lg">
-              Birebir koçluk seansları, kişiye özel programlar ve kanıtlanmış
-              yöntemlerle hayalinizdeki yaşama ulaşmanıza yardımcı oluyorum.
+              {t.hero.description}
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <Link
-                href="#contact"
+                href="/iletisim"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-all hover:shadow-lg hover:shadow-[var(--indigo)]/30"
               >
-                Ücretsiz Keşif Görüşmesi
+                {t.hero.cta1}
                 <ArrowRight size={20} />
               </Link>
               <a
@@ -60,7 +62,7 @@ export default function Hero() {
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[var(--dark)] rounded-full font-semibold border-2 border-[var(--lavender)] hover:border-[var(--indigo)] transition-colors"
               >
                 <Play size={20} className="text-[var(--indigo)]" />
-                Tanıtım Videosu
+                {t.hero.cta2}
               </a>
             </div>
 
@@ -68,15 +70,15 @@ export default function Hero() {
             <div className="flex gap-8">
               <div>
                 <div className="text-3xl font-bold text-[var(--indigo)]">500+</div>
-                <div className="text-sm text-[var(--text-muted)]">Mutlu Danışan</div>
+                <div className="text-sm text-[var(--text-muted)]">{t.hero.stats.clients}</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-[var(--indigo)]">10+</div>
-                <div className="text-sm text-[var(--text-muted)]">Yıl Deneyim</div>
+                <div className="text-sm text-[var(--text-muted)]">{t.hero.stats.experience}</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-[var(--indigo)]">98%</div>
-                <div className="text-sm text-[var(--text-muted)]">Memnuniyet</div>
+                <div className="text-sm text-[var(--text-muted)]">{t.hero.stats.satisfaction}</div>
               </div>
             </div>
           </motion.div>
@@ -116,7 +118,7 @@ export default function Hero() {
                   </div>
                   <div>
                     <div className="font-semibold text-[var(--dark)]">5.0 Puan</div>
-                    <div className="text-sm text-[var(--text-muted)]">Google'da 10 Yorum</div>
+                    <div className="text-sm text-[var(--text-muted)]">{t.hero.googleReview}</div>
                   </div>
                 </div>
               </motion.div>

@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, Phone, MapPin, Instagram, Youtube } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="gradient-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -16,43 +21,42 @@ export default function Footer() {
               />
             </div>
             <p className="text-[var(--lavender)] leading-relaxed">
-              Profesyonel yaşam koçluğu ile hayatınızı dönüştürün.
-              Birlikte hedeflerinize ulaşalım.
+              {t.footer.description}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Hızlı Bağlantılar</h4>
+            <h4 className="text-lg font-semibold mb-6">{t.footer.quickLinks}</h4>
             <ul className="space-y-3">
               <li>
                 <Link href="/hakkimda" className="text-[var(--lavender)] hover:text-white transition-colors">
-                  Hakkımda
+                  {t.nav.about}
                 </Link>
               </li>
               <li>
                 <Link href="/hizmetler" className="text-[var(--lavender)] hover:text-white transition-colors">
-                  Hizmetler
+                  {t.nav.services}
                 </Link>
               </li>
               <li>
                 <Link href="/programlar" className="text-[var(--lavender)] hover:text-white transition-colors">
-                  Programlar
+                  {t.nav.programs}
                 </Link>
               </li>
               <li>
                 <Link href="/medya" className="text-[var(--lavender)] hover:text-white transition-colors">
-                  Medya
+                  {t.nav.media}
                 </Link>
               </li>
               <li>
                 <Link href="/kaynaklar" className="text-[var(--lavender)] hover:text-white transition-colors">
-                  Kaynaklar
+                  {t.nav.resources}
                 </Link>
               </li>
               <li>
                 <Link href="/iletisim" className="text-[var(--lavender)] hover:text-white transition-colors">
-                  İletişim
+                  {t.nav.contact}
                 </Link>
               </li>
             </ul>
@@ -60,7 +64,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">İletişim</h4>
+            <h4 className="text-lg font-semibold mb-6">{t.footer.contact}</h4>
             <ul className="space-y-4">
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-[var(--violet)]" />
@@ -87,7 +91,7 @@ export default function Footer() {
 
           {/* Social */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Sosyal Medya</h4>
+            <h4 className="text-lg font-semibold mb-6">{t.contact.social.title}</h4>
             <div className="flex gap-4">
               <a
                 href="https://www.instagram.com/kumrukoseler/"
@@ -112,14 +116,14 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[var(--lavender)] text-sm">
-            © {new Date().getFullYear()} Kumru Köseler. Tüm hakları saklıdır.
+            © {new Date().getFullYear()} Kumru Köseler. {t.footer.rights}
           </p>
           <div className="flex gap-6 text-sm">
             <Link href="/gizlilik" className="text-[var(--lavender)] hover:text-white transition-colors">
-              Gizlilik Politikası
+              {t.footer.privacy}
             </Link>
             <Link href="/kullanim-sartlari" className="text-[var(--lavender)] hover:text-white transition-colors">
-              Kullanım Şartları
+              {t.footer.terms}
             </Link>
           </div>
         </div>

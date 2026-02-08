@@ -8,145 +8,116 @@ import {
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
-
-const services = [
-  {
-    icon: Users,
-    title: "Birebir Koçluk",
-    shortDesc: "Kişiye özel, yoğun ve dönüştürücü koçluk seansları.",
-    fullDesc: "Online veya yüz yüze gerçekleştirilen birebir koçluk seanslarında, tamamen size özel bir program oluşturuyoruz. Hedeflerinizi netleştirip, adım adım ilerlemenizi sağlıyoruz.",
-    features: [
-      "60 dakikalık yoğun seanslar",
-      "Kişisel eylem planı",
-      "7/24 WhatsApp desteği",
-      "Haftalık ilerleme takibi",
-      "Ödev ve egzersizler",
-    ],
-    duration: "4-12 Hafta",
-    color: "var(--indigo)",
-  },
-  {
-    icon: Video,
-    title: "Online Seanslar",
-    shortDesc: "Dünyanın her yerinden video görüşme ile koçluk.",
-    fullDesc: "Zoom veya Google Meet üzerinden gerçekleştirilen online seanslarla, nerede olursanız olun profesyonel koçluk desteği alabilirsiniz. Esnek zamanlama imkanı.",
-    features: [
-      "Esnek saat seçenekleri",
-      "Kayıt imkanı",
-      "Mobil uyumlu",
-      "Teknik destek",
-      "Güvenli bağlantı",
-    ],
-    duration: "45-60 Dakika",
-    color: "var(--purple)",
-  },
-  {
-    icon: MessageCircle,
-    title: "Anlık Mesajlaşma Desteği",
-    shortDesc: "Seanslar arası sürekli destek ve rehberlik.",
-    fullDesc: "Koçluk paketlerinize dahil olan WhatsApp destek hattı ile seanslar arasında da yanınızdayım. Sorularınızı yanıtlıyor, motivasyonunuzu yüksek tutuyorum.",
-    features: [
-      "Günlük check-in",
-      "Hızlı geri bildirim",
-      "Motivasyon desteği",
-      "Kriz anlarında destek",
-      "Kaynak paylaşımı",
-    ],
-    duration: "Sürekli",
-    color: "var(--violet)",
-  },
-  {
-    icon: Calendar,
-    title: "Kurumsal Koçluk",
-    shortDesc: "Şirketler için özel tasarlanmış programlar.",
-    fullDesc: "Kurumsal müşteriler için liderlik gelişimi, ekip koçluğu ve performans artırma programları sunuyorum. Şirket kültürünüze özel çözümler.",
-    features: [
-      "Liderlik gelişimi",
-      "Ekip uyumu",
-      "Performans artışı",
-      "Stres yönetimi",
-      "İletişim becerileri",
-    ],
-    duration: "Özel Program",
-    color: "var(--indigo)",
-  },
-  {
-    icon: Target,
-    title: "Hedef Takip Sistemi",
-    shortDesc: "Dijital araçlarla hedef belirleme ve takip.",
-    fullDesc: "Özel geliştirilen takip sistemi ile hedeflerinizi belirliyor, ilerlemenizi ölçüyor ve başarılarınızı kutluyoruz. Görsel raporlarla motivasyonunuzu artırın.",
-    features: [
-      "Günlük takip",
-      "İlerleme raporları",
-      "Başarı rozetleri",
-      "Hatırlatıcılar",
-      "Görsel grafikler",
-    ],
-    duration: "Sürekli",
-    color: "var(--purple)",
-  },
-  {
-    icon: Users,
-    title: "Grup Programları",
-    shortDesc: "Benzer hedeflere sahip kişilerle birlikte öğrenin.",
-    fullDesc: "Küçük gruplarla gerçekleştirilen programlarda, topluluk gücünden faydalanın. Akran desteği ile motivasyonunuzu yüksek tutun.",
-    features: [
-      "Haftalık buluşmalar",
-      "Akran desteği",
-      "Ortak hedefler",
-      "Grup dinamiği",
-      "Uygun fiyat",
-    ],
-    duration: "8 Hafta",
-    color: "var(--violet)",
-  },
-];
-
-const specializations = [
-  {
-    icon: Brain,
-    title: "Kişisel Gelişim",
-    description: "Öz farkındalık, özgüven ve kişisel dönüşüm",
-  },
-  {
-    icon: Heart,
-    title: "İlişki Koçluğu",
-    description: "Sağlıklı ilişkiler kurma ve iletişim becerileri",
-  },
-  {
-    icon: Briefcase,
-    title: "Kariyer Koçluğu",
-    description: "Kariyer planlama, iş-yaşam dengesi",
-  },
-  {
-    icon: Target,
-    title: "Hedef Odaklı Koçluk",
-    description: "Net hedefler belirleme ve gerçekleştirme",
-  },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function ServicesPage() {
+  const { t, language } = useLanguage();
+
+  const services = [
+    {
+      icon: Users,
+      title: t.services.servicesList.oneOnOne.title,
+      shortDesc: t.services.servicesList.oneOnOne.shortDesc,
+      fullDesc: t.services.servicesList.oneOnOne.fullDesc,
+      features: t.services.servicesList.oneOnOne.features,
+      duration: t.services.servicesList.oneOnOne.duration,
+      color: "var(--indigo)",
+    },
+    {
+      icon: Video,
+      title: t.services.servicesList.online.title,
+      shortDesc: t.services.servicesList.online.shortDesc,
+      fullDesc: t.services.servicesList.online.fullDesc,
+      features: t.services.servicesList.online.features,
+      duration: t.services.servicesList.online.duration,
+      color: "var(--purple)",
+    },
+    {
+      icon: MessageCircle,
+      title: t.services.servicesList.messaging.title,
+      shortDesc: t.services.servicesList.messaging.shortDesc,
+      fullDesc: t.services.servicesList.messaging.fullDesc,
+      features: t.services.servicesList.messaging.features,
+      duration: t.services.servicesList.messaging.duration,
+      color: "var(--violet)",
+    },
+    {
+      icon: Calendar,
+      title: t.services.servicesList.corporate.title,
+      shortDesc: t.services.servicesList.corporate.shortDesc,
+      fullDesc: t.services.servicesList.corporate.fullDesc,
+      features: t.services.servicesList.corporate.features,
+      duration: t.services.servicesList.corporate.duration,
+      color: "var(--indigo)",
+    },
+    {
+      icon: Target,
+      title: t.services.servicesList.goalTracking.title,
+      shortDesc: t.services.servicesList.goalTracking.shortDesc,
+      fullDesc: t.services.servicesList.goalTracking.fullDesc,
+      features: t.services.servicesList.goalTracking.features,
+      duration: t.services.servicesList.goalTracking.duration,
+      color: "var(--purple)",
+    },
+    {
+      icon: Users,
+      title: t.services.servicesList.group.title,
+      shortDesc: t.services.servicesList.group.shortDesc,
+      fullDesc: t.services.servicesList.group.fullDesc,
+      features: t.services.servicesList.group.features,
+      duration: t.services.servicesList.group.duration,
+      color: "var(--violet)",
+    },
+  ];
+
+  const specializations = [
+    {
+      icon: Brain,
+      title: t.services.specializations.personal.title,
+      description: t.services.specializations.personal.description,
+    },
+    {
+      icon: Heart,
+      title: t.services.specializations.relationship.title,
+      description: t.services.specializations.relationship.description,
+    },
+    {
+      icon: Briefcase,
+      title: t.services.specializations.career.title,
+      description: t.services.specializations.career.description,
+    },
+    {
+      icon: Target,
+      title: t.services.specializations.goal.title,
+      description: t.services.specializations.goal.description,
+    },
+  ];
+
   return (
     <>
       <Header />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-20 gradient-soft">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="py-24 relative overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-bottom"
+            style={{ backgroundImage: "url('/hizmetler-bg.jpg')" }}
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-[var(--indigo)] font-semibold tracking-wider uppercase text-sm">
-                Hizmetler
+              <span className="text-white/80 font-semibold tracking-wider uppercase text-sm">
+                {t.services.subtitle}
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-[var(--dark)] mt-4 mb-6">
-                Size Nasıl <span className="text-gradient">Yardımcı Olabilirim?</span>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+                {t.services.title} {t.services.titleHighlight}
               </h1>
-              <p className="text-lg text-[var(--text-body)] max-w-2xl mx-auto">
-                İhtiyaçlarınıza uygun farklı koçluk formatları ile hedeflerinize
-                ulaşmanızda size eşlik ediyorum.
+              <p className="text-lg text-white/80 max-w-2xl mx-auto">
+                {t.services.description}
               </p>
             </motion.div>
           </div>
@@ -187,10 +158,10 @@ export default function ServicesPage() {
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-[var(--dark)] mb-4">
-                Hizmet Seçenekleri
+                {t.services.optionsTitle}
               </h2>
               <p className="text-[var(--text-body)] max-w-2xl mx-auto">
-                Her ihtiyaca uygun farklı koçluk formatları
+                {t.services.optionsDescription}
               </p>
             </motion.div>
 
@@ -225,7 +196,7 @@ export default function ServicesPage() {
                   </div>
 
                   <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, fIndex) => (
+                    {service.features.map((feature: string, fIndex: number) => (
                       <li key={fIndex} className="flex items-center gap-2 text-sm text-[var(--text-body)]">
                         <CheckCircle size={16} className="text-[var(--emerald)]" />
                         {feature}
@@ -237,7 +208,7 @@ export default function ServicesPage() {
                     href="/iletisim"
                     className="inline-flex items-center gap-2 text-[var(--indigo)] font-medium hover:gap-3 transition-all"
                   >
-                    Detaylı Bilgi <ArrowRight size={16} />
+                    {t.services.moreInfo} <ArrowRight size={16} />
                   </Link>
                 </motion.div>
               ))}
@@ -256,20 +227,15 @@ export default function ServicesPage() {
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-[var(--dark)] mb-4">
-                Nasıl Çalışıyoruz?
+                {t.services.processTitle}
               </h2>
               <p className="text-[var(--text-body)] max-w-2xl mx-auto">
-                Koçluk sürecimiz 4 basit adımda ilerliyor
+                {t.services.processDescription}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-4 gap-8">
-              {[
-                { step: "01", title: "Keşif Görüşmesi", desc: "Ücretsiz 30 dakikalık tanışma" },
-                { step: "02", title: "Program Seçimi", desc: "Size uygun programı belirleriz" },
-                { step: "03", title: "Koçluk Süreci", desc: "Düzenli seanslarla ilerleme" },
-                { step: "04", title: "Dönüşüm", desc: "Hedeflerinize ulaşın" },
-              ].map((item, index) => (
+              {t.services.process.map((item: { step: string; title: string; desc: string }, index: number) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -299,17 +265,16 @@ export default function ServicesPage() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl font-bold mb-6">
-                Hangi Hizmet Size Uygun?
+                {t.services.ctaTitle}
               </h2>
               <p className="text-[var(--lavender)] mb-8 max-w-2xl mx-auto">
-                Ücretsiz keşif görüşmesinde ihtiyaçlarınızı değerlendirelim ve
-                size en uygun programı birlikte belirleyelim.
+                {t.services.ctaDescription}
               </p>
               <Link
                 href="/iletisim"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--dark)] rounded-full font-semibold hover:bg-[var(--lavender)] transition-all"
               >
-                Ücretsiz Görüşme Ayarla
+                {t.services.ctaButton}
               </Link>
             </motion.div>
           </div>

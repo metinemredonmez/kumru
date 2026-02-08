@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
-const testimonials = [
+const testimonialsTR = [
   {
     name: "Mehri Hemdemova",
     role: "Google Yorumu",
@@ -54,7 +55,61 @@ const testimonials = [
   },
 ];
 
+const testimonialsEN = [
+  {
+    name: "Mehri Hemdemova",
+    role: "Google Review",
+    avatar: "MH",
+    rating: 5,
+    text: "Excellent experience! Among the best life coaches. In my top 5!",
+    isGoogle: true,
+  },
+  {
+    name: "Sadiyesmeen Ameen",
+    role: "Google Review",
+    avatar: "SA",
+    rating: 5,
+    text: "I'm really satisfied with Kumru. She told me I would move in the fifth month, I didn't believe it but I really am moving! Thank you so much.",
+    isGoogle: true,
+  },
+  {
+    name: "Nilcan Çimen",
+    role: "Google Review",
+    avatar: "NC",
+    rating: 5,
+    text: "Her insights and feelings are amazing! Since I started consulting, my work has improved, my life is in order.",
+    isGoogle: true,
+  },
+  {
+    name: "Kurutta Senshi",
+    role: "Google Review",
+    avatar: "KS",
+    rating: 5,
+    text: "A wonderful person with a reassuring voice and amazing analysis. I'm so glad our paths crossed, one of the rare people I'm grateful for.",
+    isGoogle: true,
+  },
+  {
+    name: "EFE Gülmez",
+    role: "Google Review",
+    avatar: "EG",
+    rating: 5,
+    text: "Her feelings are so strong that I'm living everything she said 15 years ago.",
+    isGoogle: true,
+  },
+  {
+    name: "Jasmin",
+    role: "Google Review",
+    avatar: "J",
+    rating: 5,
+    text: "Amazing person, amazing energy, amazing!",
+    isGoogle: true,
+  },
+];
+
 export default function Testimonials() {
+  const { t, language } = useLanguage();
+  const testimonials = language === 'tr' ? testimonialsTR : testimonialsEN;
+
   return (
     <section id="testimonials" className="py-24 gradient-soft">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,14 +122,13 @@ export default function Testimonials() {
           className="text-center mb-16"
         >
           <span className="text-[var(--indigo)] font-semibold tracking-wider uppercase text-sm">
-            Yorumlar
+            {t.testimonials.title}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-[var(--dark)] mt-4 mb-6">
-            Danışanlarım <span className="text-gradient">Ne Diyor?</span>
+            {t.testimonials.title} <span className="text-gradient">{t.testimonials.titleHighlight}</span>
           </h2>
           <p className="text-[var(--text-body)] max-w-2xl mx-auto">
-            Google'da 5.0 puan ve 10+ yorum ile danışanlarımın dönüşüm hikayelerinden bazıları.
-            Sıradaki başarı hikayesi sizin olabilir.
+            {t.testimonials.description}
           </p>
         </motion.div>
 
@@ -153,19 +207,25 @@ export default function Testimonials() {
               <div className="text-3xl md:text-4xl font-bold text-[var(--indigo)]">
                 5.0
               </div>
-              <div className="text-[var(--text-muted)] mt-1">Google Puanı</div>
+              <div className="text-[var(--text-muted)] mt-1">
+                {language === 'tr' ? 'Google Puanı' : 'Google Rating'}
+              </div>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold text-[var(--indigo)]">
                 10+
               </div>
-              <div className="text-[var(--text-muted)] mt-1">Google Yorumu</div>
+              <div className="text-[var(--text-muted)] mt-1">
+                {language === 'tr' ? 'Google Yorumu' : 'Google Reviews'}
+              </div>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold text-[var(--indigo)]">
                 100%
               </div>
-              <div className="text-[var(--text-muted)] mt-1">5 Yıldız</div>
+              <div className="text-[var(--text-muted)] mt-1">
+                {language === 'tr' ? '5 Yıldız' : '5 Stars'}
+              </div>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold text-[var(--indigo)]">

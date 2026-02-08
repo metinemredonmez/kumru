@@ -5,110 +5,121 @@ import { Play, ExternalLink, Calendar, Newspaper, Video, Award, BookOpen } from 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
-
-const mediaAppearances = [
-  {
-    type: "magazine",
-    title: "Quality of Magazine",
-    subtitle: "Röportaj",
-    date: "Kasım 2023",
-    description: "\"Bizi biz yapan her şey ailede başlar\" başlıklı kapak röportajı. Davranış bilimleri ve aile dinamikleri üzerine derinlemesine söyleşi.",
-    image: "/magazine-cover.jpg",
-    link: null,
-  },
-  {
-    type: "video",
-    title: "Ödül Töreni",
-    subtitle: "Instagram Reel",
-    date: "2024",
-    description: "Yılın Spiritüel Yaşam Koçu ve Davranış Bilimleri Uzmanı ödülü töreni.",
-    image: "/odul-toreni.jpg",
-    link: "https://www.instagram.com/reel/DJq0jUptijh/",
-  },
-];
-
-const pressQuotes = [
-  {
-    quote: "İnsanların hayatlarının pozitif yönde değişimine vesile olabilen spiritüel bir rehber ve davranış bilimleri uzmanıyım.",
-    source: "Quality of Magazine",
-  },
-  {
-    quote: "Bugün ne düşünürsen kendine çekebilirsin, niyet enerjisini kullanabilirsin. Hissettiğini yaşarsın.",
-    source: "Röportaj",
-  },
-  {
-    quote: "Bu mesleği seçmemdeki en önemli sebeplerden biri, bilincin küçük yaşta şekillenmesi ve bunun tüm hayatımıza olan etkisi.",
-    source: "Quality of Magazine",
-  },
-];
-
-const awards = [
-  {
-    title: "Yılın Yaşam Koçu",
-    organization: "Türkiye Koçluk Derneği",
-    year: "2024",
-  },
-  {
-    title: "En İyi Online Koçluk Programı",
-    organization: "Digital Coaching Awards",
-    year: "2023",
-  },
-];
-
-const instagramPosts = [
-  {
-    image: "/instagram/post1.jpg",
-    title: "Hayatındaki İlişkiler",
-    description: "Birbirine karışıyorsa, sınırlarını çizme zamanı...",
-  },
-  {
-    image: "/instagram/post2.jpg",
-    title: "Farkındalık",
-    description: "İç sesin dinle, cevaplar sende...",
-  },
-  {
-    image: "/instagram/post3.jpg",
-    title: "Dönüşüm",
-    description: "Değişim cesaret ister, sen hazırsın...",
-  },
-  {
-    image: "/instagram/post4.jpg",
-    title: "Öz Sevgi",
-    description: "Kendine sevgiyle bakmayı öğren...",
-  },
-  {
-    image: "/instagram/post5.jpg",
-    title: "Hedefler",
-    description: "Hayallerini gerçeğe dönüştür...",
-  },
-  {
-    image: "/instagram/post6.jpg",
-    title: "Bilinçli Yaşam",
-    description: "Her an farkında ol, şimdi ile bağlan...",
-  },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function MediaPage() {
+  const { t, language } = useLanguage();
+
+  const mediaAppearances = [
+    {
+      type: "magazine",
+      title: t.media.mediaItems.magazine.title,
+      subtitle: t.media.mediaItems.magazine.subtitle,
+      date: t.media.mediaItems.magazine.date,
+      description: t.media.mediaItems.magazine.description,
+      image: "/magazine-cover.jpg",
+      link: null,
+    },
+    {
+      type: "video",
+      title: t.media.mediaItems.award.title,
+      subtitle: t.media.mediaItems.award.subtitle,
+      date: t.media.mediaItems.award.date,
+      description: t.media.mediaItems.award.description,
+      image: "/odul-toreni.jpg",
+      link: "https://www.instagram.com/reel/DJq0jUptijh/",
+    },
+  ];
+
+  const instagramPosts = language === 'tr' ? [
+    {
+      image: "/instagram/post1.jpg",
+      title: "Hayatındaki İlişkiler",
+      description: "Birbirine karışıyorsa, sınırlarını çizme zamanı...",
+    },
+    {
+      image: "/instagram/post2.jpg",
+      title: "Farkındalık",
+      description: "İç sesin dinle, cevaplar sende...",
+    },
+    {
+      image: "/instagram/post3.jpg",
+      title: "Dönüşüm",
+      description: "Değişim cesaret ister, sen hazırsın...",
+    },
+    {
+      image: "/instagram/post4.jpg",
+      title: "Öz Sevgi",
+      description: "Kendine sevgiyle bakmayı öğren...",
+    },
+    {
+      image: "/instagram/post5.jpg",
+      title: "Hedefler",
+      description: "Hayallerini gerçeğe dönüştür...",
+    },
+    {
+      image: "/instagram/post6.jpg",
+      title: "Bilinçli Yaşam",
+      description: "Her an farkında ol, şimdi ile bağlan...",
+    },
+  ] : [
+    {
+      image: "/instagram/post1.jpg",
+      title: "Relationships in Life",
+      description: "If they're getting mixed up, it's time to set boundaries...",
+    },
+    {
+      image: "/instagram/post2.jpg",
+      title: "Awareness",
+      description: "Listen to your inner voice, answers are within you...",
+    },
+    {
+      image: "/instagram/post3.jpg",
+      title: "Transformation",
+      description: "Change requires courage, you are ready...",
+    },
+    {
+      image: "/instagram/post4.jpg",
+      title: "Self Love",
+      description: "Learn to look at yourself with love...",
+    },
+    {
+      image: "/instagram/post5.jpg",
+      title: "Goals",
+      description: "Turn your dreams into reality...",
+    },
+    {
+      image: "/instagram/post6.jpg",
+      title: "Conscious Living",
+      description: "Be aware of every moment, connect with now...",
+    },
+  ];
+
   return (
     <>
       <Header />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-20 gradient-soft">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="py-24 relative overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/medya-bg.jpg')" }}
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-[var(--indigo)] font-semibold tracking-wider uppercase text-sm">
-                Medya
+              <span className="text-white/80 font-semibold tracking-wider uppercase text-sm">
+                {t.media.subtitle}
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-[var(--dark)] mt-4 mb-6">
-                Basında <span className="text-gradient">Kumru Köseler</span>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+                {t.media.title} <span className="text-[var(--amber)]">{t.media.titleHighlight}</span>
               </h1>
-              <p className="text-lg text-[var(--text-body)] max-w-2xl mx-auto">
-                Röportajlar, medya çıkışları ve ödüller
+              <p className="text-lg text-white/80 max-w-2xl mx-auto">
+                {t.media.description}
               </p>
             </motion.div>
           </div>
@@ -125,7 +136,7 @@ export default function MediaPage() {
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-[var(--dark)] mb-4">
-                Öne Çıkan Medya
+                {t.media.featuredTitle}
               </h2>
             </motion.div>
 
@@ -170,22 +181,6 @@ export default function MediaPage() {
                     </a>
                   )}
 
-                  {!item.image && item.link && (
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="aspect-video relative flex items-center justify-center bg-[var(--indigo)]"
-                    >
-                      <div className="text-center text-white">
-                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center">
-                          <Play size={32} className="text-white ml-1" />
-                        </div>
-                        <p className="font-medium">Videoyu İzle</p>
-                      </div>
-                    </a>
-                  )}
-
                   <div className="p-6">
                     <div className="flex items-center gap-2 text-sm text-[var(--text-muted)] mb-2">
                       <Calendar size={14} />
@@ -204,7 +199,7 @@ export default function MediaPage() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-[var(--indigo)] font-medium"
                       >
-                        İzle <ExternalLink size={16} />
+                        {language === 'tr' ? 'İzle' : 'Watch'} <ExternalLink size={16} />
                       </a>
                     )}
                   </div>
@@ -225,12 +220,12 @@ export default function MediaPage() {
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-[var(--dark)] mb-4">
-                Basından Alıntılar
+                {t.media.quotesTitle}
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              {pressQuotes.map((item, index) => (
+              {t.media.quotes.map((item: { quote: string; source: string }, index: number) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -263,12 +258,12 @@ export default function MediaPage() {
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-[var(--dark)] mb-4">
-                Ödüller
+                {t.media.awardsTitle}
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-              {awards.map((award, index) => (
+              {t.media.awards.map((award: { title: string; organization: string; year: string }, index: number) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -300,10 +295,10 @@ export default function MediaPage() {
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-[var(--dark)] mb-4">
-                Instagram Paylaşımları
+                {t.media.instagramTitle}
               </h2>
               <p className="text-[var(--text-body)]">
-                @kumrukoseler'dan güncel içerikler
+                {t.media.instagramDescription}
               </p>
             </motion.div>
 
@@ -347,10 +342,10 @@ export default function MediaPage() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl font-bold mb-6">
-                Sosyal Medyada Takip Edin
+                {t.contact.social.title}
               </h2>
               <p className="text-[var(--lavender)] mb-8">
-                Günlük motivasyon, ipuçları ve daha fazlası için beni sosyal medyada takip edin.
+                {t.contact.social.followMe}
               </p>
               <div className="flex justify-center gap-4">
                 <a
@@ -384,16 +379,16 @@ export default function MediaPage() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl font-bold text-[var(--dark)] mb-6">
-                Basın İletişim
+                {t.media.ctaTitle}
               </h2>
               <p className="text-[var(--text-body)] mb-8">
-                Röportaj, işbirliği veya basın talepleri için iletişime geçebilirsiniz.
+                {t.media.ctaDescription}
               </p>
               <Link
                 href="/iletisim"
                 className="inline-flex items-center justify-center px-8 py-4 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-all"
               >
-                İletişime Geç
+                {t.media.ctaButton}
               </Link>
             </motion.div>
           </div>
