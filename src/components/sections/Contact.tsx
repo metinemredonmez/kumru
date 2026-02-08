@@ -60,10 +60,10 @@ export default function Contact() {
                 <div>
                   <h4 className="font-semibold text-[var(--dark)] mb-1">E-posta</h4>
                   <a
-                    href="mailto:info@kumrukoseler.ca"
+                    href="mailto:kumrukoseler@gmail.com"
                     className="text-[var(--text-body)] hover:text-[var(--indigo)] transition-colors"
                   >
-                    info@kumrukoseler.ca
+                    kumrukoseler@gmail.com
                   </a>
                 </div>
               </div>
