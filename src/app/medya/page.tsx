@@ -13,7 +13,7 @@ const mediaAppearances = [
     subtitle: "Röportaj",
     date: "Kasım 2023",
     description: "\"Bizi biz yapan her şey ailede başlar\" başlıklı kapak röportajı. Davranış bilimleri ve aile dinamikleri üzerine derinlemesine söyleşi.",
-    image: "/kumrukoseler1.jpg",
+    image: "/magazine-cover.jpg",
     link: null,
   },
   {
