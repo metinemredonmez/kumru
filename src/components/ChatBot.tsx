@@ -83,16 +83,23 @@ export default function ChatBot() {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
-          isOpen
-            ? "bg-[var(--dark)] rotate-0"
-            : "bg-gradient-to-r from-[var(--indigo)] to-[var(--purple)] hover:scale-110"
-        }`}
+        className="fixed bottom-6 right-6 z-50 shadow-lg transition-all duration-300 hover:scale-105"
       >
         {isOpen ? (
-          <X size={24} className="text-white" />
+          <div className="w-14 h-14 rounded-full bg-[var(--dark)] flex items-center justify-center">
+            <X size={24} className="text-white" />
+          </div>
         ) : (
-          <MessageCircle size={24} className="text-white" />
+          <div className="flex items-center gap-3 bg-[#8B6914] hover:bg-[#6B5010] pl-1 pr-5 py-1 rounded-full">
+            <img
+              src="/profile.jpg"
+              alt="Kumru Köseler"
+              className="w-12 h-12 rounded-full object-cover border-2 border-white/30"
+            />
+            <span className="text-white font-medium text-lg">
+              {language === 'tr' ? 'Merhaba!' : 'Hello!'}
+            </span>
+          </div>
         )}
       </button>
 
