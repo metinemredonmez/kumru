@@ -44,14 +44,13 @@ export default function About() {
             className="relative"
           >
             <div className="relative">
-              {/* Main Image Placeholder */}
-              <div className="aspect-[4/5] rounded-3xl bg-[var(--soft)] flex items-center justify-center overflow-hidden">
-                <div className="text-center p-8">
-                  <div className="w-40 h-40 mx-auto mb-4 rounded-full bg-[var(--lavender)] flex items-center justify-center">
-                    <span className="text-5xl font-bold text-[var(--indigo)]">KK</span>
-                  </div>
-                  <p className="text-[var(--text-muted)]">Kumru Köseler</p>
-                </div>
+              {/* Main Image */}
+              <div className="aspect-[4/5] rounded-3xl bg-[var(--soft)] overflow-hidden">
+                <img
+                  src="/profile.jpg"
+                  alt="Kumru Köseler - Yaşam Koçu"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {/* Experience Badge */}
