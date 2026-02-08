@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Calendar, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Calendar, Clock, MessageCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function Contact() {
@@ -75,10 +75,27 @@ export default function Contact() {
                 <div>
                   <h4 className="font-semibold text-[var(--dark)] mb-1">Telefon</h4>
                   <a
-                    href="tel:+1234567890"
+                    href="tel:+905343675669"
                     className="text-[var(--text-body)] hover:text-[var(--indigo)] transition-colors"
                   >
-                    +1 (234) 567-890
+                    +90 534 367 56 69
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-[#25D366]/10 flex items-center justify-center flex-shrink-0">
+                  <MessageCircle size={22} className="text-[#25D366]" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-[var(--dark)] mb-1">WhatsApp</h4>
+                  <a
+                    href="https://wa.me/905343675669"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--text-body)] hover:text-[#25D366] transition-colors"
+                  >
+                    Hemen Mesaj Gönder
                   </a>
                 </div>
               </div>
