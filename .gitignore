@@ -2,7 +2,12 @@ node_modules
 .next
 .env
 .env.local
+.env.production
+.env.*
 *.log
 .DS_Store
 kumru-deploy.zip
 out/
+
+# Claude Code settings (may contain sensitive data)
+.claude/settings.local.json
