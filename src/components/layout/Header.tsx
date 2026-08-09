@@ -77,12 +77,12 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <nav className="hidden xl:flex items-center gap-5 2xl:gap-7">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[var(--text-body)] hover:text-[var(--indigo)] transition-colors font-medium text-sm xl:text-base whitespace-nowrap"
+                className="text-[var(--text-body)] hover:text-[var(--indigo)] transition-colors font-medium text-sm whitespace-nowrap"
               >
                 {item.name}
               </Link>
@@ -90,10 +90,10 @@ export default function Header() {
           </nav>
 
           {/* CTA Button - Desktop */}
-          <div className="hidden lg:block">
+          <div className="hidden xl:block flex-shrink-0">
             <Link
               href="/iletisim"
-              className="px-5 py-2.5 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-colors text-sm"
+              className="px-5 py-2.5 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-colors text-sm whitespace-nowrap"
             >
               {t.nav.cta}
             </Link>
@@ -102,7 +102,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-[var(--dark)]"
+            className="xl:hidden p-2 text-[var(--dark)]"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -114,7 +114,7 @@ export default function Header() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="lg:hidden py-4 border-t border-[var(--lavender)]/30"
+            className="xl:hidden py-4 border-t border-[var(--lavender)]/30"
           >
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => (

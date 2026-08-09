@@ -1,7 +1,7 @@
 /* ==========================================================================
-   Kumru Köseler — Admin Panel teması
-   Payload'ın varsayılan görünümünü sitenin marka diline uyarlar.
-   Marka renkleri: indigo #5B2EFF · mor #8B5CF6 · koyu #1E1B4B · lavanta #EDE9FE
+   Kumru Köseler — Admin Panel teması (aydınlık · minimalist)
+   Marka: indigo #5B2EFF · mor #8B5CF6 · koyu #1E1B4B · lavanta #EDE9FE
+   Giriş ekranı markalı mor gradient; çalışma paneli ferah ve beyaz.
    ========================================================================== */
 
 :root {
@@ -12,37 +12,30 @@
   --kumru-soft: #EDE9FE;
   --kumru-dark: #1E1B4B;
   --kumru-dark-2: #2E2A5E;
-  --kumru-amber: #F59E0B;
   --kumru-gradient: linear-gradient(135deg, #5B2EFF 0%, #8B5CF6 100%);
 
-  /* Payload'ın vurgu (accent) rengini indigo yap */
+  /* Payload vurgu rengini indigo yap */
   --theme-success-500: var(--kumru-indigo);
+  --color-success-500: var(--kumru-indigo);
 }
 
-/* Marka vurgusu — linkler, aktif durumlar */
-.payload-default-theme,
+/* Genel zemin: çok yumuşak lavanta-beyaz, ferah his */
 body {
-  --theme-success-500: var(--kumru-indigo);
+  --theme-bg: #FAF9FF;
+  background: #FAF9FF;
 }
 
-/* ---------- Giriş ekranı ---------- */
+/* ===================== GİRİŞ EKRANI (markalı splash) ===================== */
 .template-minimal,
 .login {
   background: linear-gradient(180deg, var(--kumru-dark) 0%, var(--kumru-dark-2) 100%) !important;
 }
 
-.login .template-minimal__wrap,
-.login__wrap {
-  background: transparent;
-}
-
-/* Giriş logosunu ortala ve nefes aldır */
 .login .graphic-logo,
 .login__brand {
   margin-bottom: 2.5rem;
 }
 
-/* Giriş formu kartı */
 .login__form {
   background: rgba(255, 255, 255, 0.06);
   padding: 2rem;
@@ -56,64 +49,177 @@ body {
   color: var(--kumru-lavender) !important;
 }
 
-/* ---------- Birincil butonlar (Login, Save, Create) ---------- */
-.btn--style-primary .btn__content,
-.btn--style-primary {
+.login__form input {
+  border-radius: 12px !important;
+}
+
+/* ===================== SOL MENÜ (nav) — beyaz & minimalist ===================== */
+.nav {
+  background: #FFFFFF !important;
+  border-right: 1px solid var(--kumru-soft);
+}
+
+.nav__wrap {
+  padding-top: 0.5rem;
+}
+
+.nav .nav__link,
+.nav a.nav__link {
+  color: #4B5563 !important;
+  border-radius: 10px;
+  margin: 2px 8px;
+  padding: 9px 12px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.nav .nav__link:hover,
+.nav a.nav__link:hover {
+  color: var(--kumru-indigo) !important;
+  background: var(--kumru-soft);
+}
+
+.nav .nav__link.active,
+.nav a.nav__link.active,
+.nav .nav__link--active {
+  color: var(--kumru-indigo) !important;
+  background: var(--kumru-soft);
+  font-weight: 600;
+}
+
+.nav-group__label,
+.nav__label {
+  color: #9CA3AF !important;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+/* Nav alt kısmı (çıkış vs.) */
+.nav__controls,
+.nav-group__toggle {
+  color: #9CA3AF;
+}
+
+/* ===================== DASHBOARD KARTLARI ===================== */
+.dashboard__card,
+.card {
+  background: #FFFFFF !important;
+  border: 1px solid var(--kumru-soft) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 1px 3px rgba(30, 27, 75, 0.04) !important;
+  transition: all 0.18s ease;
+}
+
+.dashboard__card:hover,
+.card:hover {
+  border-color: var(--kumru-violet) !important;
+  box-shadow: 0 8px 24px rgba(91, 46, 255, 0.10) !important;
+  transform: translateY(-2px);
+}
+
+.dashboard__card .card__title,
+.card__title,
+.card h3 {
+  color: var(--kumru-dark) !important;
+  font-weight: 600;
+}
+
+.dashboard__label,
+.dashboard__group-label {
+  color: var(--kumru-dark) !important;
+  font-weight: 700;
+}
+
+/* Kart üzerindeki + (yeni ekle) ikonu */
+.dashboard__card .btn,
+.card .btn svg {
+  color: var(--kumru-indigo) !important;
+}
+
+/* ===================== BUTONLAR ===================== */
+.btn--style-primary,
+.btn--style-primary .btn__content {
   background: var(--kumru-gradient) !important;
   border-color: transparent !important;
   color: #fff !important;
   border-radius: 9999px !important;
+  box-shadow: 0 2px 8px rgba(91, 46, 255, 0.25);
 }
 
-.btn--style-primary:hover .btn__content,
-.btn--style-primary:hover {
+.btn--style-primary:hover,
+.btn--style-primary:hover .btn__content {
   filter: brightness(1.08);
 }
 
-/* İkincil / borderlı butonlar */
 .btn--style-secondary {
+  border-radius: 9999px !important;
+  border-color: var(--kumru-lavender) !important;
+  color: var(--kumru-indigo) !important;
+}
+
+.btn--style-secondary:hover {
+  background: var(--kumru-soft) !important;
+}
+
+/* Pill / etiket butonları (Create New vb.) */
+.pill,
+.pill--style-light {
+  background: var(--kumru-soft) !important;
+  color: var(--kumru-indigo) !important;
   border-radius: 9999px !important;
 }
 
-/* ---------- Form alanları ---------- */
+/* ===================== FORM ALANLARI ===================== */
+.field-type input,
+.field-type textarea,
+.field-type .rs__control {
+  border-radius: 10px !important;
+  border-color: #E5E7EB !important;
+}
+
 .field-type input:focus,
 .field-type textarea:focus,
 .field-type .rs__control--is-focused {
   border-color: var(--kumru-indigo) !important;
-  box-shadow: 0 0 0 2px rgba(91, 46, 255, 0.2) !important;
+  box-shadow: 0 0 0 3px rgba(91, 46, 255, 0.12) !important;
 }
 
-/* ---------- Sol menü (nav) ---------- */
-.nav {
-  background: linear-gradient(180deg, var(--kumru-dark) 0%, var(--kumru-dark-2) 100%);
+.field-label {
+  color: var(--kumru-dark) !important;
+  font-weight: 500;
 }
 
-.nav .nav__link,
-.nav a {
-  color: rgba(255, 255, 255, 0.75);
-  border-radius: 8px;
+/* ===================== ÜST BAR / ADIM NAV ===================== */
+.step-nav,
+.step-nav a {
+  color: #6B7280;
 }
 
-.nav .nav__link:hover,
-.nav a:hover {
-  color: #fff;
-  background: rgba(196, 181, 253, 0.12);
-}
-
-.nav .nav__link.active,
-.nav a.active {
-  color: #fff;
-  background: rgba(91, 46, 255, 0.35);
-}
-
-.nav__label,
-.nav-group__label {
-  color: var(--kumru-lavender);
-}
-
-/* ---------- Üst bar / adım rengi ---------- */
 .step-nav a:hover {
   color: var(--kumru-indigo);
+}
+
+/* Arama kutusu / liste kontrolleri */
+.search-filter input {
+  border-radius: 10px !important;
+}
+
+/* Tablolar */
+.table {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--kumru-soft);
+}
+
+.table thead {
+  background: var(--kumru-soft);
+}
+
+.table thead th {
+  color: var(--kumru-dark);
+  font-weight: 600;
 }
 
 /* Linkler */
@@ -121,15 +227,8 @@ a {
   color: var(--kumru-indigo);
 }
 
-/* Kartlara ve panellere yuvarlaklık */
-.card,
-.collection-list__wrap .table,
-.doc-controls {
-  border-radius: 14px;
-}
-
-/* Vurgulu etiketler / pill */
-.pill--style-light {
-  background: var(--kumru-soft);
-  color: var(--kumru-indigo);
+/* Dil seçici / üst sağ kontroller */
+.localizer button,
+.app-header button {
+  border-radius: 9999px !important;
 }

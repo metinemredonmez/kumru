@@ -16,6 +16,7 @@ const dirname = path.dirname(filename);
 export default buildConfig({
   admin: {
     user: "users",
+    theme: "light",
     meta: {
       titleSuffix: " · Kumru Köseler",
       title: "Kumru Köseler Panel",
