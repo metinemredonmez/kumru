@@ -1,0 +1,135 @@
+/* ==========================================================================
+   Kumru Köseler — Admin Panel teması
+   Payload'ın varsayılan görünümünü sitenin marka diline uyarlar.
+   Marka renkleri: indigo #5B2EFF · mor #8B5CF6 · koyu #1E1B4B · lavanta #EDE9FE
+   ========================================================================== */
+
+:root {
+  --kumru-indigo: #5B2EFF;
+  --kumru-purple: #8B5CF6;
+  --kumru-violet: #A78BFA;
+  --kumru-lavender: #C4B5FD;
+  --kumru-soft: #EDE9FE;
+  --kumru-dark: #1E1B4B;
+  --kumru-dark-2: #2E2A5E;
+  --kumru-amber: #F59E0B;
+  --kumru-gradient: linear-gradient(135deg, #5B2EFF 0%, #8B5CF6 100%);
+
+  /* Payload'ın vurgu (accent) rengini indigo yap */
+  --theme-success-500: var(--kumru-indigo);
+}
+
+/* Marka vurgusu — linkler, aktif durumlar */
+.payload-default-theme,
+body {
+  --theme-success-500: var(--kumru-indigo);
+}
+
+/* ---------- Giriş ekranı ---------- */
+.template-minimal,
+.login {
+  background: linear-gradient(180deg, var(--kumru-dark) 0%, var(--kumru-dark-2) 100%) !important;
+}
+
+.login .template-minimal__wrap,
+.login__wrap {
+  background: transparent;
+}
+
+/* Giriş logosunu ortala ve nefes aldır */
+.login .graphic-logo,
+.login__brand {
+  margin-bottom: 2.5rem;
+}
+
+/* Giriş formu kartı */
+.login__form {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2rem;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(196, 181, 253, 0.2);
+}
+
+.login__form label,
+.login__form .field-label {
+  color: var(--kumru-lavender) !important;
+}
+
+/* ---------- Birincil butonlar (Login, Save, Create) ---------- */
+.btn--style-primary .btn__content,
+.btn--style-primary {
+  background: var(--kumru-gradient) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  border-radius: 9999px !important;
+}
+
+.btn--style-primary:hover .btn__content,
+.btn--style-primary:hover {
+  filter: brightness(1.08);
+}
+
+/* İkincil / borderlı butonlar */
+.btn--style-secondary {
+  border-radius: 9999px !important;
+}
+
+/* ---------- Form alanları ---------- */
+.field-type input:focus,
+.field-type textarea:focus,
+.field-type .rs__control--is-focused {
+  border-color: var(--kumru-indigo) !important;
+  box-shadow: 0 0 0 2px rgba(91, 46, 255, 0.2) !important;
+}
+
+/* ---------- Sol menü (nav) ---------- */
+.nav {
+  background: linear-gradient(180deg, var(--kumru-dark) 0%, var(--kumru-dark-2) 100%);
+}
+
+.nav .nav__link,
+.nav a {
+  color: rgba(255, 255, 255, 0.75);
+  border-radius: 8px;
+}
+
+.nav .nav__link:hover,
+.nav a:hover {
+  color: #fff;
+  background: rgba(196, 181, 253, 0.12);
+}
+
+.nav .nav__link.active,
+.nav a.active {
+  color: #fff;
+  background: rgba(91, 46, 255, 0.35);
+}
+
+.nav__label,
+.nav-group__label {
+  color: var(--kumru-lavender);
+}
+
+/* ---------- Üst bar / adım rengi ---------- */
+.step-nav a:hover {
+  color: var(--kumru-indigo);
+}
+
+/* Linkler */
+a {
+  color: var(--kumru-indigo);
+}
+
+/* Kartlara ve panellere yuvarlaklık */
+.card,
+.collection-list__wrap .table,
+.doc-controls {
+  border-radius: 14px;
+}
+
+/* Vurgulu etiketler / pill */
+.pill--style-light {
+  background: var(--kumru-soft);
+  color: var(--kumru-indigo);
+}

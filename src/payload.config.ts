@@ -17,7 +17,20 @@ export default buildConfig({
   admin: {
     user: "users",
     meta: {
-      titleSuffix: " - Kumru Köseler Panel",
+      titleSuffix: " · Kumru Köseler",
+      title: "Kumru Köseler Panel",
+      description: "Kumru Köseler web sitesi yönetim paneli",
+      icons: [{ rel: "icon", type: "image/png", url: "/favicon.png" }],
+    },
+    importMap: {
+      baseDir: path.resolve(dirname),
+      importMapFile: path.resolve(dirname, "app/(payload)/admin/importMap.js"),
+    },
+    components: {
+      graphics: {
+        Logo: "/components/admin/Logo#Logo",
+        Icon: "/components/admin/Icon#Icon",
+      },
     },
   },
   editor: lexicalEditor(),
