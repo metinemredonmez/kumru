@@ -3,7 +3,12 @@ import { fileURLToPath } from "url";
 import { buildConfig } from "payload";
 import { sqliteAdapter } from "@payloadcms/db-sqlite";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
-import sharp from "sharp";
+
+// sharp bazı sunucularda native modül sorunu çıkarabiliyor; yüklenemezse
+// görsel işleme (crop/resize) kapalı çalışır, uygulama etkilenmez.
+const sharp = await import("sharp")
+  .then((m) => m.default)
+  .catch(() => undefined);
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -41,6 +46,7 @@ export default buildConfig({
       upload: {
         staticDir: path.resolve(dirname, "../uploads"),
         mimeTypes: ["image/*", "video/mp4", "video/webm", "application/pdf"],
+        ...(sharp ? {} : { crop: false, focalPoint: false }),
       },
       fields: [
         { name: "alt", type: "text", label: "Açıklama (alt metin)", localized: true },
