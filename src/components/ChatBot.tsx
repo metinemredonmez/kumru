@@ -45,7 +45,7 @@ export default function ChatBot() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://kumrukoseler.com/api/chat.php", {
+      const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

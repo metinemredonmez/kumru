@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import {
   Users, Video, MessageCircle, Calendar, Target, Brain,
-  Heart, Briefcase, ArrowRight, CheckCircle, Clock
+  Heart, Briefcase, ArrowRight, CheckCircle, Clock, Sparkles
 } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -216,8 +216,90 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Process Section */}
+        {/* Spiritual Sessions */}
         <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <span className="text-[var(--indigo)] font-semibold tracking-wider uppercase text-sm">
+                {t.services.spiritual.subtitle}
+              </span>
+              <h2 className="text-3xl font-bold text-[var(--dark)] mt-4 mb-4">
+                {t.services.spiritual.title}{" "}
+                <span className="text-gradient">{t.services.spiritual.titleHighlight}</span>
+              </h2>
+              <p className="text-[var(--text-body)] max-w-2xl mx-auto">
+                {t.services.spiritual.description}
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {t.services.spiritual.sessions.map(
+                (session: { title: string; description: string; duration: string; price: string }, index: number) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
+                    className="bg-[var(--soft)] rounded-2xl p-6 hover:shadow-lg transition-shadow flex flex-col"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-[var(--lavender)] flex items-center justify-center mb-4">
+                      <Sparkles size={24} className="text-[var(--indigo)]" />
+                    </div>
+
+                    <h3 className="text-lg font-semibold text-[var(--dark)] mb-2">
+                      {session.title}
+                    </h3>
+
+                    <p className="text-sm text-[var(--text-body)] mb-4 flex-grow">
+                      {session.description}
+                    </p>
+
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="flex items-center gap-2 text-[var(--text-muted)]">
+                        <Clock size={16} />
+                        {session.duration}
+                      </span>
+                      <span className="font-semibold text-[var(--indigo)]">
+                        {session.price}
+                      </span>
+                    </div>
+                  </motion.div>
+                )
+              )}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mt-12"
+            >
+              <a
+                href="https://wa.me/905343675669"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-all"
+              >
+                <MessageCircle size={20} />
+                {t.services.spiritual.bookButton}
+              </a>
+              <p className="text-xs text-[var(--text-muted)] max-w-2xl mx-auto mt-6">
+                {t.services.spiritual.disclaimer}
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Process Section */}
+        <section className="py-20 bg-[var(--soft)]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

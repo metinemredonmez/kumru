@@ -5,6 +5,8 @@
     "services": "Hizmetler",
     "programs": "Programlar",
     "media": "Medya",
+    "novaVera": "Nova Vera®",
+    "events": "Etkinlikler",
     "resources": "Kaynaklar",
     "contact": "İletişim",
     "cta": "Ücretsiz Görüşme"
@@ -112,6 +114,16 @@
         "title": "Retreat Programları",
         "description": "Otel konaklamalı grup retreat programlarını hayata geçirdim."
       }
+    ],
+    "spiritualTitle": "Spiritüel Yolculuğum",
+    "spiritual1": "Doğuştan gelen spiritüel özelliklerimi geliştirme yolculuğumda sayısız deneyim yaşadım. Durugörü yeteneğimi aktive ederek bu özelliğimi farklı boyutlarda şifa sunmak için kullanıyorum.",
+    "spiritual2": "Danışanlarımla çalışırken enerji frekansını yükseltme, kadim bioenerji teknikleri, enerji arındırma ve blokaj kaldırma ile atalardan miras kalan karma yüklerini hafifletme gibi çalışmalar uyguluyorum.",
+    "spiritual3": "Her bireyin içinde saklı öz ışığa erişme potansiyeline sahip olduğuna inanıyor, bu süreçte danışanlarıma rehberlik etmekten onur duyuyorum.",
+    "spiritualApproaches": [
+      "Enerji Frekansı Yükseltme",
+      "Kadim Bioenerji Teknikleri",
+      "Enerji Arındırma & Blokaj Kaldırma",
+      "Karma Yüklerini Hafifletme"
     ],
     "ctaTitle": "Birlikte Çalışalım",
     "ctaDescription": "Hayatınızda pozitif bir değişim yaratmak için ilk adımı atın. Ücretsiz keşif görüşmesi ile tanışalım.",
@@ -223,6 +235,106 @@
       }
     },
     "moreInfo": "Detaylı Bilgi",
+    "spiritual": {
+      "subtitle": "Spiritüel Danışmanlık",
+      "title": "Spiritüel",
+      "titleHighlight": "Seanslar",
+      "description": "Enerji çalışmaları, şifa seansları ve spiritüel danışmanlık ile içsel yolculuğunuzda size eşlik ediyorum.",
+      "bookButton": "WhatsApp ile Randevu Al",
+      "disclaimer": "Spiritüel seanslar tıbbi veya psikolojik tedavi yerine geçmez. Sağlığınızla ilgili konularda mutlaka uzman bir sağlık profesyoneline danışın.",
+      "sessions": [
+        {
+          "title": "Regresyon Terapisi",
+          "description": "Bilinçaltına yolculuk yaparak bugününüzü etkileyen geçmiş kayıtları fark etmenizi sağlayan derin bir çalışma.",
+          "duration": "1 Saat",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Blokaj Kaldırma Çalışması",
+          "description": "Hayatınızda ilerlemenizi zorlaştıran enerjetik blokajları tespit edip çözmeye odaklanan seans.",
+          "duration": "1 Saat",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Frekans Yükseltme Çalışması",
+          "description": "Enerji frekansınızı yükselterek daha dengeli, canlı ve pozitif hissetmenizi destekleyen çalışma.",
+          "duration": "1 Saat",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Ata Karma Şifası",
+          "description": "Aile köklerinizden taşınan karmik yüklerin farkına varıp hafifletmeye yönelik şifa çalışması.",
+          "duration": "1 Saat",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Anne Rahim Şifası",
+          "description": "Anne bağı ve doğum öncesi döneme dair duygusal izlerin şifalanmasına odaklanan çalışma.",
+          "duration": "1 Saat",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Niyet Enerjisi",
+          "description": "Niyetinizi netleştirip enerjinizi hedeflerinize yönlendirmenizi destekleyen çalışma.",
+          "duration": "1 Saat",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Kısmet Blokajı",
+          "description": "Bolluk, bereket ve kısmet akışınızı zorlaştıran enerjetik engellere odaklanan seans.",
+          "duration": "1 Saat",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Duygusal Kilo",
+          "description": "Duygusal nedenlerle taşınan yüklerin fark edilmesi ve bırakılmasına destek olan çalışma.",
+          "duration": "1 Saat",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Yıldızname",
+          "description": "Kadim yıldızname bakışıyla yaşam yolculuğunuza dair farkındalık kazandıran özel seans.",
+          "duration": "1 Saat",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Spiritüel Danışmanlık",
+          "description": "Yaşamınızdaki sorulara spiritüel bir bakış açısıyla birebir rehberlik.",
+          "duration": "1 Saat",
+          "price": "300 CAD"
+        },
+        {
+          "title": "İlk Görüşme",
+          "description": "Tanışmak ve ihtiyacınıza en uygun çalışmayı birlikte belirlemek için kısa ön görüşme.",
+          "duration": "15 Dakika",
+          "price": "100 CAD"
+        },
+        {
+          "title": "Online Spiritüel Danışmanlık",
+          "description": "Dünyanın her yerinden video görüşme ile spiritüel danışmanlık seansı.",
+          "duration": "45 Dakika",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Enerji Arındırma",
+          "description": "Enerji alanınızı arındırmaya ve dengelemeye yönelik derinlemesine çalışma.",
+          "duration": "1 Saat",
+          "price": "400 CAD"
+        },
+        {
+          "title": "Mühür Çalışması",
+          "description": "Enerji alanınızdaki mühürlerin çözülmesine odaklanan özel çalışma.",
+          "duration": "1 Saat",
+          "price": "500 CAD"
+        },
+        {
+          "title": "Spiritüel Danışmanlık - 8 Seans Paketi",
+          "description": "Düzenli ve derinleşen bir dönüşüm süreci için sekiz seanslık danışmanlık paketi.",
+          "duration": "8 x 45 Dakika",
+          "price": "1.500 CAD"
+        }
+      ]
+    },
     "processTitle": "Nasıl Çalışıyoruz?",
     "processDescription": "Koçluk sürecimiz 4 basit adımda ilerliyor",
     "process": [
@@ -413,6 +525,118 @@
     "ctaDescription": "Röportaj, konuşmacı daveti veya iş birliği teklifleri için benimle iletişime geçebilirsiniz.",
     "ctaButton": "İletişime Geç"
   },
+  "novaVera": {
+    "brand": "Nova Vera Method®",
+    "tagline": "Hayatınızı değiştirmeye çalışmayın. Onu yeniden tasarlayın.",
+    "intro": [
+      "Belki hayatınızda dışarıdan bakıldığında birçok şey yolunda. Ama siz, bir yerlerde aynı döngülerin tekrar ettiğini biliyorsunuz.",
+      "Başlıyorsunuz ama sürdüremiyorsunuz. Karar veriyorsunuz ama eski alışkanlıklarınıza geri dönüyorsunuz. İlişkilerinizde benzer hikâyeleri tekrar yaşayabiliyorsunuz. Kendinize daha iyi bakmak istiyor ama günlük hayatın içinde yine kendinizi sona bırakabiliyorsunuz.",
+      "Ve bir süre sonra insan kendisine şu soruyu soruyor:"
+    ],
+    "introQuestion": "“Ben neyi değiştirmeliyim?”",
+    "introAnswer": "Nova Vera Method® tam olarak bu sorudan doğdu. Çünkü bazen değişmesi gereken siz değilsiniz; içinde yaşadığınız sistemdir.",
+    "whatTitle": "Nova Vera Method® Nedir?",
+    "what": [
+      "Nova Vera Method®; psikoloji, davranış bilimleri ve bütüncül yaşam tasarımını bir araya getiren, kişiye özel bir dönüşüm metodolojisidir.",
+      "Burada insanın hayatına tek bir noktadan bakılmaz. Çünkü ilişkiniz ruh hâlinizi, ruh hâliniz davranışlarınızı, davranışlarınız bedeninizi, bedeniniz enerjinizi, günlük alışkanlıklarınız performansınızı etkiler. Para ile ilişkiniz, sınırlarınız, çevreniz, kendinize ayırdığınız alan, yaşam amacınız ve tekrar eden davranışlarınız da aynı bütünün parçalarıdır.",
+      "Bu nedenle Nova Vera'da soru yalnızca “Hayatınızda ne yolunda gitmiyor?” değildir. Asıl soru şudur:"
+    ],
+    "whatQuestion": "“Bugünkü hayatınızı oluşturan sistem nedir ve istediğiniz hayat için nasıl yeniden tasarlanmalıdır?”",
+    "journeyTitle": "Herkesin Nova Vera Yolculuğu Farklıdır",
+    "journey": [
+      "Burada hazır reçeteler yoktur. İlk aşamada yaşamınızın mevcut haritası çıkarılır: düşünce ve davranış kalıplarınız, günlük alışkanlıklarınız, ilişkileriniz, yaşam düzeniniz, hedefleriniz, performansınız, güçlü yönleriniz ve gelişime açık alanlarınız birlikte değerlendirilir.",
+      "Ardından size özel bir Nova Vera Yaşam Tasarım Haritası oluşturulur. Çünkü başka bir insanın hayatında işe yarayan sistem, sizin hayatınız için doğru sistem olmayabilir."
+    ],
+    "journeyHighlight": "Biz sizi bir programa uydurmuyoruz. Programı size göre tasarlıyoruz.",
+    "includesTitle": "Bu Yolculukta Neler Var?",
+    "includesIntro": "Nova Vera yalnızca konuşulan bir gelişim programı değildir. Fark etmekle başlayan süreç; anlamak, tasarlamak, uygulamak, güçlendirmek, bütünleştirmek ve sürdürülebilir hâle getirmek üzerine kuruludur. İhtiyaca göre süreçte şu alanlar birlikte ele alınabilir:",
+    "includes": [
+      "Psikoloji ve davranış bilimleri çalışmaları",
+      "Alışkanlık dönüşümü",
+      "Yaşam düzeninin yeniden yapılandırılması",
+      "Bireysel rehberlik",
+      "Performans çalışmaları",
+      "Farkındalık ve kişisel ritüeller",
+      "İlişki ve sınır çalışmaları",
+      "Hedef ve üretkenlik planlaması",
+      "Beden ve yaşam rutinleri"
+    ],
+    "includesNote": "Amaç onlarca çalışma yapmak değildir. Amaç, hayatınızda gerçekten değişmesi gereken noktaları belirleyip doğru sırayla dönüştürmektir.",
+    "outcomesTitle": "Bir Süre Sonra Fark Etmenizi İstediğimiz Şey…",
+    "outcomes": [
+      "Kendinizi sürekli zorlamak zorunda kalmadığınız bir yaşam düzeni",
+      "Size hizmet etmeyen alışkanlıkları fark edip yerine yenilerini koyabilmek",
+      "Daha net sınırlar",
+      "Daha bilinçli ilişkiler",
+      "Kendinize daha iyi bakmak",
+      "Ertelediğiniz şeyleri hayata geçirebilmek",
+      "Zamanınızı ve enerjinizi nereye verdiğinizi seçebilmek",
+      "Bedeninizle daha sağlıklı bir ilişki kurmak",
+      "Kendi kararlarının arkasında durabilen bir insan hâline gelmek"
+    ],
+    "outcomesFinal": "Ve en önemlisi: hayatınızın seyircisi olmaktan çıkıp tasarımcısı olmak.",
+    "outcomesNote": "Nova Vera size kusursuz bir hayat vaat etmez. Size başka biri olmayı da vaat etmez. Nova Vera'nın amacı, sizin için sürdürülebilir olan yaşam sistemini birlikte kurmaktır.",
+    "notSessionTitle": "Bu Bir Seans Değil, Bir Dönüşüm Yolculuğudur",
+    "notSession": [
+      "Bazı değişimler birkaç görüşmeyle gerçekleşmez. Çünkü yıllar içerisinde oluşmuş davranışları, alışkanlıkları ve yaşam düzenini dönüştürmek zaman, uygulama ve takip gerektirir.",
+      "Bu nedenle Nova Vera'da yalnızca “ne yapmanız gerektiğini” konuşmayız. Sizinle birlikte uygular, takip eder, gerektiğinde yeniden düzenler ve yeni yaşam biçiminizin yerleşmesini destekleriz.",
+      "Buradaki yatırım yalnızca aldığınız görüşmelere değildir. Kendinize, zamanınıza ve bundan sonra yaşayacağınız yılların niteliğine yaptığınız bir yatırımdır."
+    ],
+    "whoTitle": "Nova Vera Kimler İçin?",
+    "whoIntro": "Hayatında bazı şeylerin artık değişmesi gerektiğini hisseden;",
+    "who": [
+      "Aynı döngüleri tekrar etmekten yorulan",
+      "Potansiyelinin altında yaşadığını düşünen",
+      "Kendisine yeniden bir düzen kurmak isteyen",
+      "İlişkilerinde, işinde veya özel yaşamında daha güçlü bir denge arayan",
+      "Başlayıp bırakmak yerine kalıcı bir sistem oluşturmak isteyen",
+      "Hayatının bundan sonraki dönemini tesadüflere bırakmak istemeyen"
+    ],
+    "whoOutro": "insanlar için tasarlanmıştır.",
+    "whoNote": "Nova Vera herkese uygun olmak zorunda değildir. Çünkü bu yolculuk yalnızca değişimi istemeyi değil, kendi hayatına gerçekten yatırım yapmaya ve sürecin sorumluluğunu almaya hazır olmayı gerektirir.",
+    "firstStepTitle": "İlk Adım: Nova Vera Yaşam Tasarım Analizi",
+    "firstStep": [
+      "Her yolculuk önce sizi anlamakla başlar. İlk görüşmede mevcut yaşam sisteminizi birlikte değerlendiriyor, ihtiyaçlarınızı ve önceliklerinizi belirliyor ve Nova Vera'nın sizin için uygun olup olmadığını inceliyoruz.",
+      "Uygun bulunması hâlinde size özel dönüşüm yolculuğunuz ve çalışma planınız oluşturuluyor.",
+      "Belki ihtiyacınız olan yeni bir hayat değildir. Belki ihtiyacınız olan, sahip olduğunuz hayatı başka bir bilinçle yeniden tasarlamaktır."
+    ],
+    "quote": "İnsan değişmeye çalıştığı için değil, içinde yaşadığı sistemi değiştirdiğinde dönüşür.",
+    "ctaButton": "Yaşam Tasarım Analizi'ne Başvur"
+  },
+  "events": {
+    "subtitle": "Etkinlikler",
+    "title": "Seminerler &",
+    "titleHighlight": "Etkinlikler",
+    "description": "Farkındalık ve içsel dönüşüm temalı online seminerler ve etkinlikler",
+    "onlineSeminar": "Online Seminer",
+    "pastBadge": "Gerçekleşti",
+    "pastTitle": "Gerçekleşen Etkinlikler",
+    "pastDescription": "Daha önce düzenlenen online seminerlerimizden bazıları",
+    "eventsList": [
+      {
+        "title": "İlişkilerin Kutsallığı ve Sırrına Yolculuk",
+        "date": "15 Mart 2025",
+        "time": "21:00 - 22:00",
+        "description": "İlişkilerin derin anlamı, kutsallığı ve ilişkilerde şifalanma üzerine online seminer."
+      },
+      {
+        "title": "Anda Kalma Sanatı",
+        "date": "15 Şubat 2025",
+        "time": "21:00 - 22:00",
+        "description": "Zihni sakinleştirme, şimdiki ana odaklanma ve farkındalıkla yaşama üzerine online seminer."
+      },
+      {
+        "title": "Aile Olabilmek",
+        "date": "15 Ocak 2025",
+        "time": "21:00 - 22:00",
+        "description": "Aile bağları, aile içi iletişim ve birlikte büyüme üzerine online seminer."
+      }
+    ],
+    "upcomingTitle": "Yeni Etkinliklerden Haberdar Olun",
+    "upcomingDescription": "Yaklaşan seminer ve etkinlik tarihleri Instagram hesabımdan ve WhatsApp üzerinden duyurulur. Kayıt ve detaylı bilgi için bize ulaşın.",
+    "ctaButton": "WhatsApp ile Bilgi Al",
+    "followInstagram": "Instagram'da Takip Et"
+  },
   "resources": {
     "subtitle": "Kaynaklar",
     "title": "Faydalı",
@@ -450,6 +674,7 @@
       "subjects": {
         "discovery": "Ücretsiz Keşif Görüşmesi",
         "oneOnOne": "Birebir Koçluk",
+        "spiritual": "Spiritüel Danışmanlık",
         "retreat": "Retreat Programları",
         "corporate": "Kurumsal Koçluk",
         "other": "Diğer"

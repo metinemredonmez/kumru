@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# kumrukoseler.com
 
-## Getting Started
+Kumru Köseler — yaşam koçluğu & spiritüel danışmanlık web sitesi.
 
-First, run the development server:
+**Stack:** Next.js 16 (App Router) + Payload CMS 3 (gömülü admin panel) + SQLite + Tailwind CSS 4
+
+## Mimari
+
+- `src/app/(frontend)/` — site sayfaları (TR/EN, i18n: `src/i18n/`)
+- `src/app/(payload)/` — Payload admin panel (`/admin`) ve CMS REST API
+- `src/app/api/content` — CMS içeriğini i18n JSON şekliyle sunar; frontend bunu bundle çevirilerin üzerine merge eder (CMS kapalıysa site bundle içerikle çalışır)
+- `src/app/api/contact` — iletişim formu → panelde "İletişim Mesajları"
+- `src/app/api/chat` — AI chatbot (OpenAI, sistem promptu CMS'ten)
+- `src/payload.config.ts` — koleksiyonlar: spiritüel seanslar, koçluk hizmetleri, programlar, etkinlikler, videolar (YouTube/mp4), SSS, medya; globals: site ayarları, chatbot
+
+## Kurulum
+
+Node **22+** gerekir.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm ci
+cp .env.example .env   # değerleri doldurun
+npm run migrate        # veritabanı şeması
+npm run seed           # başlangıç içeriği + ilk admin kullanıcı
+npm run dev            # http://localhost:3000 — panel: /admin
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Komutlar
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Komut | İş |
+|---|---|
+| `npm run dev` / `build` / `start` | Next.js |
+| `npm run migrate` | DB migration uygula |
+| `npm run seed` | İçerik aktar (idempotent — dolu koleksiyonları atlar) |
+| `npm run generate:types` | `src/payload-types.ts` üret |
+| `npm run generate:importmap` | Admin import map üret (config değişince) |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy (VPS)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+pm2 ile `npm start` (bkz. sunucudaki `kumru-web` süreci), nginx tüm istekleri uygulamaya proxy'ler. `kumru.db` ve `uploads/` kalıcı veridir — yedekleyin, silmeyin.

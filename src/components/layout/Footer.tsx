@@ -50,6 +50,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/nova-vera" className="text-[var(--lavender)] hover:text-white transition-colors">
+                  {t.nav.novaVera}
+                </Link>
+              </li>
+              <li>
+                <Link href="/etkinlikler" className="text-[var(--lavender)] hover:text-white transition-colors">
+                  {t.nav.events}
+                </Link>
+              </li>
+              <li>
                 <Link href="/kaynaklar" className="text-[var(--lavender)] hover:text-white transition-colors">
                   {t.nav.resources}
                 </Link>

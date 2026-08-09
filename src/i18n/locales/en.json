@@ -5,6 +5,8 @@
     "services": "Services",
     "programs": "Programs",
     "media": "Media",
+    "novaVera": "Nova Vera®",
+    "events": "Events",
     "resources": "Resources",
     "contact": "Contact",
     "cta": "Free Consultation"
@@ -112,6 +114,16 @@
         "title": "Retreat Programs",
         "description": "Implemented group retreat programs with hotel accommodation."
       }
+    ],
+    "spiritualTitle": "My Spiritual Journey",
+    "spiritual1": "I have lived countless experiences on the journey of developing the spiritual gifts I was born with. By activating my clairvoyance, I use this ability to offer healing in different dimensions.",
+    "spiritual2": "When working with my clients, I apply practices such as raising energy frequency, ancient bioenergy techniques, energy cleansing and blockage removal, and lightening karmic loads inherited from ancestors.",
+    "spiritual3": "I believe every individual has the potential to reach the inner light hidden within, and I am honored to guide my clients on this journey.",
+    "spiritualApproaches": [
+      "Raising Energy Frequency",
+      "Ancient Bioenergy Techniques",
+      "Energy Cleansing & Blockage Removal",
+      "Lightening Karmic Loads"
     ],
     "ctaTitle": "Let's Work Together",
     "ctaDescription": "Take the first step to create positive change in your life. Let's meet with a free discovery session.",
@@ -223,6 +235,106 @@
       }
     },
     "moreInfo": "More Info",
+    "spiritual": {
+      "subtitle": "Spiritual Services",
+      "title": "Spiritual",
+      "titleHighlight": "Sessions",
+      "description": "I accompany you on your inner journey with energy work, healing sessions and spiritual counseling.",
+      "bookButton": "Book via WhatsApp",
+      "disclaimer": "Spiritual sessions are not a substitute for medical or psychological treatment. Always consult a qualified health professional for health-related matters.",
+      "sessions": [
+        {
+          "title": "Regression Therapy",
+          "description": "A deep session that takes you on a journey into the subconscious to recognize past imprints affecting your present.",
+          "duration": "1 Hour",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Blockage Removal Work",
+          "description": "A session focused on identifying and dissolving energetic blockages that hold you back in life.",
+          "duration": "1 Hour",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Frequency Raising Work",
+          "description": "A session that supports you in feeling more balanced, vibrant and positive by raising your energy frequency.",
+          "duration": "1 Hour",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Ancestral Karma Healing",
+          "description": "Healing work aimed at recognizing and lightening karmic loads carried from your family roots.",
+          "duration": "1 Hour",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Mother Womb Healing",
+          "description": "Work focused on healing emotional imprints related to the mother bond and the prenatal period.",
+          "duration": "1 Hour",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Intention Energy",
+          "description": "Work that supports you in clarifying your intention and directing your energy toward your goals.",
+          "duration": "1 Hour",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Fortune Blockage",
+          "description": "A session focused on energetic obstacles that hinder your flow of abundance and fortune.",
+          "duration": "1 Hour",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Emotional Weight",
+          "description": "Work that supports recognizing and releasing burdens carried for emotional reasons.",
+          "duration": "1 Hour",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Yildizname (Star Chart Reading)",
+          "description": "A special session offering awareness about your life journey through the ancient star chart tradition.",
+          "duration": "1 Hour",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Spiritual Counseling",
+          "description": "One-on-one guidance with a spiritual perspective on the questions in your life.",
+          "duration": "1 Hour",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Initial Consultation",
+          "description": "A short introductory meeting to get to know each other and determine the most suitable work for your needs.",
+          "duration": "15 Minutes",
+          "price": "100 CAD"
+        },
+        {
+          "title": "Online Spiritual Counseling",
+          "description": "Spiritual counseling session via video call from anywhere in the world.",
+          "duration": "45 Minutes",
+          "price": "300 CAD"
+        },
+        {
+          "title": "Energy Cleansing",
+          "description": "In-depth work aimed at cleansing and balancing your energy field.",
+          "duration": "1 Hour",
+          "price": "400 CAD"
+        },
+        {
+          "title": "Seal Work",
+          "description": "Special work focused on dissolving seals in your energy field.",
+          "duration": "1 Hour",
+          "price": "500 CAD"
+        },
+        {
+          "title": "Spiritual Counseling - 8 Session Package",
+          "description": "An eight-session counseling package for a steady and deepening transformation process.",
+          "duration": "8 x 45 Minutes",
+          "price": "1,500 CAD"
+        }
+      ]
+    },
     "processTitle": "How Do We Work?",
     "processDescription": "Our coaching process progresses in 4 simple steps",
     "process": [
@@ -413,6 +525,118 @@
     "ctaDescription": "You can contact me for interviews, speaker invitations, or collaboration proposals.",
     "ctaButton": "Get in Touch"
   },
+  "novaVera": {
+    "brand": "Nova Vera Method®",
+    "tagline": "Don't try to change your life. Redesign it.",
+    "intro": [
+      "From the outside, many things in your life may seem fine. But you know that somewhere, the same cycles keep repeating.",
+      "You start but can't sustain. You decide but slip back into old habits. You find yourself living similar stories in your relationships. You want to take better care of yourself, yet in daily life you keep putting yourself last.",
+      "And after a while, you ask yourself:"
+    ],
+    "introQuestion": "“What should I change?”",
+    "introAnswer": "Nova Vera Method® was born exactly from this question. Because sometimes it is not you that needs to change; it is the system you live in.",
+    "whatTitle": "What Is Nova Vera Method®?",
+    "what": [
+      "Nova Vera Method® is a personalized transformation methodology that brings together psychology, behavioral sciences and holistic life design.",
+      "Here, your life is never viewed from a single point. Your relationships affect your mood, your mood affects your behavior, your behavior affects your body, your body affects your energy, and your daily habits affect your performance. Your relationship with money, your boundaries, your environment, the space you give yourself, your life purpose and your recurring patterns are all parts of the same whole.",
+      "That is why, in Nova Vera, the question is not only “What is going wrong in your life?” The real question is:"
+    ],
+    "whatQuestion": "“What is the system that creates your current life, and how should it be redesigned for the life you want?”",
+    "journeyTitle": "Everyone's Nova Vera Journey Is Different",
+    "journey": [
+      "There are no ready-made recipes here. In the first stage, the current map of your life is drawn: your thought and behavior patterns, daily habits, relationships, life structure, goals, performance, strengths and areas open to growth are evaluated together.",
+      "Then a personal Nova Vera Life Design Map is created for you. Because a system that works in someone else's life may not be the right system for yours."
+    ],
+    "journeyHighlight": "We don't fit you into a program. We design the program around you.",
+    "includesTitle": "What Does the Journey Include?",
+    "includesIntro": "Nova Vera is not just a talk-based development program. The process starts with awareness and is built on understanding, designing, applying, strengthening, integrating and making it sustainable. Depending on your needs, the process may bring together:",
+    "includes": [
+      "Psychology and behavioral science work",
+      "Habit transformation",
+      "Restructuring your life order",
+      "One-on-one guidance",
+      "Performance work",
+      "Awareness and personal rituals",
+      "Relationship and boundary work",
+      "Goal and productivity planning",
+      "Body and life routines"
+    ],
+    "includesNote": "The goal is not to do dozens of exercises. The goal is to identify what truly needs to change in your life and transform it in the right order.",
+    "outcomesTitle": "What We Want You to Notice Over Time…",
+    "outcomes": [
+      "A life structure where you no longer have to constantly force yourself",
+      "Recognizing habits that don't serve you and replacing them with new ones",
+      "Clearer boundaries",
+      "More conscious relationships",
+      "Taking better care of yourself",
+      "Bringing to life what you have been postponing",
+      "Choosing where your time and energy go",
+      "A healthier relationship with your body",
+      "Becoming someone who stands behind their own decisions"
+    ],
+    "outcomesFinal": "And most importantly: going from being a spectator of your life to being its designer.",
+    "outcomesNote": "Nova Vera does not promise you a flawless life. Nor does it promise you'll become someone else. Its purpose is to build, together, the life system that is sustainable for you.",
+    "notSessionTitle": "This Is Not a Session, It Is a Transformation Journey",
+    "notSession": [
+      "Some changes don't happen in a few meetings. Transforming behaviors, habits and life structures formed over years takes time, practice and follow-up.",
+      "That is why, in Nova Vera, we don't just talk about “what you should do.” We apply it with you, follow up, readjust when needed, and support your new way of living until it settles.",
+      "The investment here is not only in the meetings you attend. It is an investment in yourself, your time, and the quality of the years ahead of you."
+    ],
+    "whoTitle": "Who Is Nova Vera For?",
+    "whoIntro": "It is designed for people who feel some things in their life need to change;",
+    "who": [
+      "Tired of repeating the same cycles",
+      "Feeling they live below their potential",
+      "Wanting to rebuild a structure for themselves",
+      "Seeking a stronger balance in relationships, work or personal life",
+      "Wanting to build a lasting system instead of starting and quitting",
+      "Not willing to leave the next chapter of their life to chance"
+    ],
+    "whoOutro": "",
+    "whoNote": "Nova Vera doesn't have to be right for everyone. Because this journey requires not only wanting change, but being ready to truly invest in your own life and take responsibility for the process.",
+    "firstStepTitle": "First Step: Nova Vera Life Design Analysis",
+    "firstStep": [
+      "Every journey begins with understanding you. In the first meeting, we evaluate your current life system together, identify your needs and priorities, and explore whether Nova Vera is right for you.",
+      "If it is, your personal transformation journey and work plan are created.",
+      "Maybe what you need is not a new life. Maybe what you need is to redesign the life you have with a new consciousness."
+    ],
+    "quote": "A person transforms not by trying to change, but by changing the system they live in.",
+    "ctaButton": "Apply for a Life Design Analysis"
+  },
+  "events": {
+    "subtitle": "Events",
+    "title": "Seminars &",
+    "titleHighlight": "Events",
+    "description": "Online seminars and events on awareness and inner transformation",
+    "onlineSeminar": "Online Seminar",
+    "pastBadge": "Completed",
+    "pastTitle": "Past Events",
+    "pastDescription": "Some of our previously held online seminars",
+    "eventsList": [
+      {
+        "title": "Journey to the Sacredness and Secret of Relationships",
+        "date": "March 15, 2025",
+        "time": "21:00 - 22:00",
+        "description": "An online seminar on the deeper meaning of relationships, their sacredness, and healing within relationships."
+      },
+      {
+        "title": "The Art of Staying in the Moment",
+        "date": "February 15, 2025",
+        "time": "21:00 - 22:00",
+        "description": "An online seminar on calming the mind, focusing on the present moment, and living with awareness."
+      },
+      {
+        "title": "Becoming a Family",
+        "date": "January 15, 2025",
+        "time": "21:00 - 22:00",
+        "description": "An online seminar on family bonds, communication within the family, and growing together."
+      }
+    ],
+    "upcomingTitle": "Stay Informed About New Events",
+    "upcomingDescription": "Upcoming seminar and event dates are announced on my Instagram account and via WhatsApp. Contact us for registration and details.",
+    "ctaButton": "Get Info via WhatsApp",
+    "followInstagram": "Follow on Instagram"
+  },
   "resources": {
     "subtitle": "Resources",
     "title": "Helpful",
@@ -450,6 +674,7 @@
       "subjects": {
         "discovery": "Free Discovery Session",
         "oneOnOne": "One-on-One Coaching",
+        "spiritual": "Spiritual Counseling",
         "retreat": "Retreat Programs",
         "corporate": "Corporate Coaching",
         "other": "Other"

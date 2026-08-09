@@ -127,6 +127,53 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Spiritual Journey Section */}
+        <section className="py-20 gradient-soft">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h2 className="text-3xl font-bold text-[var(--dark)] mb-6">
+                  {t.about.spiritualTitle}
+                </h2>
+                <p className="text-[var(--text-body)] leading-relaxed mb-4">
+                  {t.about.spiritual1}
+                </p>
+                <p className="text-[var(--text-body)] leading-relaxed mb-4">
+                  {t.about.spiritual2}
+                </p>
+                <p className="text-[var(--text-body)] leading-relaxed">
+                  {t.about.spiritual3}
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="grid sm:grid-cols-2 gap-4"
+              >
+                {t.about.spiritualApproaches.map((approach: string, index: number) => (
+                  <div
+                    key={index}
+                    className="bg-white p-6 rounded-2xl flex items-center gap-4 shadow-sm"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-[var(--lavender)] flex items-center justify-center flex-shrink-0">
+                      <Sparkles size={20} className="text-[var(--indigo)]" />
+                    </div>
+                    <span className="font-medium text-[var(--dark)] text-sm">{approach}</span>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
         {/* Values Section */}
         <section className="py-20 bg-[var(--soft)]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -13,10 +13,30 @@ export default function Contact() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string } | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic will be added
-    console.log("Form submitted:", formData);
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    setSubmitResult(null);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      setSubmitResult({ success: Boolean(data.success), message: data.message || "Bir hata oluştu." });
+      if (data.success) {
+        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      }
+    } catch {
+      setSubmitResult({ success: false, message: "Mesaj gönderilemedi. Lütfen daha sonra tekrar deneyin." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -234,6 +254,7 @@ export default function Contact() {
                       <option value="kariyer">Kariyer Koçluğu</option>
                       <option value="kisisel">Kişisel Gelişim</option>
                       <option value="iliski">İlişki Koçluğu</option>
+                      <option value="spirituel">Spiritüel Danışmanlık</option>
                       <option value="stres">Stres Yönetimi</option>
                       <option value="diger">Diğer</option>
                     </select>
@@ -259,12 +280,23 @@ export default function Contact() {
                   />
                 </div>
 
+                {submitResult && (
+                  <p
+                    className={`text-sm text-center font-medium ${
+                      submitResult.success ? "text-[var(--emerald)]" : "text-red-500"
+                    }`}
+                  >
+                    {submitResult.message}
+                  </p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-all hover:shadow-lg hover:shadow-[var(--indigo)]/30"
+                  disabled={isSubmitting}
+                  className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[var(--indigo)] text-white rounded-full font-semibold hover:bg-[var(--purple)] transition-all hover:shadow-lg hover:shadow-[var(--indigo)]/30 disabled:opacity-60"
                 >
                   <Send size={20} />
-                  Görüşme Talep Et
+                  {isSubmitting ? "Gönderiliyor..." : "Görüşme Talep Et"}
                 </button>
 
                 <p className="text-xs text-[var(--text-muted)] text-center">

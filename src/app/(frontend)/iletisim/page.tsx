@@ -90,7 +90,7 @@ export default function ContactPage() {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch("https://kumrukoseler.com/api/contact.php", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -226,6 +226,7 @@ export default function ContactPage() {
                         <option value="">{t.contact.form.subjectPlaceholder}</option>
                         <option value="kesif">{t.contact.form.subjects.discovery}</option>
                         <option value="birebir">{t.contact.form.subjects.oneOnOne}</option>
+                        <option value="spirituel">{t.contact.form.subjects.spiritual}</option>
                         <option value="retreat">{t.contact.form.subjects.retreat}</option>
                         <option value="kurumsal">{t.contact.form.subjects.corporate}</option>
                         <option value="diger">{t.contact.form.subjects.other}</option>

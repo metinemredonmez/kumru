@@ -11,3 +11,6 @@ out/
 
 # Claude Code settings (may contain sensitive data)
 .claude/settings.local.json
+kumru.db
+uploads/
+payload-types.ts

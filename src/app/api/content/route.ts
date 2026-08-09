@@ -1,0 +1,140 @@
+import { getPayload } from "payload";
+import config from "@payload-config";
+
+export const dynamic = "force-dynamic";
+
+type Locale = "tr" | "en";
+
+const CACHE_HEADERS = { "Cache-Control": "public, max-age=60, s-maxage=60" };
+
+const toStringArray = (
+  items: unknown,
+  field: string,
+): string[] | undefined => {
+  if (!Array.isArray(items)) return undefined;
+  const flattened = items
+    .map((row) => (row && typeof row === "object" ? (row as Record<string, unknown>)[field] : undefined))
+    .filter((value): value is string => typeof value === "string" && value.length > 0);
+  return flattened.length > 0 ? flattened : undefined;
+};
+
+export const GET = async (req: Request) => {
+  try {
+    const { searchParams } = new URL(req.url);
+    const langParam = searchParams.get("lang");
+    const lang: Locale = langParam === "en" ? "en" : "tr";
+
+    const payload = await getPayload({ config });
+
+    const findOptions = {
+      locale: lang,
+      sort: "order",
+      limit: 200,
+      pagination: false as const,
+    };
+
+    const [spiritualSessions, coachingServices, programs, faqs, events, siteSettings] =
+      await Promise.all([
+        payload.find({ collection: "spiritual-sessions", ...findOptions }),
+        payload.find({ collection: "coaching-services", ...findOptions }),
+        payload.find({ collection: "programs", ...findOptions }),
+        payload.find({ collection: "faqs", ...findOptions }),
+        payload.find({ collection: "events", ...findOptions }),
+        payload.findGlobal({ slug: "site-settings", locale: lang }),
+      ]);
+
+    const data: Record<string, unknown> = {};
+
+    // services.spiritual.sessions + services.servicesList
+    const services: Record<string, unknown> = {};
+
+    if (spiritualSessions.docs.length > 0) {
+      services.spiritual = {
+        sessions: spiritualSessions.docs.map((doc) => ({
+          title: doc.title,
+          description: doc.description,
+          duration: doc.duration,
+          price: doc.price,
+        })),
+      };
+    }
+
+    if (coachingServices.docs.length > 0) {
+      const servicesList: Record<string, unknown> = {};
+      for (const doc of coachingServices.docs) {
+        if (!doc.key) continue;
+        servicesList[doc.key] = {
+          title: doc.title,
+          shortDesc: doc.shortDesc,
+          fullDesc: doc.fullDesc,
+          duration: doc.duration,
+          features: toStringArray(doc.features, "feature"),
+        };
+      }
+      if (Object.keys(servicesList).length > 0) {
+        services.servicesList = servicesList;
+      }
+    }
+
+    if (Object.keys(services).length > 0) {
+      data.services = services;
+    }
+
+    // programs.programsList + programs.faq
+    const programsSection: Record<string, unknown> = {};
+
+    if (programs.docs.length > 0) {
+      const programsList: Record<string, unknown> = {};
+      for (const doc of programs.docs) {
+        if (!doc.key) continue;
+        programsList[doc.key] = {
+          title: doc.title,
+          subtitle: doc.subtitle,
+          duration: doc.duration,
+          sessions: doc.sessions,
+          description: doc.description,
+          includes: toStringArray(doc.includes, "item"),
+        };
+      }
+      if (Object.keys(programsList).length > 0) {
+        programsSection.programsList = programsList;
+      }
+    }
+
+    if (faqs.docs.length > 0) {
+      programsSection.faq = faqs.docs.map((doc) => ({
+        q: doc.question,
+        a: doc.answer,
+      }));
+    }
+
+    if (Object.keys(programsSection).length > 0) {
+      data.programs = programsSection;
+    }
+
+    // events.eventsList
+    if (events.docs.length > 0) {
+      data.events = {
+        eventsList: events.docs.map((doc) => ({
+          title: doc.title,
+          date: doc.dateText,
+          time: doc.time,
+          description: doc.description,
+        })),
+      };
+    }
+
+    // contact.info (site-settings global — sadece address + hours)
+    const info: Record<string, unknown> = {};
+    if (siteSettings?.address) info.addressValue = siteSettings.address;
+    if (siteSettings?.hours) info.hoursValue = siteSettings.hours;
+    if (Object.keys(info).length > 0) {
+      data.contact = { info };
+    }
+
+    return Response.json(data, { headers: CACHE_HEADERS });
+  } catch (error) {
+    console.error("[/api/content] Failed to load CMS content:", error);
+    return Response.json({}, { status: 200 });
+  }
+};

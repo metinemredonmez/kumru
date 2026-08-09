@@ -16,7 +16,9 @@ export default function Header() {
     { name: t.nav.about, href: "/hakkimda" },
     { name: t.nav.services, href: "/hizmetler" },
     { name: t.nav.programs, href: "/programlar" },
+    { name: t.nav.novaVera, href: "/nova-vera" },
     { name: t.nav.media, href: "/medya" },
+    { name: t.nav.events, href: "/etkinlikler" },
     { name: t.nav.resources, href: "/kaynaklar" },
     { name: t.nav.contact, href: "/iletisim" },
   ];
