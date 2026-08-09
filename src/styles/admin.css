@@ -113,23 +113,6 @@ body {
 .nav__wrap svg { color: rgba(255,255,255,0.55) !important; }
 .nav .btn svg { color: rgba(255,255,255,0.7) !important; }
 
-/* Geniş ekranlarda menü HER ZAMAN açık — grid kolonu sabit, daraltma gizli */
-@media (min-width: 768px) {
-  .template-default {
-    grid-template-columns: var(--nav-width, 275px) 1fr !important;
-  }
-  .nav {
-    transform: none !important;
-    margin-left: 0 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-  }
-  .template-default__nav-toggler,
-  .app-header__mobile-nav-toggler {
-    display: none !important;
-  }
-}
 
 /* ===================== ÜST BAR ===================== */
 .app-header,

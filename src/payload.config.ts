@@ -32,7 +32,10 @@ export default buildConfig({
         Logo: "/components/admin/Logo#Logo",
         Icon: "/components/admin/Icon#Icon",
       },
-      actions: ["/components/admin/ViewSiteAction#ViewSiteAction"],
+      actions: [
+        "/components/admin/ViewSiteAction#ViewSiteAction",
+        "/components/admin/NavOpener#NavOpener",
+      ],
       views: {
         dashboard: {
           Component: "/components/admin/Dashboard#Dashboard",
