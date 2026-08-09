@@ -69,8 +69,10 @@ body {
   color: var(--k-indigo);
 }
 
-/* ===================== SOL MENÜ (koyu · Celine tarzı) ===================== */
-.nav {
+/* ===================== SOL MENÜ (koyu · tek düz renk) ===================== */
+.nav,
+.nav__wrap,
+.template-default__nav-toggler {
   background: var(--k-dark) !important;
   border-right: none !important;
 }
@@ -79,15 +81,15 @@ body {
 .nav .nav__link { color: rgba(255,255,255,0.72) !important; }
 
 .nav .nav__link {
-  border-radius: 10px;
-  margin: 2px 10px;
+  border-radius: 8px;
+  margin: 1px 12px;
   padding: 10px 14px;
   font-weight: 500;
   font-size: 14px;
-  transition: all 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 .nav .nav__link:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.07);
   color: #fff !important;
 }
 .nav .nav__link.active,
@@ -95,7 +97,6 @@ body {
   background: rgba(255,255,255,0.12);
   color: #fff !important;
   font-weight: 600;
-  box-shadow: inset 3px 0 0 var(--k-purple);
 }
 .nav-group__label,
 .nav__label {
@@ -104,12 +105,31 @@ body {
   font-size: 10px;
   letter-spacing: 0.14em;
   font-weight: 600;
-  padding-left: 22px;
+  padding-left: 24px;
+  margin-top: 8px;
 }
 .nav__controls svg,
 .nav-group__toggle svg,
 .nav__wrap svg { color: rgba(255,255,255,0.55) !important; }
 .nav .btn svg { color: rgba(255,255,255,0.7) !important; }
+
+/* Masaüstünde menü HER ZAMAN açık — grid kolonu sabit, daraltma gizli */
+@media (min-width: 1024px) {
+  .template-default {
+    grid-template-columns: 275px 1fr !important;
+  }
+  .nav {
+    transform: none !important;
+    margin-left: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+  .template-default__nav-toggler,
+  .app-header__mobile-nav-toggler {
+    display: none !important;
+  }
+}
 
 /* ===================== ÜST BAR ===================== */
 .app-header,

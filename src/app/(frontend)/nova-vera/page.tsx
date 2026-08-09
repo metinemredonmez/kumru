@@ -16,7 +16,12 @@ export default function NovaVeraPage() {
       <Header />
       <main className="pt-28">
         {/* Hero */}
-        <section className="py-24 gradient-dark text-white relative overflow-hidden">
+        <section className="py-28 text-white relative overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/kaynaklar-bg.jpg')" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--dark)]/85 via-[var(--dark)]/80 to-[var(--dark)]/90" />
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -57,47 +62,78 @@ export default function NovaVeraPage() {
 
         {/* What is */}
         <section className="py-20 bg-[var(--soft)]">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl font-bold text-[var(--dark)] mb-8 text-center">
-                {nv.whatTitle}
-              </h2>
-              {nv.what.map((p: string, i: number) => (
-                <p key={i} className="mb-6 text-[var(--text-body)] leading-relaxed">{p}</p>
-              ))}
-              <div className="bg-white rounded-2xl p-8 text-center mt-8">
-                <p className="text-xl font-semibold text-[var(--indigo)]">
-                  {nv.whatQuestion}
-                </p>
-              </div>
-            </motion.div>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h2 className="text-3xl font-bold text-[var(--dark)] mb-6">
+                  {nv.whatTitle}
+                </h2>
+                {nv.what.map((p: string, i: number) => (
+                  <p key={i} className="mb-5 text-[var(--text-body)] leading-relaxed">{p}</p>
+                ))}
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl"
+              >
+                <img
+                  src="/programlar-bg.jpg"
+                  alt="Dönüşüm yolculuğu"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            </div>
+            <div className="bg-white rounded-2xl p-8 text-center mt-12 max-w-3xl mx-auto">
+              <p className="text-xl font-semibold text-[var(--indigo)]">
+                {nv.whatQuestion}
+              </p>
+            </div>
           </div>
         </section>
 
         {/* Journey */}
         <section className="py-20 bg-white">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl font-bold text-[var(--dark)] mb-8 text-center">
-                {nv.journeyTitle}
-              </h2>
-              {nv.journey.map((p: string, i: number) => (
-                <p key={i} className="mb-6 text-[var(--text-body)] leading-relaxed">{p}</p>
-              ))}
-              <p className="text-xl font-bold text-gradient text-center mt-8">
-                {nv.journeyHighlight}
-              </p>
-            </motion.div>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl order-2 lg:order-1"
+              >
+                <img
+                  src="/kaynaklar-bg.jpg"
+                  alt="Yeni bir bilinçle yaşamı yeniden tasarlamak"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="order-1 lg:order-2"
+              >
+                <h2 className="text-3xl font-bold text-[var(--dark)] mb-6">
+                  {nv.journeyTitle}
+                </h2>
+                {nv.journey.map((p: string, i: number) => (
+                  <p key={i} className="mb-5 text-[var(--text-body)] leading-relaxed">{p}</p>
+                ))}
+                <p className="text-xl font-bold text-gradient mt-6">
+                  {nv.journeyHighlight}
+                </p>
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -166,6 +202,26 @@ export default function NovaVeraPage() {
               </p>
               <p className="text-[var(--text-muted)] text-center">{nv.outcomesNote}</p>
             </motion.div>
+          </div>
+        </section>
+
+        {/* Image band */}
+        <section className="relative h-[320px] md:h-[420px] overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/hizmetler-bg.jpg')" }}
+          />
+          <div className="absolute inset-0 bg-[var(--dark)]/55" />
+          <div className="relative z-10 h-full flex items-center justify-center px-6">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-white text-2xl md:text-3xl font-semibold text-center max-w-3xl leading-relaxed"
+            >
+              {nv.quote}
+            </motion.p>
           </div>
         </section>
 
