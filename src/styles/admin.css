@@ -113,10 +113,10 @@ body {
 .nav__wrap svg { color: rgba(255,255,255,0.55) !important; }
 .nav .btn svg { color: rgba(255,255,255,0.7) !important; }
 
-/* Masaüstünde menü HER ZAMAN açık — grid kolonu sabit, daraltma gizli */
-@media (min-width: 1024px) {
+/* Geniş ekranlarda menü HER ZAMAN açık — grid kolonu sabit, daraltma gizli */
+@media (min-width: 768px) {
   .template-default {
-    grid-template-columns: 275px 1fr !important;
+    grid-template-columns: var(--nav-width, 275px) 1fr !important;
   }
   .nav {
     transform: none !important;
