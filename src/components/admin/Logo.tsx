@@ -1,11 +1,10 @@
 import React from "react";
 
 export const Logo = () => (
-  <img
-    src="/logo-white.png"
-    alt="Kumru Köseler"
-    style={{ width: "220px", height: "auto", maxWidth: "100%" }}
-  />
+  <div className="kumru-logo">
+    <span className="kumru-logo__name">Kumru Köseler</span>
+    <span className="kumru-logo__admin">Yönetim Paneli</span>
+  </div>
 );
 
 export default Logo;
