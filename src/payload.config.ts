@@ -579,6 +579,86 @@ export default buildConfig({
         },
       ],
     },
+    {
+      slug: "integrations",
+      label: "Entegrasyonlar",
+      admin: {
+        group: "Ayarlar & Sistem",
+        description: "Ödeme, e-posta, SMS ve AI servis anahtarları. Gizli anahtarlar maskelidir; yalnızca yöneticiler görebilir. Güvenlik için .env'de tanımlıysa o değer önceliklidir.",
+      },
+      // Gizli anahtarlar içerir — yalnızca giriş yapmış yönetici okuyabilir/yazabilir.
+      access: {
+        read: ({ req: { user } }) => Boolean(user),
+        update: ({ req: { user } }) => Boolean(user),
+      },
+      fields: [
+        {
+          name: "paymentProvider",
+          type: "select",
+          label: "Aktif Ödeme Sağlayıcı",
+          defaultValue: "iyzico",
+          options: [
+            { label: "İyzico (TL / taksit)", value: "iyzico" },
+            { label: "Stripe (döviz / yurt dışı)", value: "stripe" },
+            { label: "İkisi de", value: "both" },
+          ],
+          admin: { description: "Ana ödeme yöntemi. 'İkisi de' seçilirse müşteri ödeme adımında seçebilir." },
+        },
+        {
+          type: "collapsible",
+          label: "İyzico",
+          admin: { initCollapsed: true },
+          fields: [
+            { name: "iyzicoTestMode", type: "checkbox", label: "Test modu (sandbox)", defaultValue: true },
+            { name: "iyzicoApiKey", type: "text", label: "İyzico API Key", admin: { components: { Field: "/components/admin/MaskedField#MaskedField" }, description: "🔒 Gizli" } },
+            { name: "iyzicoSecretKey", type: "text", label: "İyzico Secret Key", admin: { components: { Field: "/components/admin/MaskedField#MaskedField" }, description: "🔒 Gizli" } },
+          ],
+        },
+        {
+          type: "collapsible",
+          label: "Stripe",
+          admin: { initCollapsed: true },
+          fields: [
+            { name: "stripeTestMode", type: "checkbox", label: "Test modu", defaultValue: true },
+            { name: "stripePublishableKey", type: "text", label: "Stripe Publishable Key", admin: { description: "Herkese açık anahtar (pk_...)" } },
+            { name: "stripeSecretKey", type: "text", label: "Stripe Secret Key", admin: { components: { Field: "/components/admin/MaskedField#MaskedField" }, description: "🔒 Gizli (sk_...)" } },
+            { name: "stripeWebhookSecret", type: "text", label: "Stripe Webhook Secret", admin: { components: { Field: "/components/admin/MaskedField#MaskedField" }, description: "🔒 Gizli (whsec_...)" } },
+          ],
+        },
+        {
+          type: "collapsible",
+          label: "OpenAI (Chatbot / Kumru AI)",
+          admin: { initCollapsed: true },
+          fields: [
+            { name: "openaiApiKey", type: "text", label: "OpenAI API Key", admin: { components: { Field: "/components/admin/MaskedField#MaskedField" }, description: "🔒 Gizli (sk-...)" } },
+          ],
+        },
+        {
+          type: "collapsible",
+          label: "E-posta",
+          admin: { initCollapsed: true },
+          fields: [
+            { name: "emailProvider", type: "select", label: "Sağlayıcı", defaultValue: "resend", options: [
+              { label: "Resend", value: "resend" },
+              { label: "Postmark", value: "postmark" },
+              { label: "SMTP", value: "smtp" },
+            ] },
+            { name: "emailFrom", type: "text", label: "Gönderen adresi", admin: { description: "örn. Kumru Köseler <info@kumrukoseler.com>" } },
+            { name: "emailApiKey", type: "text", label: "E-posta API Key", admin: { components: { Field: "/components/admin/MaskedField#MaskedField" }, description: "🔒 Gizli" } },
+          ],
+        },
+        {
+          type: "collapsible",
+          label: "SMS (NetGSM)",
+          admin: { initCollapsed: true },
+          fields: [
+            { name: "netgsmUser", type: "text", label: "NetGSM Kullanıcı" },
+            { name: "netgsmPassword", type: "text", label: "NetGSM Şifre", admin: { components: { Field: "/components/admin/MaskedField#MaskedField" }, description: "🔒 Gizli" } },
+            { name: "netgsmHeader", type: "text", label: "Mesaj Başlığı (onaylı)" },
+          ],
+        },
+      ],
+    },
   ],
   secret: process.env.PAYLOAD_SECRET || "kumru-dev-secret-degistir",
   db: sqliteAdapter({

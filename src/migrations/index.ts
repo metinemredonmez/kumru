@@ -4,6 +4,7 @@ import * as migration_20260810_062636_phase2_about_novavera from './20260810_062
 import * as migration_20260810_063311_phase3_media from './20260810_063311_phase3_media';
 import * as migration_20260810_064009_phase4_resources from './20260810_064009_phase4_resources';
 import * as migration_20260810_065357_phase5_images from './20260810_065357_phase5_images';
+import * as migration_20260810_111624_integrations from './20260810_111624_integrations';
 
 export const migrations = [
   {
@@ -34,6 +35,11 @@ export const migrations = [
   {
     up: migration_20260810_065357_phase5_images.up,
     down: migration_20260810_065357_phase5_images.down,
-    name: '20260810_065357_phase5_images'
+    name: '20260810_065357_phase5_images',
+  },
+  {
+    up: migration_20260810_111624_integrations.up,
+    down: migration_20260810_111624_integrations.down,
+    name: '20260810_111624_integrations'
   },
 ];
