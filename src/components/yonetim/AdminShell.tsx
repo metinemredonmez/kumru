@@ -14,6 +14,9 @@ import {
   FileText,
   Settings,
   Plug,
+  Tag,
+  Package,
+  UserCog,
   LogOut,
   Menu,
   X,
@@ -28,13 +31,16 @@ const MENU: NavItem[] = [
   { label: "Raporlar", href: "/yonetim/raporlar", icon: BarChart3 },
   { label: "Üyeler", href: "/yonetim/uyeler", icon: Users },
   { label: "Abonelikler", href: "/yonetim/abonelikler", icon: CreditCard },
+  { label: "Üyelik Planları", href: "/yonetim/planlar", icon: Tag },
   { label: "Programlar", href: "/yonetim/programlar", icon: GraduationCap },
+  { label: "Paketler", href: "/yonetim/paketler", icon: Package },
   { label: "İçerik & Medya", href: "/yonetim/icerik", icon: Images },
   { label: "Mesajlar", href: "/yonetim/mesajlar", icon: MessageSquare },
 ];
 
 const SYSTEM: NavItem[] = [
   { label: "Sayfa İçerikleri", href: "/yonetim/sayfalar", icon: FileText },
+  { label: "Kullanıcılar", href: "/yonetim/kullanicilar", icon: UserCog },
   { label: "Ayarlar", href: "/yonetim/ayarlar", icon: Settings },
   { label: "Entegrasyonlar", href: "/yonetim/entegrasyonlar", icon: Plug },
 ];
