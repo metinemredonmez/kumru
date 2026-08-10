@@ -1086,6 +1086,242 @@ async function main() {
   }
 
   // ---------------------------------------------------------------
+  // 18. membership-plans — 3 seviye (Ücretsiz / Premium / VIP)
+  // ---------------------------------------------------------------
+  {
+    const collection = "membership-plans" as const;
+    const { totalDocs } = await payload.count({ collection });
+    if (totalDocs > 0) {
+      console.log(`[${collection}] ${totalDocs} kayıt mevcut, atlanıyor.`);
+      summary[collection] = "atlandı (mevcut)";
+    } else {
+      const plans = [
+        {
+          tier: "free",
+          highlighted: false,
+          interval: "once",
+          price: "Ücretsiz",
+          priceEn: "Free",
+          priceAmount: 0,
+          name: "Ücretsiz Üyelik",
+          nameEn: "Free Membership",
+          features: ["Kumru Library'den seçili ücretsiz içerikler", "Haftalık ilham e-postası", "Topluluğa katılım", "Ücretsiz tanışma görüşmesi hakkı"],
+          featuresEn: ["Selected free content from Kumru Library", "Weekly inspiration email", "Community access", "One free discovery call"],
+        },
+        {
+          tier: "premium",
+          highlighted: true,
+          interval: "monthly",
+          price: "₺750 / ay",
+          priceEn: "$29 / mo",
+          priceAmount: 750,
+          name: "Premium Üyelik",
+          nameEn: "Premium Membership",
+          features: [
+            "TÜM ilerlemeli programlara sınırsız erişim",
+            "Nova Vera Method® dijital yolculuğu",
+            "Meditasyon ve ses kütüphanesi (tümü açık)",
+            "Aylık canlı yayınlar ve soru-cevap",
+            "Yeni içerikler ek ücret olmadan",
+          ],
+          featuresEn: [
+            "Unlimited access to ALL progressive programs",
+            "Nova Vera Method® digital journey",
+            "Meditation & audio library (all unlocked)",
+            "Monthly live streams and Q&A",
+            "New content at no extra cost",
+          ],
+        },
+        {
+          tier: "vip",
+          highlighted: false,
+          interval: "monthly",
+          price: "₺2.500 / ay",
+          priceEn: "$99 / mo",
+          priceAmount: 2500,
+          name: "VIP Üyelik",
+          nameEn: "VIP Membership",
+          features: [
+            "Premium'un tüm ayrıcalıkları",
+            "Ayda 1 birebir seans (Kumru ile)",
+            "Önceliklendirilmiş WhatsApp desteği",
+            "Retreat ve etkinliklerde özel indirim",
+            "Kişiye özel dönüşüm yol haritası",
+          ],
+          featuresEn: [
+            "Everything in Premium",
+            "1 one-on-one session per month (with Kumru)",
+            "Priority WhatsApp support",
+            "Special discount on retreats and events",
+            "Personalized transformation roadmap",
+          ],
+        },
+      ];
+      let created = 0;
+      for (let i = 0; i < plans.length; i++) {
+        const p = plans[i];
+        const doc = await payload.create({
+          collection,
+          locale: "tr",
+          data: {
+            name: p.name,
+            tier: p.tier,
+            price: p.price,
+            priceAmount: p.priceAmount,
+            interval: p.interval,
+            features: p.features.map((item) => ({ item })),
+            highlighted: p.highlighted,
+            order: i,
+          } as any,
+        });
+        await payload.update({
+          collection,
+          id: doc.id,
+          locale: "en",
+          data: {
+            name: p.nameEn,
+            price: p.priceEn,
+            features: p.featuresEn.map((item) => ({ item })),
+          } as any,
+        });
+        created++;
+      }
+      console.log(`[${collection}] ${created} plan oluşturuldu.`);
+      summary[collection] = created;
+    }
+  }
+
+  // ---------------------------------------------------------------
+  // 19. courses + program-stages — Nova Vera Method® 7 aşamalı yolculuk
+  // ---------------------------------------------------------------
+  {
+    const collection = "courses" as const;
+    const { totalDocs } = await payload.count({ collection });
+    if (totalDocs > 0) {
+      console.log(`[${collection}] ${totalDocs} kayıt mevcut, atlanıyor.`);
+      summary[collection] = "atlandı (mevcut)";
+    } else {
+      // Kapak görseli: daha önce yüklenmiş bir medyayı bul (varsa)
+      let coverId: number | null = null;
+      const coverLookup = await payload.find({ collection: "media", where: { filename: { equals: "kaynaklar-bg.jpg" } }, limit: 1 });
+      if (coverLookup.docs[0]) coverId = coverLookup.docs[0].id as number;
+
+      const course = await payload.create({
+        collection,
+        locale: "tr",
+        data: {
+          title: "Nova Vera Method® Yolculuğu",
+          slug: "nova-vera-yolculugu",
+          description: "Yedi aşamada kendini fark etmekten sürdürülebilir dönüşüme uzanan, ilerlemeli dijital yolculuk. Her aşamayı tamamlamadan diğerine geçemezsin — dönüşüm acele etmez.",
+          coverImage: coverId,
+          requiredTier: "premium",
+          unlockRule: "complete",
+          published: true,
+          order: 0,
+        } as any,
+      });
+      await payload.update({
+        collection,
+        id: course.id,
+        locale: "en",
+        data: {
+          title: "Nova Vera Method® Journey",
+          description: "A seven-stage progressive digital journey from self-awareness to sustainable transformation. You cannot move on until you complete each stage — transformation is not rushed.",
+        } as any,
+      });
+
+      const stages = [
+        {
+          title: "Fark Etmek", titleEn: "Awareness",
+          summary: "Yolculuğun başladığı yer: bugünkü halini yargısızca görmek.",
+          summaryEn: "Where the journey begins: seeing where you are today without judgment.",
+          content: "Bu ilk aşamada durup nefes alıyoruz. Hayatında tekrar eden kalıpları, seni yoran döngüleri ve fark etmeden taşıdığın yükleri yargılamadan gözlemliyorsun. Farkındalık, dönüşümün ilk ve en güçlü adımıdır — çünkü göremediğin şeyi değiştiremezsin. Bu aşamada bir farkındalık günlüğü tutacak ve kısa bir sabah meditasyonu ile başlayacaksın.",
+          contentEn: "In this first stage we pause and breathe. You observe — without judgment — the repeating patterns in your life, the cycles that drain you, and the burdens you carry unaware. Awareness is the first and most powerful step of transformation, because you cannot change what you cannot see. In this stage you will keep an awareness journal and begin with a short morning meditation.",
+          minutes: 25,
+        },
+        {
+          title: "Anlamak", titleEn: "Understanding",
+          summary: "Kalıplarının kökenini ve sana ne söylediğini anlamak.",
+          summaryEn: "Understanding the roots of your patterns and what they are telling you.",
+          content: "Fark ettiğin kalıpların nereden geldiğini keşfediyoruz. Çocukluk inançları, aile hikâyeleri ve geçmiş deneyimler bugünkü tepkilerini nasıl şekillendiriyor? Bu aşama suçlama değil, anlama aşamasıdır. Kendine şefkatle bakmayı öğrenirken, davranışlarının altındaki gerçek ihtiyacı görmeye başlıyorsun.",
+          contentEn: "We explore where the patterns you noticed come from. How do childhood beliefs, family stories, and past experiences shape your reactions today? This stage is not about blame but understanding. As you learn to look at yourself with compassion, you begin to see the real need beneath your behaviors.",
+          minutes: 30,
+        },
+        {
+          title: "Tasarlamak", titleEn: "Designing",
+          summary: "Nasıl bir hayat istediğini netleştirmek ve niyetini tasarlamak.",
+          summaryEn: "Clarifying the life you want and designing your intention.",
+          content: "Şimdi ileriye bakıyoruz. Gerçekten nasıl bir hayat, nasıl bir sen olmak istiyorsun? Bu aşamada değerlerini, sınırlarını ve niyetlerini netleştiriyorsun. Belirsiz dilekleri, ölçülebilir ve hissedilebilir niyetlere dönüştürüyoruz. Kendi dönüşümünün mimarı sensin.",
+          contentEn: "Now we look forward. What kind of life, what kind of you do you truly want to be? In this stage you clarify your values, boundaries, and intentions. We turn vague wishes into intentions you can measure and feel. You are the architect of your own transformation.",
+          minutes: 30,
+        },
+        {
+          title: "Uygulamak", titleEn: "Applying",
+          summary: "Tasarladığın değişimi küçük, sürdürülebilir adımlarla hayata geçirmek.",
+          summaryEn: "Bringing your designed change to life with small, sustainable steps.",
+          content: "Bilgi ancak uygulandığında dönüşüme dönüşür. Bu aşamada tasarladığın niyetleri günlük küçük eylemlere bölüyoruz. Yeni alışkanlıklar, nefes ve beden çalışmaları, günlük ritüeller. Mükemmellik değil, süreklilik hedefliyoruz. Her küçük adım yeni bir sinir yolu açar.",
+          contentEn: "Knowledge becomes transformation only when applied. In this stage we break your designed intentions into small daily actions — new habits, breath and body work, daily rituals. We aim for consistency, not perfection. Every small step opens a new neural pathway.",
+          minutes: 35,
+        },
+        {
+          title: "Güçlendirmek", titleEn: "Strengthening",
+          summary: "Yeni halini pekiştirmek, dirençle ve geri dönüşlerle çalışmak.",
+          summaryEn: "Reinforcing your new self, working with resistance and setbacks.",
+          content: "Değişim doğrusal değildir. Eski kalıplar geri gelmek isteyecek — bu normaldir. Bu aşamada dirençle nasıl çalışacağını, geri dönüşleri nasıl birer öğretmen olarak göreceğini öğreniyorsun. İç sesini güçlendiriyor, kendine verdiğin sözü tutmanın kaslarını çalıştırıyorsun.",
+          contentEn: "Change is not linear. Old patterns will want to return — this is normal. In this stage you learn how to work with resistance and see setbacks as teachers. You strengthen your inner voice and exercise the muscles of keeping the promises you make to yourself.",
+          minutes: 30,
+        },
+        {
+          title: "Bütünleştirmek", titleEn: "Integrating",
+          summary: "Öğrendiklerini kimliğinle bütünleştirmek — artık yaptığın değil, olduğun şey.",
+          summaryEn: "Integrating what you've learned into your identity — no longer what you do, but who you are.",
+          content: "Bu aşamada dönüşüm bir 'yapılacaklar listesi' olmaktan çıkıp kim olduğunun bir parçası oluyor. Yeni değerlerin, sınırların ve alışkanlıkların artık zorlanmadan akıyor. Hayatının farklı alanlarını — ilişkiler, iş, beden, ruh — tek bir bütün olarak görmeye başlıyorsun.",
+          contentEn: "In this stage transformation stops being a 'to-do list' and becomes part of who you are. Your new values, boundaries, and habits now flow effortlessly. You begin to see the different areas of your life — relationships, work, body, spirit — as a single whole.",
+          minutes: 30,
+        },
+        {
+          title: "Sürdürmek", titleEn: "Sustaining",
+          summary: "Dönüşümü kalıcı kılmak ve kendi rehberin olmak.",
+          summaryEn: "Making transformation permanent and becoming your own guide.",
+          content: "Son aşamada artık kendi rehberinsin. Bu yolculukta edindiğin araçları hayatın boyunca nasıl kullanacağını, zor zamanlarda kendini nasıl yeniden merkezleyeceğini biliyorsun. Sürdürülebilir bir uygulama planı oluşturuyor, yolculuğunu kutluyoruz. Nova Vera — 'yeni ve gerçek' bir başlangıç değil, artık senin yaşam biçimin.",
+          contentEn: "In the final stage you are now your own guide. You know how to use the tools you gained throughout life, and how to re-center yourself in hard times. We build a sustainable practice plan and celebrate your journey. Nova Vera — 'new and true' — is no longer a beginning but your way of living.",
+          minutes: 25,
+        },
+      ];
+
+      let created = 0;
+      for (let i = 0; i < stages.length; i++) {
+        const s = stages[i];
+        const doc = await payload.create({
+          collection: "program-stages",
+          locale: "tr",
+          data: {
+            program: course.id,
+            order: i + 1,
+            title: s.title,
+            summary: s.summary,
+            content: s.content,
+            estimatedMinutes: s.minutes,
+          } as any,
+        });
+        await payload.update({
+          collection: "program-stages",
+          id: doc.id,
+          locale: "en",
+          data: {
+            title: s.titleEn,
+            summary: s.summaryEn,
+            content: s.contentEn,
+          } as any,
+        });
+        created++;
+      }
+      console.log(`[${collection}] 1 program + ${created} aşama oluşturuldu (Nova Vera).`);
+      summary[collection] = `1 program + ${created} aşama`;
+    }
+  }
+
+  // ---------------------------------------------------------------
   // Özet
   // ---------------------------------------------------------------
   console.log("\n========== SEED ÖZETİ ==========");

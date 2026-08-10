@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/i18n/LanguageContext";
+import { MemberProvider } from "@/i18n/MemberContext";
 import ChatBot from "@/components/ChatBot";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -44,8 +45,10 @@ export default function RootLayout({
         className={`${plusJakarta.variable} ${caveat.variable} antialiased`}
       >
         <LanguageProvider>
-          {children}
-          <ChatBot />
+          <MemberProvider>
+            {children}
+            <ChatBot />
+          </MemberProvider>
         </LanguageProvider>
       </body>
     </html>

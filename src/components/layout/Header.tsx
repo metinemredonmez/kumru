@@ -3,13 +3,19 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X, Globe, User } from "lucide-react";
 import { useLanguage, languageLabels, Language } from "@/i18n/LanguageContext";
+import { useMember } from "@/i18n/MemberContext";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const { member } = useMember();
+
+  const memberLabels = language === "en"
+    ? { membership: "Membership", myPrograms: "My Programs", login: "Log in" }
+    : { membership: "Üyelik", myPrograms: "Programlarım", login: "Giriş" };
 
   const navItems = [
     { name: t.nav.home, href: "/" },
@@ -17,6 +23,7 @@ export default function Header() {
     { name: t.nav.services, href: "/hizmetler" },
     { name: t.nav.programs, href: "/programlar" },
     { name: t.nav.novaVera, href: "/nova-vera" },
+    { name: memberLabels.membership, href: "/uyelik" },
     { name: t.nav.media, href: "/medya" },
     { name: t.nav.events, href: "/etkinlikler" },
     { name: t.nav.resources, href: "/kaynaklar" },
@@ -27,7 +34,14 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[var(--lavender)]/30">
       {/* Top bar with language switcher */}
       <div className="bg-[var(--dark)] text-white py-1">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end items-center gap-2">
+          <Link
+            href={member ? "/programlarim" : "/giris"}
+            className="flex items-center gap-1.5 px-3 py-1 text-sm hover:text-[var(--amber)] transition-colors border-r border-white/20"
+          >
+            <User size={14} />
+            <span>{member ? memberLabels.myPrograms : memberLabels.login}</span>
+          </Link>
           <div className="relative">
             <button
               onClick={() => setLangOpen(!langOpen)}
@@ -127,6 +141,14 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
+
+              <Link
+                href={member ? "/programlarim" : "/giris"}
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-2 text-[var(--indigo)] font-semibold py-2 px-2 mt-2"
+              >
+                <User size={18} /> {member ? memberLabels.myPrograms : memberLabels.login}
+              </Link>
 
               <Link
                 href="/iletisim"

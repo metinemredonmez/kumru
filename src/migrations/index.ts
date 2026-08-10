@@ -5,6 +5,8 @@ import * as migration_20260810_063311_phase3_media from './20260810_063311_phase
 import * as migration_20260810_064009_phase4_resources from './20260810_064009_phase4_resources';
 import * as migration_20260810_065357_phase5_images from './20260810_065357_phase5_images';
 import * as migration_20260810_111624_integrations from './20260810_111624_integrations';
+import * as migration_20260810_120445_members_courses from './20260810_120445_members_courses';
+import * as migration_20260810_122329_localized_plan_price from './20260810_122329_localized_plan_price';
 
 export const migrations = [
   {
@@ -40,6 +42,16 @@ export const migrations = [
   {
     up: migration_20260810_111624_integrations.up,
     down: migration_20260810_111624_integrations.down,
-    name: '20260810_111624_integrations'
+    name: '20260810_111624_integrations',
+  },
+  {
+    up: migration_20260810_120445_members_courses.up,
+    down: migration_20260810_120445_members_courses.down,
+    name: '20260810_120445_members_courses',
+  },
+  {
+    up: migration_20260810_122329_localized_plan_price.up,
+    down: migration_20260810_122329_localized_plan_price.down,
+    name: '20260810_122329_localized_plan_price'
   },
 ];

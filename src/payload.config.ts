@@ -33,7 +33,7 @@ export default buildConfig({
         Icon: "/components/admin/Icon#Icon",
       },
       actions: [
-        "/components/admin/ViewSiteAction#ViewSiteAction",
+        // "Siteyi Gör" butonu kaldırıldı (daha minimalist üst bar)
         "/components/admin/NavOpener#NavOpener",
       ],
       views: {
@@ -276,6 +276,154 @@ export default buildConfig({
         { name: "text", type: "textarea", required: true, localized: true, label: "Yorum" },
         { name: "rating", type: "number", defaultValue: 5, min: 1, max: 5, label: "Puan (1-5)" },
         { name: "order", type: "number", defaultValue: 0, label: "Sıra" },
+      ],
+    },
+    {
+      slug: "members",
+      auth: {
+        tokenExpiration: 60 * 60 * 24 * 30,
+        verify: false,
+        maxLoginAttempts: 5,
+        lockTime: 10 * 60 * 1000,
+      },
+      labels: { singular: "Üye", plural: "Üyeler" },
+      admin: {
+        useAsTitle: "email",
+        defaultColumns: ["name", "email", "membershipTier", "membershipExpiresAt"],
+        group: "Üyeler & Satış",
+        description: "Web sitesine kayıt olan danışanlar (admin paneline giremezler).",
+      },
+      access: {
+        create: () => true, // herkes kayıt olabilir
+        read: ({ req: { user } }) => Boolean(user),
+        update: ({ req: { user } }) => Boolean(user),
+        delete: ({ req: { user } }) => Boolean(user),
+      },
+      fields: [
+        { name: "name", type: "text", required: true, label: "Ad Soyad" },
+        {
+          name: "membershipTier",
+          type: "select",
+          defaultValue: "free",
+          label: "Üyelik Seviyesi",
+          options: [
+            { label: "Ücretsiz", value: "free" },
+            { label: "Premium", value: "premium" },
+            { label: "VIP", value: "vip" },
+          ],
+          admin: { description: "Ödeme entegrasyonu bağlanana kadar buradan elle yükseltilebilir." },
+        },
+        { name: "membershipExpiresAt", type: "date", label: "Üyelik Bitiş Tarihi", admin: { description: "Boşsa süresiz." } },
+        { name: "phone", type: "text", label: "Telefon" },
+      ],
+    },
+    {
+      slug: "membership-plans",
+      labels: { singular: "Üyelik Planı", plural: "Üyelik Planları" },
+      access: { read: () => true },
+      admin: { useAsTitle: "name", defaultColumns: ["name", "tier", "price", "order"], group: "Üyeler & Satış" },
+      fields: [
+        { name: "name", type: "text", required: true, localized: true, label: "Plan Adı" },
+        {
+          name: "tier",
+          type: "select",
+          required: true,
+          defaultValue: "free",
+          label: "Seviye",
+          options: [
+            { label: "Ücretsiz", value: "free" },
+            { label: "Premium", value: "premium" },
+            { label: "VIP", value: "vip" },
+          ],
+        },
+        { name: "price", type: "text", localized: true, label: "Fiyat (görünen)", admin: { description: "örn. ₺499 / ay veya Ücretsiz — dile göre değişir" } },
+        { name: "priceAmount", type: "number", label: "Fiyat (sayı, kuruş değil TL)", admin: { description: "Ödeme için; örn. 499" } },
+        { name: "interval", type: "select", defaultValue: "monthly", label: "Periyot", options: [
+          { label: "Aylık", value: "monthly" },
+          { label: "Yıllık", value: "yearly" },
+          { label: "Tek seferlik / süresiz", value: "once" },
+        ] },
+        { name: "features", type: "array", localized: true, label: "Özellikler", fields: [{ name: "item", type: "text", label: "Özellik" }] },
+        { name: "highlighted", type: "checkbox", defaultValue: false, label: "Öne çıkan plan" },
+        { name: "order", type: "number", defaultValue: 0, label: "Sıra" },
+      ],
+    },
+    {
+      slug: "courses",
+      labels: { singular: "Program", plural: "İlerlemeli Programlar" },
+      access: { read: () => true },
+      admin: { useAsTitle: "title", defaultColumns: ["title", "requiredTier", "unlockRule", "order"], group: "Üyeler & Satış" },
+      fields: [
+        { name: "title", type: "text", required: true, localized: true, label: "Program Adı" },
+        { name: "slug", type: "text", required: true, unique: true, label: "URL (slug)", admin: { description: "örn. nova-vera-yolculugu" } },
+        { name: "description", type: "textarea", localized: true, label: "Açıklama" },
+        { name: "coverImage", type: "upload", relationTo: "media", label: "Kapak Görseli" },
+        {
+          name: "requiredTier",
+          type: "select",
+          defaultValue: "premium",
+          label: "Gereken Üyelik",
+          options: [
+            { label: "Ücretsiz (herkes)", value: "free" },
+            { label: "Premium", value: "premium" },
+            { label: "VIP", value: "vip" },
+          ],
+        },
+        {
+          name: "unlockRule",
+          type: "select",
+          defaultValue: "complete",
+          label: "Aşama Açılma Kuralı",
+          options: [
+            { label: "Tamamlayınca açılır (sırayla)", value: "complete" },
+            { label: "Zamana bağlı (drip - her gün 1 aşama)", value: "drip" },
+            { label: "Kumru manuel açar", value: "manual" },
+            { label: "Hepsi açık (kilitsiz)", value: "open" },
+          ],
+          admin: { description: "İlerlemeli program mantığı. 'Tamamlayınca' = danışan hızlı geçemez." },
+        },
+        { name: "published", type: "checkbox", defaultValue: true, label: "Yayında" },
+        { name: "order", type: "number", defaultValue: 0, label: "Sıra" },
+      ],
+    },
+    {
+      slug: "program-stages",
+      labels: { singular: "Program Aşaması", plural: "Program Aşamaları" },
+      access: { read: ({ req: { user } }) => Boolean(user) }, // içerik gizli; sayfa /api/my üzerinden kilit kontrollü servis edilir
+      admin: { useAsTitle: "title", defaultColumns: ["title", "program", "order"], group: "Üyeler & Satış" },
+      fields: [
+        { name: "program", type: "relationship", relationTo: "courses", required: true, label: "Program" },
+        { name: "order", type: "number", required: true, defaultValue: 1, label: "Sıra No" },
+        { name: "title", type: "text", required: true, localized: true, label: "Aşama Başlığı" },
+        { name: "summary", type: "textarea", localized: true, label: "Kısa Özet (kilitliyken de görünür)" },
+        { name: "content", type: "textarea", localized: true, label: "İçerik (metin)" },
+        { name: "video", type: "upload", relationTo: "media", label: "Video / Ses" },
+        { name: "estimatedMinutes", type: "number", label: "Tahmini süre (dk)" },
+      ],
+    },
+    {
+      slug: "enrollments",
+      labels: { singular: "Program Kaydı", plural: "Program Kayıtları" },
+      access: {
+        read: ({ req: { user } }) => Boolean(user),
+        create: ({ req: { user } }) => Boolean(user),
+        update: ({ req: { user } }) => Boolean(user),
+      },
+      admin: {
+        useAsTitle: "id",
+        defaultColumns: ["member", "program", "currentStage", "updatedAt"],
+        group: "Üyeler & Satış",
+        description: "Üyelerin programlardaki ilerlemesi.",
+      },
+      fields: [
+        { name: "member", type: "relationship", relationTo: "members", required: true, label: "Üye" },
+        { name: "program", type: "relationship", relationTo: "courses", required: true, label: "Program" },
+        { name: "completedStages", type: "number", hasMany: true, label: "Tamamlanan Aşama Sıraları", admin: { description: "Tamamlanan aşamaların sıra numaraları." } },
+        { name: "currentStage", type: "number", defaultValue: 1, label: "Mevcut Aşama" },
+        { name: "status", type: "select", defaultValue: "active", options: [
+          { label: "Devam ediyor", value: "active" },
+          { label: "Tamamlandı", value: "completed" },
+        ] },
       ],
     },
   ],

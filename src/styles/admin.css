@@ -132,6 +132,22 @@ body { --theme-bg: var(--k-bg); background: var(--k-bg); }
 .nav__wrap svg { color: var(--k-ink-faint) !important; }
 .nav .btn svg { color: var(--k-ink-soft) !important; }
 
+/* Grup akordeonu kapatıldı: tüm gruplar HEP AÇIK, ok/kapanma yok.
+   react-animate-height sarmalayıcısını (rah-*) sadece nav içinde zorla açık tut. */
+.nav-group [class*="rah-"] {
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.nav-group__indicator { display: none !important; }        /* chevron gizle */
+.nav-group__toggle {
+  cursor: default !important;
+  pointer-events: none;                                     /* başlığa tıklayınca kapanmasın */
+}
+
 /* Geniş ekranda menü hep açık — daraltma butonunu gizle */
 @media (min-width: 768px) {
   .template-default__nav-toggler,
@@ -296,3 +312,57 @@ h1.doc-header__title, .doc-header__title,
 .field-label { color: var(--k-ink) !important; font-weight: 500; }
 
 a { color: var(--k-accent); }
+
+/* ===================== DÜZENLEME SAYFASI (sağ içerik) — daha şık, düzenli ===================== */
+/* İçeriğe okunur genişlik + alanlar arası nefes */
+.document-fields__fields,
+.render-fields.document-fields__fields { max-width: 880px; }
+.render-fields { display: flex; flex-direction: column; gap: 22px; }
+.document-fields__edit { padding-top: 26px; padding-bottom: 40px; }
+
+/* Alan etiketleri biraz daha belirgin */
+.render-fields .field-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--k-ink) !important;
+  margin-bottom: 8px;
+}
+
+/* Yükleme (görsel) alanı — düz satır yerine temiz kart */
+.upload-field-card {
+  border: 1px solid var(--k-line) !important;
+  border-radius: 14px !important;
+  background: var(--k-surface) !important;
+  padding: 12px 14px !important;
+  box-shadow: var(--k-shadow);
+  transition: border-color .16s ease, box-shadow .16s ease;
+}
+.upload-field-card:hover { border-color: var(--k-accent-2) !important; }
+.upload-relationship-details__imageAndDetails { gap: 14px !important; align-items: center; }
+.upload-relationship-details__thumbnail,
+.thumbnail.thumbnail--size-small {
+  width: 56px !important; height: 56px !important;
+  border-radius: 10px !important;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.upload-relationship-details__thumbnail img,
+.thumbnail img { width: 100% !important; height: 100% !important; object-fit: cover; }
+.upload-relationship-details__filename { font-weight: 600; color: var(--k-accent) !important; }
+.upload-relationship-details__meta { color: var(--k-ink-faint) !important; font-size: 12px; }
+.upload-relationship-details__actions .btn:hover svg { color: var(--k-accent) !important; }
+
+/* Kaydet / kontrol barı — hafif, sabit hissi veren şık zemin */
+.doc-controls { background: var(--k-surface) !important; }
+.doc-controls__divider { display: none !important; }
+.doc-controls__meta { color: var(--k-ink-faint) !important; }
+
+/* Edit / API sekmeleri ve başlık hizası */
+.doc-header__title { font-size: 24px !important; }
+.doc-tab__link { border-radius: 8px !important; }
+
+/* ===================== PROFİL / HESAP SAYFASI — daha minimalist ===================== */
+.collection-edit--users .doc-controls__meta { display: none !important; }   /* tarih satırını gizle */
+.collection-edit--users .render-fields { gap: 18px; }
+/* Off-brand "Payload Settings" / API-Key bölümünü sadeleştir */
+.collection-edit--users .render-fields > .field-type:last-child { opacity: .96; }
