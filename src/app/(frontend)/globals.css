@@ -224,3 +224,28 @@ html {
   border-color: var(--border);
 }
 .panel ::selection { background-color: var(--accent); color: var(--primary); }
+
+/* ===================== YÖNETİM PANELİ — KOYU TEMA ===================== */
+/* data-theme="dark" .panel köküne yazılır; tüm shadcn token'ları koyu değere geçer. */
+.panel[data-theme="dark"] {
+  --background: #131024;
+  --foreground: #F4F2FF;
+  --card: #1C1833;
+  --card-foreground: #F4F2FF;
+  --popover: #1C1833;
+  --popover-foreground: #F4F2FF;
+  --muted: #221D3D;
+  --muted-foreground: #ABA5CC;
+  --border: #2C2748;
+  --input: #2C2748;
+  --sidebar: #17132C;
+  --sidebar-foreground: #F4F2FF;
+  --sidebar-accent: #241F42;
+  --sidebar-accent-foreground: #F4F2FF;
+  --sidebar-border: #2C2748;
+}
+/* Açıkça light seçildiğinde .panel varsayılan (açık) değerlerini korur. */
+.panel[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #1B1836;
+}

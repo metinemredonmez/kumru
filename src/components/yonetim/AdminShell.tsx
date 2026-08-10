@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   BarChart3,
@@ -20,9 +20,25 @@ import {
   LogOut,
   Menu,
   X,
+  Search,
+  Bell,
+  Moon,
+  Sun,
+  Loader2,
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 
 type NavItem = { label: string; href: string; icon: LucideIcon };
 
@@ -151,6 +167,253 @@ function SidebarInner({
   );
 }
 
+/* ===================== KOYU TEMA TOGGLE ===================== */
+
+type Theme = "light" | "dark";
+
+function ThemeToggle({
+  theme,
+  onToggle,
+}: {
+  theme: Theme;
+  onToggle: () => void;
+}) {
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={onToggle}
+      className="text-sidebar-foreground"
+      aria-label={theme === "dark" ? "Açık temaya geç" : "Koyu temaya geç"}
+      title={theme === "dark" ? "Açık tema" : "Koyu tema"}
+    >
+      {theme === "dark" ? (
+        <Sun className="size-5" />
+      ) : (
+        <Moon className="size-5" />
+      )}
+    </Button>
+  );
+}
+
+/* ===================== ⌘K GLOBAL ARAMA ===================== */
+
+type SearchResult = { group: string; label: string; href: string };
+
+function SearchModal({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  const router = useRouter();
+  const [q, setQ] = useState("");
+  const [results, setResults] = useState<SearchResult[]>([]);
+  const [loading, setLoading] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Açılınca odak + sıfırla
+  useEffect(() => {
+    if (open) {
+      setQ("");
+      setResults([]);
+      const t = setTimeout(() => inputRef.current?.focus(), 30);
+      return () => clearTimeout(t);
+    }
+  }, [open]);
+
+  // Esc ile kapat
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
+  // Debounce'lu fetch
+  useEffect(() => {
+    if (!open) return;
+    const term = q.trim();
+    if (!term) {
+      setResults([]);
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+    const ctrl = new AbortController();
+    const t = setTimeout(async () => {
+      try {
+        const res = await fetch(
+          `/api/yonetim/search?q=${encodeURIComponent(term)}`,
+          { signal: ctrl.signal }
+        );
+        const data = await res.json();
+        setResults(Array.isArray(data.results) ? data.results : []);
+      } catch (err) {
+        if ((err as Error)?.name !== "AbortError") setResults([]);
+      } finally {
+        setLoading(false);
+      }
+    }, 250);
+    return () => {
+      clearTimeout(t);
+      ctrl.abort();
+    };
+  }, [q, open]);
+
+  const go = (href: string) => {
+    router.push(href);
+    onClose();
+  };
+
+  if (!open) return null;
+
+  // Sonuçları gruplara ayır
+  const groups = results.reduce<Record<string, SearchResult[]>>((acc, r) => {
+    (acc[r.group] ||= []).push(r);
+    return acc;
+  }, {});
+
+  return (
+    <div
+      className="fixed inset-0 z-[60] flex items-start justify-center p-4 pt-[12vh]"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="relative w-full max-w-xl overflow-hidden rounded-xl border border-border bg-card text-card-foreground shadow-2xl">
+        <div className="flex items-center gap-2 border-b border-border px-3">
+          <Search className="size-4 shrink-0 text-muted-foreground" />
+          <Input
+            ref={inputRef}
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Üye, program, mesaj ara…"
+            className="h-12 border-0 bg-transparent px-1 shadow-none focus-visible:ring-0"
+          />
+          {loading && (
+            <Loader2 className="size-4 shrink-0 animate-spin text-muted-foreground" />
+          )}
+        </div>
+
+        <div className="max-h-[50vh] overflow-y-auto p-2">
+          {!q.trim() && (
+            <p className="px-3 py-6 text-center text-sm text-muted-foreground">
+              Aramak için yazmaya başlayın.
+            </p>
+          )}
+          {q.trim() && !loading && results.length === 0 && (
+            <p className="px-3 py-6 text-center text-sm text-muted-foreground">
+              Sonuç bulunamadı.
+            </p>
+          )}
+          {Object.entries(groups).map(([group, items]) => (
+            <div key={group} className="mb-1">
+              <div className="px-3 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                {group}
+              </div>
+              {items.map((r, i) => (
+                <button
+                  key={`${group}-${i}`}
+                  onClick={() => go(r.href)}
+                  className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-card-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                >
+                  <span className="truncate">{r.label}</span>
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="flex items-center justify-between border-t border-border px-3 py-2 text-[11px] text-muted-foreground">
+          <span>Enter ile git</span>
+          <span>Esc ile kapat</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ===================== BİLDİRİM ZİLİ ===================== */
+
+type NotificationItem = {
+  key: string;
+  label: string;
+  count: number;
+  href: string;
+};
+
+function NotificationBell() {
+  const [items, setItems] = useState<NotificationItem[]>([]);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      try {
+        const res = await fetch("/api/yonetim/notifications");
+        const data = await res.json();
+        if (!active) return;
+        setItems(Array.isArray(data.items) ? data.items : []);
+        setTotal(typeof data.total === "number" ? data.total : 0);
+      } catch {
+        /* sessizce yut */
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="relative text-sidebar-foreground"
+          aria-label="Bildirimler"
+        >
+          <Bell className="size-5" />
+          {total > 0 && (
+            <span className="absolute right-1 top-1 grid min-w-[18px] place-items-center rounded-full bg-destructive px-1 text-[10px] font-semibold leading-4 text-destructive-foreground">
+              {total > 99 ? "99+" : total}
+            </span>
+          )}
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-72">
+        <DropdownMenuLabel>Bildirimler</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        {items.length === 0 && (
+          <div className="px-2 py-4 text-center text-sm text-muted-foreground">
+            Bildirim yok.
+          </div>
+        )}
+        {items.map((item) => (
+          <DropdownMenuItem key={item.key} asChild>
+            <Link
+              href={item.href}
+              className="flex items-center justify-between gap-2"
+            >
+              <span className="truncate">{item.label}</span>
+              <Badge
+                variant={item.count > 0 ? "default" : "secondary"}
+                className="shrink-0"
+              >
+                {item.count}
+              </Badge>
+            </Link>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
 export default function AdminShell({
   user,
   children,
@@ -160,14 +423,42 @@ export default function AdminShell({
 }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [theme, setTheme] = useState<Theme>("light");
+  const [searchOpen, setSearchOpen] = useState(false);
 
   // Route değişince mobil menüyü kapat
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
 
+  // İlk yüklemede temayı localStorage'dan oku
+  useEffect(() => {
+    const saved = localStorage.getItem("yonetim-theme");
+    if (saved === "dark" || saved === "light") setTheme(saved);
+  }, []);
+
+  const toggleTheme = useCallback(() => {
+    setTheme((prev) => {
+      const next = prev === "dark" ? "light" : "dark";
+      localStorage.setItem("yonetim-theme", next);
+      return next;
+    });
+  }, []);
+
+  // ⌘K / Ctrl+K kısayolu
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((v) => !v);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
-    <div className="panel min-h-screen">
+    <div className="panel min-h-screen" data-theme={theme}>
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex fixed inset-y-0 left-0 w-64 flex-col bg-sidebar border-r border-sidebar-border z-30">
         <SidebarInner pathname={pathname} user={user} />
@@ -198,10 +489,43 @@ export default function AdminShell({
             {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
           <div className="flex-1" />
-          <div className="text-sm font-medium text-sidebar-foreground">
+
+          {/* Ara (⌘K) */}
+          <Button
+            variant="outline"
+            onClick={() => setSearchOpen(true)}
+            className="hidden sm:flex h-9 items-center gap-2 text-muted-foreground"
+          >
+            <Search className="size-4" />
+            <span className="text-sm">Ara</span>
+            <kbd className="ml-1 rounded border border-border bg-muted px-1.5 py-0.5 text-[10px] font-medium">
+              ⌘K
+            </kbd>
+          </Button>
+          {/* Mobil arama ikonu */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setSearchOpen(true)}
+            className="sm:hidden text-sidebar-foreground"
+            aria-label="Ara"
+          >
+            <Search className="size-5" />
+          </Button>
+
+          {/* Bildirim zili */}
+          <NotificationBell />
+
+          {/* Koyu tema toggle */}
+          <ThemeToggle theme={theme} onToggle={toggleTheme} />
+
+          <div className="hidden sm:block text-sm font-medium text-sidebar-foreground">
             {user.name || user.email}
           </div>
         </header>
+
+        {/* ⌘K Arama modalı */}
+        <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
 
         {/* Main */}
         <main className="flex-1">
