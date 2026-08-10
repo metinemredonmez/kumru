@@ -218,6 +218,53 @@ export default buildConfig({
       ],
     },
     {
+      slug: "resource-items",
+      labels: { singular: "Kaynak", plural: "Kaynaklar (E-Kitap/Video)" },
+      access: { read: () => true },
+      admin: { useAsTitle: "title", defaultColumns: ["title", "type", "category", "order"] },
+      fields: [
+        { name: "title", type: "text", required: true, localized: true, label: "Başlık" },
+        { name: "description", type: "textarea", localized: true, label: "Açıklama" },
+        {
+          name: "type",
+          type: "select",
+          defaultValue: "PDF",
+          label: "Tür",
+          options: [
+            { label: "PDF", value: "PDF" },
+            { label: "Video", value: "Video" },
+            { label: "Ses", value: "Ses" },
+          ],
+        },
+        { name: "category", type: "text", localized: true, label: "Kategori" },
+        { name: "order", type: "number", defaultValue: 0, label: "Sıra" },
+      ],
+    },
+    {
+      slug: "blog-posts",
+      labels: { singular: "Blog Yazısı", plural: "Blog Yazıları" },
+      access: { read: () => true },
+      admin: { useAsTitle: "title", defaultColumns: ["title", "category", "readTime", "order"] },
+      fields: [
+        { name: "title", type: "text", required: true, localized: true, label: "Başlık" },
+        { name: "excerpt", type: "textarea", localized: true, label: "Özet" },
+        { name: "category", type: "text", localized: true, label: "Kategori" },
+        { name: "readTime", type: "text", localized: true, label: "Okuma Süresi" },
+        { name: "order", type: "number", defaultValue: 0, label: "Sıra" },
+      ],
+    },
+    {
+      slug: "tips",
+      labels: { singular: "İpucu", plural: "Günlük İpuçları" },
+      access: { read: () => true },
+      admin: { useAsTitle: "title", defaultColumns: ["title", "order"] },
+      fields: [
+        { name: "title", type: "text", required: true, localized: true, label: "Başlık" },
+        { name: "tip", type: "textarea", localized: true, label: "İpucu Metni" },
+        { name: "order", type: "number", defaultValue: 0, label: "Sıra" },
+      ],
+    },
+    {
       slug: "testimonials",
       labels: { singular: "Danışan Yorumu", plural: "Danışan Yorumları" },
       access: { read: () => true },

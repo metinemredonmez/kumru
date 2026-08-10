@@ -2,6 +2,7 @@ import * as migration_20260809_194604_initial from './20260809_194604_initial';
 import * as migration_20260810_061404_phase1_hero_testimonials from './20260810_061404_phase1_hero_testimonials';
 import * as migration_20260810_062636_phase2_about_novavera from './20260810_062636_phase2_about_novavera';
 import * as migration_20260810_063311_phase3_media from './20260810_063311_phase3_media';
+import * as migration_20260810_064009_phase4_resources from './20260810_064009_phase4_resources';
 
 export const migrations = [
   {
@@ -22,6 +23,11 @@ export const migrations = [
   {
     up: migration_20260810_063311_phase3_media.up,
     down: migration_20260810_063311_phase3_media.down,
-    name: '20260810_063311_phase3_media'
+    name: '20260810_063311_phase3_media',
+  },
+  {
+    up: migration_20260810_064009_phase4_resources.up,
+    down: migration_20260810_064009_phase4_resources.down,
+    name: '20260810_064009_phase4_resources'
   },
 ];

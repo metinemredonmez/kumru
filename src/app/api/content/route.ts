@@ -46,6 +46,9 @@ export const GET = async (req: Request) => {
       novaVera,
       mediaContent,
       videos,
+      resourceItems,
+      blogPosts,
+      tips,
     ] = await Promise.all([
       payload.find({ collection: "spiritual-sessions", ...findOptions }),
       payload.find({ collection: "coaching-services", ...findOptions }),
@@ -59,6 +62,9 @@ export const GET = async (req: Request) => {
       payload.findGlobal({ slug: "nova-vera", locale: lang }),
       payload.findGlobal({ slug: "media-content", locale: lang }),
       payload.find({ collection: "videos", ...findOptions, depth: 1 }),
+      payload.find({ collection: "resource-items", ...findOptions }),
+      payload.find({ collection: "blog-posts", ...findOptions }),
+      payload.find({ collection: "tips", ...findOptions }),
     ]);
 
     const data: Record<string, unknown> = {};
@@ -362,6 +368,34 @@ export const GET = async (req: Request) => {
           };
         });
       if (videoList.length > 0) data.videos = videoList;
+    }
+
+    // resourceItems (resource-items koleksiyonu)
+    if (resourceItems.docs.length > 0) {
+      data.resourceItems = resourceItems.docs.map((doc) => ({
+        title: doc.title,
+        description: doc.description,
+        type: doc.type,
+        category: doc.category,
+      }));
+    }
+
+    // blogPosts (blog-posts koleksiyonu)
+    if (blogPosts.docs.length > 0) {
+      data.blogPosts = blogPosts.docs.map((doc) => ({
+        title: doc.title,
+        excerpt: doc.excerpt,
+        category: doc.category,
+        readTime: doc.readTime,
+      }));
+    }
+
+    // tips (tips koleksiyonu)
+    if (tips.docs.length > 0) {
+      data.tips = tips.docs.map((doc) => ({
+        title: doc.title,
+        tip: doc.tip,
+      }));
     }
 
     return Response.json(data, { headers: CACHE_HEADERS });

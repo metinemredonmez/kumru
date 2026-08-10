@@ -13,7 +13,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 export default function ResourcesPage() {
   const { t, language } = useLanguage();
 
-  const resources = language === 'tr' ? [
+  const resourcesFallback = language === 'tr' ? [
     {
       icon: FileText,
       title: "Hedef Belirleme Rehberi",
@@ -101,7 +101,7 @@ export default function ResourcesPage() {
     },
   ];
 
-  const blogPosts = language === 'tr' ? [
+  const blogPostsFallback = language === 'tr' ? [
     {
       title: "Hayatınızı Değiştirmek İçin 5 Adım",
       excerpt: "Gerçek değişim küçük adımlarla başlar. İşte başlamanız için 5 pratik öneri...",
@@ -153,7 +153,7 @@ export default function ResourcesPage() {
     },
   ];
 
-  const tips = language === 'tr' ? [
+  const tipsFallback = language === 'tr' ? [
     {
       icon: Brain,
       title: "Zihin Temizliği",
@@ -196,6 +196,23 @@ export default function ResourcesPage() {
       tip: "Learn something new every day. Maintain and enhance brain plasticity.",
     },
   ];
+
+  // CMS'ten oku, boşsa yukarıdaki sabit fallback dizilerine düş
+  const mapResourceIcon = (r: { type?: string; [key: string]: unknown }) => ({
+    ...r,
+    icon: r.type === 'Video' ? Video : r.type === 'Ses' || r.type === 'Audio' ? Headphones : FileText,
+  });
+  const tipIcons = [Brain, Heart, Target, Lightbulb];
+
+  const resources = (Array.isArray(t?.resourceItems) && t.resourceItems.length
+    ? t.resourceItems.map(mapResourceIcon)
+    : resourcesFallback) as typeof resourcesFallback;
+  const blogPosts = (Array.isArray(t?.blogPosts) && t.blogPosts.length
+    ? t.blogPosts
+    : blogPostsFallback) as typeof blogPostsFallback;
+  const tips = (Array.isArray(t?.tips) && t.tips.length
+    ? t.tips.map((x: Record<string, unknown>, i: number) => ({ ...x, icon: tipIcons[i % tipIcons.length] }))
+    : tipsFallback) as typeof tipsFallback;
 
   return (
     <>

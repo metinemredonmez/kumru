@@ -204,6 +204,66 @@ const TESTIMONIALS_EN = [
   },
 ];
 
+/**
+ * src/app/(frontend)/kaynaklar/page.tsx içindeki `resources` dizisinin seed için
+ * gerekli alanları. TR ve EN aynı sırada. icon alanı atlandı.
+ * title/description/category lokalize; type lokalize DEĞİL (TR değeri saklanır).
+ * (seed.ts bir React client bileşenini import edemediği için diziler buraya kopyalandı.)
+ */
+const RESOURCES_TR = [
+  { title: "Hedef Belirleme Rehberi", description: "SMART hedefler oluşturma ve takip etme üzerine kapsamlı rehber.", type: "PDF", category: "Rehber" },
+  { title: "Sabah Rutini Oluşturma", description: "Güne enerjik başlamanızı sağlayacak sabah rutini videosu.", type: "Video", category: "Video" },
+  { title: "5 Dakikalık Meditasyon", description: "Günlük stresi azaltmak için kısa ve etkili meditasyon.", type: "Ses", category: "Meditasyon" },
+  { title: "Öz Değerlendirme Testi", description: "Güçlü yönlerinizi ve gelişim alanlarınızı keşfedin.", type: "PDF", category: "Test" },
+  { title: "Günlük Tutma Şablonu", description: "Düşüncelerinizi ve duygularınızı organize etmek için şablon.", type: "PDF", category: "Şablon" },
+  { title: "Nefes Teknikleri", description: "Kaygı anlarında kullanabileceğiniz nefes egzersizleri.", type: "Video", category: "Video" },
+];
+
+const RESOURCES_EN = [
+  { title: "Goal Setting Guide", description: "Comprehensive guide on creating and tracking SMART goals.", type: "PDF", category: "Guide" },
+  { title: "Morning Routine Creation", description: "Morning routine video to help you start your day with energy.", type: "Video", category: "Video" },
+  { title: "5-Minute Meditation", description: "Short and effective meditation to reduce daily stress.", type: "Audio", category: "Meditation" },
+  { title: "Self-Assessment Test", description: "Discover your strengths and areas for development.", type: "PDF", category: "Test" },
+  { title: "Journal Template", description: "Template for organizing your thoughts and emotions.", type: "PDF", category: "Template" },
+  { title: "Breathing Techniques", description: "Breathing exercises you can use during anxiety moments.", type: "Video", category: "Video" },
+];
+
+/**
+ * src/app/(frontend)/kaynaklar/page.tsx içindeki `blogPosts` dizisi.
+ * TR ve EN aynı sırada. Tüm alanlar (title/excerpt/category/readTime) lokalize.
+ */
+const BLOG_POSTS_TR = [
+  { title: "Hayatınızı Değiştirmek İçin 5 Adım", excerpt: "Gerçek değişim küçük adımlarla başlar. İşte başlamanız için 5 pratik öneri...", category: "Kişisel Gelişim", readTime: "5 dk" },
+  { title: "Stres Yönetiminde Mindfulness", excerpt: "Farkındalık pratiği ile stresi nasıl yönetebileceğinizi keşfedin...", category: "Mindfulness", readTime: "4 dk" },
+  { title: "Hedeflerinize Ulaşmanın Sırları", excerpt: "Başarılı insanların ortak özelliği: Net hedefler ve kararlılık...", category: "Hedef Belirleme", readTime: "6 dk" },
+  { title: "İlişkilerde İletişimin Gücü", excerpt: "Sağlıklı ilişkilerin temelinde etkili iletişim yatıyor...", category: "İlişkiler", readTime: "5 dk" },
+];
+
+const BLOG_POSTS_EN = [
+  { title: "5 Steps to Change Your Life", excerpt: "Real change starts with small steps. Here are 5 practical tips to get started...", category: "Personal Development", readTime: "5 min" },
+  { title: "Mindfulness in Stress Management", excerpt: "Discover how you can manage stress with mindfulness practice...", category: "Mindfulness", readTime: "4 min" },
+  { title: "Secrets to Reaching Your Goals", excerpt: "Common trait of successful people: Clear goals and determination...", category: "Goal Setting", readTime: "6 min" },
+  { title: "The Power of Communication in Relationships", excerpt: "Effective communication lies at the foundation of healthy relationships...", category: "Relationships", readTime: "5 min" },
+];
+
+/**
+ * src/app/(frontend)/kaynaklar/page.tsx içindeki `tips` dizisi.
+ * TR ve EN aynı sırada. title/tip lokalize; icon atlandı.
+ */
+const TIPS_TR = [
+  { title: "Zihin Temizliği", tip: "Her gün 10 dakika sessizlikle geçirin. Düşüncelerinizi gözlemleyin, yargılamayın." },
+  { title: "Minnettarlık", tip: "Her akşam 3 şey için minnettar olduğunuzu yazın. Pozitif bakış açısı geliştirin." },
+  { title: "Küçük Adımlar", tip: "Büyük hedefleri küçük, yapılabilir adımlara bölün. Her gün bir adım atın." },
+  { title: "Öğrenme", tip: "Her gün yeni bir şey öğrenin. Beyin plastisitesini koruyun ve geliştirin." },
+];
+
+const TIPS_EN = [
+  { title: "Mind Cleansing", tip: "Spend 10 minutes in silence every day. Observe your thoughts, don't judge." },
+  { title: "Gratitude", tip: "Write down 3 things you're grateful for each evening. Develop a positive perspective." },
+  { title: "Small Steps", tip: "Break big goals into small, achievable steps. Take one step every day." },
+  { title: "Learning", tip: "Learn something new every day. Maintain and enhance brain plasticity." },
+];
+
 const summary: Record<string, number | string> = {};
 
 async function main() {
@@ -792,6 +852,136 @@ async function main() {
       await payload.updateGlobal({ slug, locale: "en", data: buildMedia(en.media) as any });
       console.log(`[${slug}] güncellendi.`);
       summary[slug] = 1;
+    }
+  }
+
+  // ---------------------------------------------------------------
+  // 14. resource-items
+  // ---------------------------------------------------------------
+  {
+    const collection = "resource-items" as const;
+    const { totalDocs } = await payload.count({ collection });
+    if (totalDocs > 0) {
+      console.log(`[${collection}] ${totalDocs} kayıt mevcut, atlanıyor.`);
+      summary[collection] = "atlandı (mevcut)";
+    } else {
+      let created = 0;
+      for (let i = 0; i < RESOURCES_TR.length; i++) {
+        const t = RESOURCES_TR[i];
+        const e = RESOURCES_EN[i];
+        const doc = await payload.create({
+          collection,
+          locale: "tr",
+          data: {
+            title: t.title,
+            description: t.description,
+            type: t.type, // localized değil, tr değeri
+            category: t.category,
+            order: i,
+          } as any,
+        });
+        if (e) {
+          await payload.update({
+            collection,
+            id: doc.id,
+            locale: "en",
+            data: {
+              title: e.title,
+              description: e.description,
+              category: e.category,
+            } as any,
+          });
+        }
+        created++;
+      }
+      console.log(`[${collection}] ${created} kayıt oluşturuldu.`);
+      summary[collection] = created;
+    }
+  }
+
+  // ---------------------------------------------------------------
+  // 15. blog-posts
+  // ---------------------------------------------------------------
+  {
+    const collection = "blog-posts" as const;
+    const { totalDocs } = await payload.count({ collection });
+    if (totalDocs > 0) {
+      console.log(`[${collection}] ${totalDocs} kayıt mevcut, atlanıyor.`);
+      summary[collection] = "atlandı (mevcut)";
+    } else {
+      let created = 0;
+      for (let i = 0; i < BLOG_POSTS_TR.length; i++) {
+        const t = BLOG_POSTS_TR[i];
+        const e = BLOG_POSTS_EN[i];
+        const doc = await payload.create({
+          collection,
+          locale: "tr",
+          data: {
+            title: t.title,
+            excerpt: t.excerpt,
+            category: t.category,
+            readTime: t.readTime,
+            order: i,
+          } as any,
+        });
+        if (e) {
+          await payload.update({
+            collection,
+            id: doc.id,
+            locale: "en",
+            data: {
+              title: e.title,
+              excerpt: e.excerpt,
+              category: e.category,
+              readTime: e.readTime,
+            } as any,
+          });
+        }
+        created++;
+      }
+      console.log(`[${collection}] ${created} kayıt oluşturuldu.`);
+      summary[collection] = created;
+    }
+  }
+
+  // ---------------------------------------------------------------
+  // 16. tips
+  // ---------------------------------------------------------------
+  {
+    const collection = "tips" as const;
+    const { totalDocs } = await payload.count({ collection });
+    if (totalDocs > 0) {
+      console.log(`[${collection}] ${totalDocs} kayıt mevcut, atlanıyor.`);
+      summary[collection] = "atlandı (mevcut)";
+    } else {
+      let created = 0;
+      for (let i = 0; i < TIPS_TR.length; i++) {
+        const t = TIPS_TR[i];
+        const e = TIPS_EN[i];
+        const doc = await payload.create({
+          collection,
+          locale: "tr",
+          data: {
+            title: t.title,
+            tip: t.tip,
+            order: i,
+          } as any,
+        });
+        if (e) {
+          await payload.update({
+            collection,
+            id: doc.id,
+            locale: "en",
+            data: {
+              title: e.title,
+              tip: e.tip,
+            } as any,
+          });
+        }
+        created++;
+      }
+      console.log(`[${collection}] ${created} kayıt oluşturuldu.`);
+      summary[collection] = created;
     }
   }
 
