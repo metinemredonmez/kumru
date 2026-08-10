@@ -33,15 +33,25 @@ export const GET = async (req: Request) => {
       pagination: false as const,
     };
 
-    const [spiritualSessions, coachingServices, programs, faqs, events, siteSettings] =
-      await Promise.all([
-        payload.find({ collection: "spiritual-sessions", ...findOptions }),
-        payload.find({ collection: "coaching-services", ...findOptions }),
-        payload.find({ collection: "programs", ...findOptions }),
-        payload.find({ collection: "faqs", ...findOptions }),
-        payload.find({ collection: "events", ...findOptions }),
-        payload.findGlobal({ slug: "site-settings", locale: lang }),
-      ]);
+    const [
+      spiritualSessions,
+      coachingServices,
+      programs,
+      faqs,
+      events,
+      siteSettings,
+      hero,
+      testimonials,
+    ] = await Promise.all([
+      payload.find({ collection: "spiritual-sessions", ...findOptions }),
+      payload.find({ collection: "coaching-services", ...findOptions }),
+      payload.find({ collection: "programs", ...findOptions }),
+      payload.find({ collection: "faqs", ...findOptions }),
+      payload.find({ collection: "events", ...findOptions }),
+      payload.findGlobal({ slug: "site-settings", locale: lang }),
+      payload.findGlobal({ slug: "hero", locale: lang }),
+      payload.find({ collection: "testimonials", ...findOptions }),
+    ]);
 
     const data: Record<string, unknown> = {};
 
@@ -130,6 +140,53 @@ export const GET = async (req: Request) => {
     if (siteSettings?.hours) info.hoursValue = siteSettings.hours;
     if (Object.keys(info).length > 0) {
       data.contact = { info };
+    }
+
+    // siteSettings (site-settings global — tam iletişim bilgisi)
+    const siteSettingsOut: Record<string, unknown> = {};
+    if (siteSettings?.email) siteSettingsOut.email = siteSettings.email;
+    if (siteSettings?.phone) siteSettingsOut.phone = siteSettings.phone;
+    if (siteSettings?.whatsapp) siteSettingsOut.whatsapp = siteSettings.whatsapp;
+    if (siteSettings?.instagram) siteSettingsOut.instagram = siteSettings.instagram;
+    if (siteSettings?.youtube) siteSettingsOut.youtube = siteSettings.youtube;
+    if (siteSettings?.address) siteSettingsOut.address = siteSettings.address;
+    if (siteSettings?.hours) siteSettingsOut.hours = siteSettings.hours;
+    if (Object.keys(siteSettingsOut).length > 0) {
+      data.siteSettings = siteSettingsOut;
+    }
+
+    // hero (hero global)
+    const heroOut: Record<string, unknown> = {};
+    if (hero?.badge) heroOut.badge = hero.badge;
+    if (hero?.title1) heroOut.title1 = hero.title1;
+    if (hero?.title2) heroOut.title2 = hero.title2;
+    if (hero?.title3) heroOut.title3 = hero.title3;
+    if (hero?.description) heroOut.description = hero.description;
+    if (hero?.cta1) heroOut.cta1 = hero.cta1;
+    if (hero?.cta2) heroOut.cta2 = hero.cta2;
+    if (hero?.googleReview) heroOut.googleReview = hero.googleReview;
+
+    const heroStats: Record<string, unknown> = {};
+    if (hero?.stats?.clients) heroStats.clients = hero.stats.clients;
+    if (hero?.stats?.experience) heroStats.experience = hero.stats.experience;
+    if (hero?.stats?.satisfaction) heroStats.satisfaction = hero.stats.satisfaction;
+    if (Object.keys(heroStats).length > 0) {
+      heroOut.stats = heroStats;
+    }
+
+    if (Object.keys(heroOut).length > 0) {
+      data.hero = heroOut;
+    }
+
+    // testimonials (testimonials koleksiyonu)
+    if (testimonials.docs.length > 0) {
+      data.testimonials = {
+        list: testimonials.docs.map((doc) => ({
+          name: doc.name,
+          text: doc.text,
+          rating: doc.rating,
+        })),
+      };
     }
 
     return Response.json(data, { headers: CACHE_HEADERS });

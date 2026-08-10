@@ -132,6 +132,78 @@ RESPONSE FORMAT / YANIT FORMATI
 
 REMEMBER: Always respond in the SAME language as the user's message!`;
 
+/**
+ * src/components/sections/Testimonials.tsx içindeki `testimonialsTR` / `testimonialsEN`
+ * dizilerinin seed için gerekli alanları (name, rating, text).
+ * TR ve EN aynı sırada ve aynı `name` ile eşleşir; `text` lokalize alandır.
+ * (seed.ts bir React client bileşenini import edemediği için diziler buraya kopyalandı.)
+ */
+const TESTIMONIALS_TR = [
+  {
+    name: "Mehri Hemdemova",
+    rating: 5,
+    text: "Mükkemmel deneyim! En iyi yaşam koçlarının arasında. İlk 5'te bence!",
+  },
+  {
+    name: "Sadiyesmeen Ameen",
+    rating: 5,
+    text: "Gerçekten Kumru Hanım'dan çok memnun kaldım. Bana dedi ki beşinci ayda buradan taşınacaksın, inanmadım ama gerçekten de taşınıyorum! Allah razı olsun.",
+  },
+  {
+    name: "Nilcan Çimen",
+    rating: 5,
+    text: "Öngörüleri ve hisleri harika! Danışmanlık aldığımdan beri işlerim açıldı, hayatım düzene girdi.",
+  },
+  {
+    name: "Kurutta Senshi",
+    rating: 5,
+    text: "Güven veren ses tonuyla muhteşem analizleriyle mükemmel bir insan. İyiki yolum kesişmiş, varlığına duacı olduğum ender insanlardan biri.",
+  },
+  {
+    name: "EFE Gülmez",
+    rating: 5,
+    text: "Hisleri o kadar kuvvetli ki 15 sene önce dediği her şeyi yaşıyorum.",
+  },
+  {
+    name: "Jasmin",
+    rating: 5,
+    text: "Harika insan, harika enerji, harika!",
+  },
+];
+
+const TESTIMONIALS_EN = [
+  {
+    name: "Mehri Hemdemova",
+    rating: 5,
+    text: "Excellent experience! Among the best life coaches. In my top 5!",
+  },
+  {
+    name: "Sadiyesmeen Ameen",
+    rating: 5,
+    text: "I'm really satisfied with Kumru. She told me I would move in the fifth month, I didn't believe it but I really am moving! Thank you so much.",
+  },
+  {
+    name: "Nilcan Çimen",
+    rating: 5,
+    text: "Her insights and feelings are amazing! Since I started consulting, my work has improved, my life is in order.",
+  },
+  {
+    name: "Kurutta Senshi",
+    rating: 5,
+    text: "A wonderful person with a reassuring voice and amazing analysis. I'm so glad our paths crossed, one of the rare people I'm grateful for.",
+  },
+  {
+    name: "EFE Gülmez",
+    rating: 5,
+    text: "Her feelings are so strong that I'm living everything she said 15 years ago.",
+  },
+  {
+    name: "Jasmin",
+    rating: 5,
+    text: "Amazing person, amazing energy, amazing!",
+  },
+];
+
 const summary: Record<string, number | string> = {};
 
 async function main() {
@@ -461,6 +533,102 @@ async function main() {
       });
       console.log(`[${slug}] systemPrompt yazıldı.`);
       summary[slug] = 1;
+    }
+  }
+
+  // ---------------------------------------------------------------
+  // 9. hero global
+  // ---------------------------------------------------------------
+  {
+    const slug = "hero" as const;
+    const existing = (await payload.findGlobal({ slug, locale: "tr" })) as any;
+    if (existing?.badge) {
+      console.log(`[${slug}] badge dolu, atlanıyor.`);
+      summary[slug] = "atlandı (mevcut)";
+    } else {
+      const t = tr.hero;
+      const e = en.hero;
+      await payload.updateGlobal({
+        slug,
+        locale: "tr",
+        data: {
+          badge: t.badge,
+          title1: t.title1,
+          title2: t.title2,
+          title3: t.title3,
+          description: t.description,
+          cta1: t.cta1,
+          cta2: t.cta2,
+          googleReview: t.googleReview,
+          stats: {
+            clients: t.stats.clients,
+            experience: t.stats.experience,
+            satisfaction: t.stats.satisfaction,
+          },
+        } as any,
+      });
+      await payload.updateGlobal({
+        slug,
+        locale: "en",
+        data: {
+          badge: e.badge,
+          title1: e.title1,
+          title2: e.title2,
+          title3: e.title3,
+          description: e.description,
+          cta1: e.cta1,
+          cta2: e.cta2,
+          googleReview: e.googleReview,
+          stats: {
+            clients: e.stats.clients,
+            experience: e.stats.experience,
+            satisfaction: e.stats.satisfaction,
+          },
+        } as any,
+      });
+      console.log(`[${slug}] güncellendi.`);
+      summary[slug] = 1;
+    }
+  }
+
+  // ---------------------------------------------------------------
+  // 10. testimonials
+  // ---------------------------------------------------------------
+  {
+    const collection = "testimonials" as const;
+    const { totalDocs } = await payload.count({ collection });
+    if (totalDocs > 0) {
+      console.log(`[${collection}] ${totalDocs} kayıt mevcut, atlanıyor.`);
+      summary[collection] = "atlandı (mevcut)";
+    } else {
+      let created = 0;
+      for (let i = 0; i < TESTIMONIALS_TR.length; i++) {
+        const t = TESTIMONIALS_TR[i];
+        const e = TESTIMONIALS_EN[i];
+        const doc = await payload.create({
+          collection,
+          locale: "tr",
+          data: {
+            name: t.name, // localized değil
+            text: t.text, // localized, tr değeri
+            rating: t.rating ?? 5,
+            order: i,
+          } as any,
+        });
+        if (e) {
+          await payload.update({
+            collection,
+            id: doc.id,
+            locale: "en",
+            data: {
+              text: e.text, // localized, en değeri
+            } as any,
+          });
+        }
+        created++;
+      }
+      console.log(`[${collection}] ${created} kayıt oluşturuldu.`);
+      summary[collection] = created;
     }
   }
 

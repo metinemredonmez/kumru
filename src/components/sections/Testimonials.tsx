@@ -108,7 +108,10 @@ const testimonialsEN = [
 
 export default function Testimonials() {
   const { t, language } = useLanguage();
-  const testimonials = language === 'tr' ? testimonialsTR : testimonialsEN;
+  const cms = t?.testimonials?.list;
+  const testimonials = Array.isArray(cms) && cms.length
+    ? cms
+    : (language === 'en' ? testimonialsEN : testimonialsTR);
 
   return (
     <section id="testimonials" className="py-24 gradient-soft">
@@ -150,7 +153,7 @@ export default function Testimonials() {
 
               {/* Rating */}
               <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
+                {[...Array(testimonial.rating || 5)].map((_, i) => (
                   <Star
                     key={i}
                     size={16}
@@ -168,7 +171,7 @@ export default function Testimonials() {
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-[var(--soft)] flex items-center justify-center">
                   <span className="text-[var(--indigo)] font-semibold">
-                    {testimonial.avatar}
+                    {testimonial.avatar || testimonial.name?.charAt(0)}
                   </span>
                 </div>
                 <div>

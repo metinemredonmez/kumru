@@ -217,6 +217,18 @@ export default buildConfig({
         { name: "message", type: "textarea", required: true, label: "Mesaj" },
       ],
     },
+    {
+      slug: "testimonials",
+      labels: { singular: "Danışan Yorumu", plural: "Danışan Yorumları" },
+      access: { read: () => true },
+      admin: { useAsTitle: "name", defaultColumns: ["name", "rating", "order"] },
+      fields: [
+        { name: "name", type: "text", required: true, label: "Ad Soyad" },
+        { name: "text", type: "textarea", required: true, localized: true, label: "Yorum" },
+        { name: "rating", type: "number", defaultValue: 5, min: 1, max: 5, label: "Puan (1-5)" },
+        { name: "order", type: "number", defaultValue: 0, label: "Sıra" },
+      ],
+    },
   ],
   globals: [
     {
@@ -231,6 +243,31 @@ export default buildConfig({
         { name: "hours", type: "text", localized: true, label: "Çalışma Saatleri", defaultValue: "Pazartesi - Cumartesi: 09:00 - 19:00" },
         { name: "instagram", type: "text", label: "Instagram URL", defaultValue: "https://www.instagram.com/kumrukoseler/" },
         { name: "youtube", type: "text", label: "YouTube URL", defaultValue: "https://www.youtube.com/@kumrukoseler9055" },
+      ],
+    },
+    {
+      slug: "hero",
+      label: "Ana Sayfa - Hero",
+      access: { read: () => true },
+      fields: [
+        { name: "badge", type: "text", localized: true, label: "Üst Rozet" },
+        { name: "title1", type: "text", localized: true, label: "Başlık 1. Satır" },
+        { name: "title2", type: "text", localized: true, label: "Başlık 2. Satır" },
+        { name: "title3", type: "text", localized: true, label: "Başlık 3. Satır" },
+        { name: "description", type: "textarea", localized: true, label: "Açıklama" },
+        { name: "cta1", type: "text", localized: true, label: "Birincil Buton" },
+        { name: "cta2", type: "text", localized: true, label: "İkincil Buton" },
+        { name: "googleReview", type: "text", localized: true, label: "Google Yorum Metni" },
+        {
+          name: "stats",
+          type: "group",
+          label: "İstatistikler",
+          fields: [
+            { name: "clients", type: "text", localized: true, label: "Mutlu Danışan (etiket)" },
+            { name: "experience", type: "text", localized: true, label: "Yıl Deneyim (etiket)" },
+            { name: "satisfaction", type: "text", localized: true, label: "Memnuniyet (etiket)" },
+          ],
+        },
       ],
     },
     {

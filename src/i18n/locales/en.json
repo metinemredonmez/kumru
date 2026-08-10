@@ -1,4 +1,13 @@
 {
+  "siteSettings": {
+    "email": "kumrukoseler@gmail.com",
+    "phone": "+90 534 367 56 69",
+    "whatsapp": "905343675669",
+    "instagram": "https://www.instagram.com/kumrukoseler/",
+    "youtube": "https://www.youtube.com/@kumrukoseler9055",
+    "address": "Akmerkez Residens, Kültür, Nisbetiye Cd, 34100 Beşiktaş/İstanbul",
+    "hours": "Monday - Saturday: 09:00 - 19:00"
+  },
   "nav": {
     "home": "Home",
     "about": "About",

@@ -78,22 +78,20 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-[var(--violet)]" />
-                <a href="mailto:kumrukoseler@gmail.com" className="text-[var(--lavender)] hover:text-white transition-colors">
-                  kumrukoseler@gmail.com
+                <a href={`mailto:${t.siteSettings?.email || "kumrukoseler@gmail.com"}`} className="text-[var(--lavender)] hover:text-white transition-colors">
+                  {t.siteSettings?.email || "kumrukoseler@gmail.com"}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-[var(--violet)]" />
-                <a href="tel:+905343675669" className="text-[var(--lavender)] hover:text-white transition-colors">
-                  +90 534 367 56 69
+                <a href={`tel:${(t.siteSettings?.phone || "+90 534 367 56 69").replace(/[^0-9+]/g, "")}`} className="text-[var(--lavender)] hover:text-white transition-colors">
+                  {t.siteSettings?.phone || "+90 534 367 56 69"}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-[var(--violet)] mt-1" />
                 <span className="text-[var(--lavender)]">
-                  Akmerkez Residens, Kültür,<br />
-                  Nisbetiye Cd, 34100<br />
-                  Beşiktaş/İstanbul
+                  {t.siteSettings?.address || "Akmerkez Residens, Kültür, Nisbetiye Cd, 34100 Beşiktaş/İstanbul"}
                 </span>
               </li>
             </ul>
@@ -104,7 +102,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-6">{t.contact.social.title}</h4>
             <div className="flex gap-4">
               <a
-                href="https://www.instagram.com/kumrukoseler/"
+                href={t.siteSettings?.instagram || "https://www.instagram.com/kumrukoseler/"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[var(--indigo)] transition-colors"
@@ -112,7 +110,7 @@ export default function Footer() {
                 <Instagram size={18} />
               </a>
               <a
-                href="https://www.youtube.com/@kumrukoseler9055"
+                href={t.siteSettings?.youtube || "https://www.youtube.com/@kumrukoseler9055"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[var(--indigo)] transition-colors"

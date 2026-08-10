@@ -10,29 +10,33 @@ import { useLanguage } from "@/i18n/LanguageContext";
 export default function ContactPage() {
   const { t, language } = useLanguage();
 
+  const contactEmail = t.siteSettings?.email || "kumrukoseler@gmail.com";
+  const contactPhone = t.siteSettings?.phone || "+90 534 367 56 69";
+  const contactWhatsapp = t.siteSettings?.whatsapp || "905343675669";
+
   const contactInfo = [
     {
       icon: Mail,
       title: t.contact.info.email,
-      value: "kumrukoseler@gmail.com",
-      link: "mailto:kumrukoseler@gmail.com",
+      value: contactEmail,
+      link: `mailto:${contactEmail}`,
     },
     {
       icon: Phone,
       title: t.contact.info.phone,
-      value: "+90 534 367 56 69",
-      link: "tel:+905343675669",
+      value: contactPhone,
+      link: `tel:${contactPhone.replace(/[^0-9+]/g, "")}`,
     },
     {
       icon: MapPin,
       title: t.contact.info.address,
-      value: "Akmerkez Residens, Kültür, Nisbetiye Cd, 34100 Beşiktaş/İstanbul",
+      value: t.siteSettings?.address || "Akmerkez Residens, Kültür, Nisbetiye Cd, 34100 Beşiktaş/İstanbul",
       link: "https://maps.google.com/?q=Akmerkez+Residens+Beşiktaş+İstanbul",
     },
     {
       icon: Clock,
       title: t.contact.info.hours,
-      value: language === 'tr' ? "Pazartesi - Cumartesi: 09:00 - 19:00" : "Monday - Saturday: 09:00 - 19:00",
+      value: t.siteSettings?.hours || (language === 'tr' ? "Pazartesi - Cumartesi: 09:00 - 19:00" : "Monday - Saturday: 09:00 - 19:00"),
       link: null,
     },
   ];
@@ -326,7 +330,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <a
-                    href="https://wa.me/905343675669"
+                    href={`https://wa.me/${contactWhatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-[#25D366] text-white rounded-full font-semibold hover:bg-[#128C7E] transition-colors"
@@ -405,7 +409,7 @@ export default function ContactPage() {
                 }
               </p>
               <a
-                href="https://wa.me/905343675669?text=Merhaba,%20ücretsiz%20keşif%20görüşmesi%20için%20randevu%20almak%20istiyorum."
+                href={`https://wa.me/${contactWhatsapp}?text=Merhaba,%20ücretsiz%20keşif%20görüşmesi%20için%20randevu%20almak%20istiyorum.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--dark)] rounded-full font-semibold hover:bg-[var(--lavender)] transition-all"
