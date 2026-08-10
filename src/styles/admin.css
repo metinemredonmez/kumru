@@ -80,6 +80,18 @@ body {
 .nav a,
 .nav .nav__link { color: rgba(255,255,255,0.72) !important; }
 
+/* Menüde alt çizgi olmasın (aktif/hover dahil) */
+.nav a,
+.nav a:hover,
+.nav a:focus,
+.nav .nav__link,
+.nav .nav__link.active,
+.nav .nav__link--active,
+.nav .nav__link-label {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
 .nav .nav__link {
   border-radius: 8px;
   margin: 1px 12px;

@@ -5,8 +5,7 @@ import { useNav } from "@payloadcms/ui";
 
 /**
  * Geniş ekranlarda sol menüyü Payload'ın kendi durumu üzerinden açık başlatır.
- * CSS ile zorlamak tıklamayı bozduğu için doğru yöntem budur.
- * Header action olarak kayıtlı — görünür bir çıktı üretmez.
+ * Yalnızca ilk yüklemede açar; kullanıcı sonra kapatabilir. Header action.
  */
 export const NavOpener = () => {
   const nav = useNav();
@@ -17,7 +16,6 @@ export const NavOpener = () => {
     if (nav && typeof nav.setNavOpen === "function" && !nav.navOpen) {
       nav.setNavOpen(true);
     }
-    // yalnızca ilk yüklemede aç; kullanıcı sonradan kapatabilsin
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
