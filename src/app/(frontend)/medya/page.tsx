@@ -7,6 +7,13 @@ import Footer from "@/components/layout/Footer";
 import Link from "next/link";
 import { useLanguage } from "@/i18n/LanguageContext";
 
+type InstagramPost = {
+  image?: string;
+  link?: string;
+  title?: string;
+  description?: string;
+};
+
 export default function MediaPage() {
   const { t, language } = useLanguage();
 
@@ -17,7 +24,7 @@ export default function MediaPage() {
       subtitle: t.media.mediaItems.magazine.subtitle,
       date: t.media.mediaItems.magazine.date,
       description: t.media.mediaItems.magazine.description,
-      image: "/magazine-cover.jpg",
+      image: t?.media?.mediaItems?.magazine?.image || "/magazine-cover.jpg",
       link: null,
     },
     {
@@ -26,12 +33,12 @@ export default function MediaPage() {
       subtitle: t.media.mediaItems.award.subtitle,
       date: t.media.mediaItems.award.date,
       description: t.media.mediaItems.award.description,
-      image: "/odul-toreni.jpg",
+      image: t?.media?.mediaItems?.award?.image || "/odul-toreni.jpg",
       link: "https://www.instagram.com/reel/DJq0jUptijh/",
     },
   ];
 
-  const instagramPosts = language === 'tr' ? [
+  const instagramPostsFallback: InstagramPost[] = language === 'tr' ? [
     {
       image: "/instagram/post1.jpg",
       title: "Hayatındaki İlişkiler",
@@ -95,6 +102,11 @@ export default function MediaPage() {
     },
   ];
 
+  const instagramPosts: InstagramPost[] =
+    Array.isArray(t?.media?.instagramPosts) && t.media.instagramPosts.length
+      ? t.media.instagramPosts
+      : instagramPostsFallback;
+
   return (
     <>
       <Header />
@@ -103,7 +115,7 @@ export default function MediaPage() {
         <section className="py-24 relative overflow-hidden">
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/medya-bg.jpg')" }}
+            style={{ backgroundImage: `url('${t?.pageImages?.mediaBg || "/medya-bg.jpg"}')` }}
           />
           <div className="absolute inset-0 bg-black/50" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -368,7 +380,7 @@ export default function MediaPage() {
               {instagramPosts.map((post, index) => (
                 <motion.a
                   key={index}
-                  href="https://www.instagram.com/kumrukoseler/"
+                  href={post.link || "https://www.instagram.com/kumrukoseler/"}
                   target="_blank"
                   rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 20 }}
@@ -378,8 +390,8 @@ export default function MediaPage() {
                   className="group relative aspect-square rounded-xl overflow-hidden"
                 >
                   <img
-                    src={post.image}
-                    alt={post.title}
+                    src={post.image || instagramPostsFallback[index]?.image}
+                    alt={post.title || ""}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">

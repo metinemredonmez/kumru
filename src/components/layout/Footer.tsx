@@ -15,7 +15,7 @@ export default function Footer() {
           <div>
             <div className="mb-6">
               <img
-                src="/logo-white.png"
+                src={t?.siteSettings?.logoWhite || "/logo-white.png"}
                 alt="Kumru Köseler - Grow Bold, Every Day"
                 className="h-20 w-auto"
               />

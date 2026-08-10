@@ -290,6 +290,22 @@ export default buildConfig({
         { name: "hours", type: "text", localized: true, label: "Çalışma Saatleri", defaultValue: "Pazartesi - Cumartesi: 09:00 - 19:00" },
         { name: "instagram", type: "text", label: "Instagram URL", defaultValue: "https://www.instagram.com/kumrukoseler/" },
         { name: "youtube", type: "text", label: "YouTube URL", defaultValue: "https://www.youtube.com/@kumrukoseler9055" },
+        { name: "logo", type: "upload", relationTo: "media", label: "Logo (koyu)" },
+        { name: "logoWhite", type: "upload", relationTo: "media", label: "Logo (beyaz - footer)" },
+        { name: "favicon", type: "upload", relationTo: "media", label: "Favicon" },
+      ],
+    },
+    {
+      slug: "page-images",
+      label: "Sayfa Arka Plan Görselleri",
+      access: { read: () => true },
+      fields: [
+        { name: "servicesBg", type: "upload", relationTo: "media", label: "Hizmetler Arka Plan" },
+        { name: "mediaBg", type: "upload", relationTo: "media", label: "Medya Arka Plan" },
+        { name: "programsBg", type: "upload", relationTo: "media", label: "Programlar Arka Plan" },
+        { name: "resourcesBg", type: "upload", relationTo: "media", label: "Kaynaklar Arka Plan" },
+        { name: "contactBg", type: "upload", relationTo: "media", label: "İletişim Arka Plan" },
+        { name: "novaVeraBg", type: "upload", relationTo: "media", label: "Nova Vera Arka Plan" },
       ],
     },
     {
@@ -297,6 +313,7 @@ export default buildConfig({
       label: "Hakkımda Sayfası",
       access: { read: () => true },
       fields: [
+        { name: "profileImage", type: "upload", relationTo: "media", label: "Profil Fotoğrafı" },
         { name: "subtitle", type: "text", localized: true, label: "Üst Başlık" },
         { name: "title", type: "text", localized: true, label: "Başlık" },
         { name: "name", type: "text", localized: true, label: "İsim" },
@@ -451,6 +468,7 @@ export default buildConfig({
               type: "group",
               label: "Dergi",
               fields: [
+                { name: "image", type: "upload", relationTo: "media", label: "Görsel" },
                 { name: "title", type: "text", localized: true, label: "Başlık" },
                 { name: "subtitle", type: "text", localized: true, label: "Alt Başlık" },
                 { name: "date", type: "text", localized: true, label: "Tarih" },
@@ -462,6 +480,7 @@ export default buildConfig({
               type: "group",
               label: "Ödül",
               fields: [
+                { name: "image", type: "upload", relationTo: "media", label: "Görsel" },
                 { name: "title", type: "text", localized: true, label: "Başlık" },
                 { name: "subtitle", type: "text", localized: true, label: "Alt Başlık" },
                 { name: "date", type: "text", localized: true, label: "Tarih" },
@@ -496,6 +515,15 @@ export default buildConfig({
         { name: "instagramTitle", type: "text", localized: true, label: "Instagram Başlığı" },
         { name: "instagramDescription", type: "textarea", localized: true, label: "Instagram Açıklaması" },
         { name: "followInstagram", type: "text", localized: true, label: "Instagram Takip Buton" },
+        {
+          name: "instagramPosts",
+          type: "array",
+          label: "Instagram Gönderileri",
+          fields: [
+            { name: "image", type: "upload", relationTo: "media", label: "Görsel" },
+            { name: "link", type: "text", label: "Gönderi Linki" },
+          ],
+        },
         { name: "ctaTitle", type: "text", localized: true, label: "CTA Başlık" },
         { name: "ctaDescription", type: "textarea", localized: true, label: "CTA Açıklama" },
         { name: "ctaButton", type: "text", localized: true, label: "CTA Buton" },

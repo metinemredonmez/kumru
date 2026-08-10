@@ -986,6 +986,106 @@ async function main() {
   }
 
   // ---------------------------------------------------------------
+  // 17. Görseller — /public dosyalarını medya kütüphanesine yükle + bağla
+  // ---------------------------------------------------------------
+  {
+    const publicDir = path.resolve(dirname, "../public");
+    const uploadOnce = async (rel: string, alt: string): Promise<number | null> => {
+      const filePath = path.resolve(publicDir, rel);
+      if (!fs.existsSync(filePath)) {
+        console.log(`[media] dosya yok, atlanıyor: ${rel}`);
+        return null;
+      }
+      const base = path.basename(rel);
+      const existing = await payload.find({
+        collection: "media",
+        where: { filename: { equals: base } },
+        limit: 1,
+      });
+      if (existing.docs.length > 0) return existing.docs[0].id as number;
+      const created = await payload.create({
+        collection: "media",
+        filePath,
+        data: { alt } as any,
+      });
+      return created.id as number;
+    };
+
+    // Tüm görselleri yükle
+    const img = {
+      logo: await uploadOnce("logo.png", "Kumru Köseler logo"),
+      logoWhite: await uploadOnce("logo-white.png", "Kumru Köseler logo (beyaz)"),
+      favicon: await uploadOnce("favicon.png", "Favicon"),
+      profile: await uploadOnce("profile.jpg", "Kumru Köseler"),
+      servicesBg: await uploadOnce("hizmetler-bg.jpg", "Hizmetler arka plan"),
+      mediaBg: await uploadOnce("medya-bg.jpg", "Medya arka plan"),
+      programsBg: await uploadOnce("programlar-bg.jpg", "Programlar arka plan"),
+      resourcesBg: await uploadOnce("kaynaklar-bg.jpg", "Kaynaklar arka plan"),
+      contactBg: await uploadOnce("iletisim-bg.jpg", "İletişim arka plan"),
+      magazine: await uploadOnce("magazine-cover.jpg", "Dergi kapağı"),
+      award: await uploadOnce("odul-toreni.jpg", "Ödül töreni"),
+    };
+    const instaIds: (number | null)[] = [];
+    for (let i = 1; i <= 6; i++) {
+      instaIds.push(await uploadOnce(`instagram/post${i}.jpg`, `Instagram gönderi ${i}`));
+    }
+
+    // site-settings — logolar (yalnızca boşsa)
+    const ss: any = await payload.findGlobal({ slug: "site-settings" });
+    if (!ss?.logo && (img.logo || img.logoWhite || img.favicon)) {
+      await payload.updateGlobal({
+        slug: "site-settings",
+        data: { logo: img.logo, logoWhite: img.logoWhite, favicon: img.favicon } as any,
+      });
+      console.log("[site-settings] logolar bağlandı.");
+    }
+
+    // page-images — arka planlar (boşsa)
+    const pi: any = await payload.findGlobal({ slug: "page-images" });
+    if (!pi?.servicesBg) {
+      await payload.updateGlobal({
+        slug: "page-images",
+        data: {
+          servicesBg: img.servicesBg,
+          mediaBg: img.mediaBg,
+          programsBg: img.programsBg,
+          resourcesBg: img.resourcesBg,
+          contactBg: img.contactBg,
+          novaVeraBg: img.resourcesBg,
+        } as any,
+      });
+      console.log("[page-images] arka planlar bağlandı.");
+    }
+    summary["page-images"] = 1;
+
+    // about — profil fotoğrafı (boşsa)
+    const ab: any = await payload.findGlobal({ slug: "about" });
+    if (!ab?.profileImage && img.profile) {
+      await payload.updateGlobal({ slug: "about", data: { profileImage: img.profile } as any });
+      console.log("[about] profil fotoğrafı bağlandı.");
+    }
+
+    // media-content — dergi/ödül görselleri + instagram (boşsa)
+    const mc: any = await payload.findGlobal({ slug: "media-content" });
+    if (!mc?.mediaItems?.magazine?.image) {
+      await payload.updateGlobal({
+        slug: "media-content",
+        data: {
+          mediaItems: {
+            magazine: { image: img.magazine },
+            award: { image: img.award },
+          },
+          instagramPosts: instaIds
+            .filter(Boolean)
+            .map((id) => ({ image: id, link: "https://www.instagram.com/kumrukoseler/" })),
+        } as any,
+      });
+      console.log("[media-content] görseller + instagram bağlandı.");
+    }
+    summary["görseller"] = "yüklendi";
+  }
+
+  // ---------------------------------------------------------------
   // Özet
   // ---------------------------------------------------------------
   console.log("\n========== SEED ÖZETİ ==========");

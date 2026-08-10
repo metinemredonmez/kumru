@@ -19,7 +19,7 @@ export default function NovaVeraPage() {
         <section className="py-28 text-white relative overflow-hidden">
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/kaynaklar-bg.jpg')" }}
+            style={{ backgroundImage: `url('${t?.pageImages?.novaVeraBg || "/kaynaklar-bg.jpg"}')` }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--dark)]/85 via-[var(--dark)]/80 to-[var(--dark)]/90" />
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">

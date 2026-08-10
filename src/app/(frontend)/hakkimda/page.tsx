@@ -83,7 +83,7 @@ export default function AboutPage() {
               >
                 <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
                   <img
-                    src="/profile.jpg"
+                    src={t?.about?.profileImage || "/profile.jpg"}
                     alt="Kumru Köseler"
                     className="w-full h-full object-cover"
                   />

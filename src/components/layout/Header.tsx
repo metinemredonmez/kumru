@@ -70,7 +70,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <img
-              src="/logo.png"
+              src={t?.siteSettings?.logo || "/logo.png"}
               alt="Kumru Köseler"
               className="h-16 lg:h-20 w-auto"
             />

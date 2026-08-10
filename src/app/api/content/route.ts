@@ -18,6 +18,9 @@ const toStringArray = (
   return flattened.length > 0 ? flattened : undefined;
 };
 
+const imgUrl = (v: unknown): string | undefined =>
+  v && typeof v === "object" && "url" in v ? (v as { url?: string }).url : undefined;
+
 export const GET = async (req: Request) => {
   try {
     const { searchParams } = new URL(req.url);
@@ -49,22 +52,24 @@ export const GET = async (req: Request) => {
       resourceItems,
       blogPosts,
       tips,
+      pageImages,
     ] = await Promise.all([
       payload.find({ collection: "spiritual-sessions", ...findOptions }),
       payload.find({ collection: "coaching-services", ...findOptions }),
       payload.find({ collection: "programs", ...findOptions }),
       payload.find({ collection: "faqs", ...findOptions }),
       payload.find({ collection: "events", ...findOptions }),
-      payload.findGlobal({ slug: "site-settings", locale: lang }),
+      payload.findGlobal({ slug: "site-settings", locale: lang, depth: 1 }),
       payload.findGlobal({ slug: "hero", locale: lang }),
       payload.find({ collection: "testimonials", ...findOptions }),
-      payload.findGlobal({ slug: "about", locale: lang }),
+      payload.findGlobal({ slug: "about", locale: lang, depth: 1 }),
       payload.findGlobal({ slug: "nova-vera", locale: lang }),
-      payload.findGlobal({ slug: "media-content", locale: lang }),
+      payload.findGlobal({ slug: "media-content", locale: lang, depth: 1 }),
       payload.find({ collection: "videos", ...findOptions, depth: 1 }),
       payload.find({ collection: "resource-items", ...findOptions }),
       payload.find({ collection: "blog-posts", ...findOptions }),
       payload.find({ collection: "tips", ...findOptions }),
+      payload.findGlobal({ slug: "page-images", locale: lang, depth: 1 }),
     ]);
 
     const data: Record<string, unknown> = {};
@@ -165,8 +170,26 @@ export const GET = async (req: Request) => {
     if (siteSettings?.youtube) siteSettingsOut.youtube = siteSettings.youtube;
     if (siteSettings?.address) siteSettingsOut.address = siteSettings.address;
     if (siteSettings?.hours) siteSettingsOut.hours = siteSettings.hours;
+    const logoUrl = imgUrl(siteSettings?.logo);
+    if (logoUrl) siteSettingsOut.logo = logoUrl;
+    const logoWhiteUrl = imgUrl(siteSettings?.logoWhite);
+    if (logoWhiteUrl) siteSettingsOut.logoWhite = logoWhiteUrl;
+    const faviconUrl = imgUrl(siteSettings?.favicon);
+    if (faviconUrl) siteSettingsOut.favicon = faviconUrl;
     if (Object.keys(siteSettingsOut).length > 0) {
       data.siteSettings = siteSettingsOut;
+    }
+
+    // pageImages (page-images global — sayfa arka plan görselleri)
+    const pageImagesOut: Record<string, unknown> = {};
+    for (const key of [
+      "servicesBg", "mediaBg", "programsBg", "resourcesBg", "contactBg", "novaVeraBg",
+    ] as const) {
+      const url = imgUrl(pageImages?.[key]);
+      if (url) pageImagesOut[key] = url;
+    }
+    if (Object.keys(pageImagesOut).length > 0) {
+      data.pageImages = pageImagesOut;
     }
 
     // hero (hero global)
@@ -205,6 +228,8 @@ export const GET = async (req: Request) => {
 
     // about (about global — t.about.*)
     const aboutOut: Record<string, unknown> = {};
+    const profileImageUrl = imgUrl(about?.profileImage);
+    if (profileImageUrl) aboutOut.profileImage = profileImageUrl;
     if (about?.subtitle) aboutOut.subtitle = about.subtitle;
     if (about?.title) aboutOut.title = about.title;
     if (about?.name) aboutOut.name = about.name;
@@ -333,6 +358,8 @@ export const GET = async (req: Request) => {
         for (const f of ["title", "subtitle", "date", "description"] as const) {
           if (g[f]) itemOut[f] = g[f];
         }
+        const itemImage = imgUrl(g.image);
+        if (itemImage) itemOut.image = itemImage;
         if (Object.keys(itemOut).length > 0) mediaItems[key] = itemOut;
       }
     }
@@ -346,6 +373,16 @@ export const GET = async (req: Request) => {
       mediaOut.awards = mediaContent.awards.map((r) => ({
         title: r?.title, organization: r?.organization, year: r?.year,
       }));
+    }
+    // instagramPosts array → [{image, link}] (sadece görseli olanlar)
+    if (Array.isArray(mediaContent?.instagramPosts)) {
+      const instagramPosts = mediaContent.instagramPosts
+        .map((p) => ({
+          image: imgUrl(p?.image),
+          link: typeof p?.link === "string" ? p.link : undefined,
+        }))
+        .filter((p): p is { image: string; link: string | undefined } => typeof p.image === "string");
+      if (instagramPosts.length > 0) mediaOut.instagramPosts = instagramPosts;
     }
     if (Object.keys(mediaOut).length > 0) {
       data.media = mediaOut;
