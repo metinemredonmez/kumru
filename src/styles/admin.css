@@ -36,8 +36,9 @@ body { --theme-bg: var(--k-bg); background: var(--k-bg); }
 .template-minimal,
 .login {
   background:
-    linear-gradient(135deg, rgba(30,27,75,.74) 0%, rgba(91,46,255,.50) 100%),
-    url("/programlar-bg.jpg") center / cover no-repeat !important;
+    radial-gradient(1100px 560px at 18% 8%, rgba(167,139,250,.45), transparent 60%),
+    radial-gradient(900px 520px at 92% 92%, rgba(91,46,255,.42), transparent 55%),
+    linear-gradient(135deg, #1E1B4B 0%, #3B2A80 52%, #5B2EFF 100%) !important;
   min-height: 100vh;
 }
 .login__form {
