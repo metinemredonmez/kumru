@@ -5,12 +5,9 @@ import {
   Sparkles,
   CalendarDays,
   BookOpen,
-  Newspaper,
-  Lightbulb,
-  Video,
   MessageSquareQuote,
   ImageIcon,
-  ExternalLink,
+  ArrowRight,
   type LucideIcon,
 } from "lucide-react";
 
@@ -22,62 +19,53 @@ export const dynamic = "force-dynamic";
 type HubCard = {
   title: string;
   description: string;
-  collection: string;
+  href: string;
+  collections: string[];
   icon: LucideIcon;
 };
 
 const CARDS: HubCard[] = [
   {
     title: "Hizmetler",
-    description: "Koçluk ve danışmanlık hizmetleri",
-    collection: "coaching-services",
+    description: "Koçluk hizmetleri, programlar ve spiritüel seanslar",
+    href: "/yonetim/icerik/hizmetler",
+    collections: ["coaching-services", "programs", "spiritual-sessions"],
     icon: Sparkles,
   },
   {
-    title: "Etkinlikler",
-    description: "Atölye, seans ve buluşmalar",
-    collection: "events",
+    title: "Etkinlikler & SSS",
+    description: "Atölye ve buluşmalar ile sık sorulan sorular",
+    href: "/yonetim/icerik/etkinlikler",
+    collections: ["events", "faqs"],
     icon: CalendarDays,
   },
   {
-    title: "Kaynaklar",
-    description: "E-kitaplar ve indirilebilir içerikler",
-    collection: "resource-items",
+    title: "Kaynaklar, Blog & İpuçları",
+    description: "E-kitaplar, blog yazıları ve günlük ipuçları",
+    href: "/yonetim/icerik/kaynaklar",
+    collections: ["resource-items", "blog-posts", "tips"],
     icon: BookOpen,
   },
   {
-    title: "Blog",
-    description: "Blog yazıları",
-    collection: "blog-posts",
-    icon: Newspaper,
-  },
-  {
-    title: "İpuçları",
-    description: "Kısa öneriler ve ipuçları",
-    collection: "tips",
-    icon: Lightbulb,
-  },
-  {
-    title: "Videolar",
-    description: "Video içerikleri",
-    collection: "videos",
-    icon: Video,
-  },
-  {
-    title: "Danışan Yorumları",
-    description: "Referanslar ve geri bildirimler",
-    collection: "testimonials",
+    title: "Yorumlar & Videolar",
+    description: "Danışan yorumları ve video içerikleri",
+    href: "/yonetim/icerik/yorumlar",
+    collections: ["testimonials", "videos"],
     icon: MessageSquareQuote,
   },
   {
     title: "Medya",
     description: "Görsel ve dosya kütüphanesi",
-    collection: "media",
+    href: "/yonetim/icerik/medya",
+    collections: ["media"],
     icon: ImageIcon,
   },
 ];
 
-async function safeCount(payload: Awaited<ReturnType<typeof getPayload>>, slug: string) {
+async function safeCount(
+  payload: Awaited<ReturnType<typeof getPayload>>,
+  slug: string
+) {
   try {
     const res = await payload.count({
       collection: slug as never,
@@ -85,39 +73,48 @@ async function safeCount(payload: Awaited<ReturnType<typeof getPayload>>, slug: 
     });
     return res.totalDocs;
   } catch {
-    return null;
+    return 0;
   }
+}
+
+async function totalCount(
+  payload: Awaited<ReturnType<typeof getPayload>>,
+  slugs: string[]
+) {
+  const counts = await Promise.all(slugs.map((s) => safeCount(payload, s)));
+  return counts.reduce((sum, n) => sum + n, 0);
 }
 
 export default async function IcerikHubPage() {
   const payload = await getPayload({ config });
 
   const counts = await Promise.all(
-    CARDS.map((c) => safeCount(payload, c.collection))
+    CARDS.map((c) => totalCount(payload, c.collections))
   );
 
   return (
     <div>
       <PageHeader
         title="İçerik & Medya"
-        subtitle="Site içeriklerini buradan yönetin. Tam düzenleme yakında bu panele taşınacak."
+        subtitle="Site içeriklerini bu panelden düzenleyin."
       />
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {CARDS.map((card, i) => {
           const Icon = card.icon;
           const count = counts[i];
           return (
-            <div
-              key={card.collection}
-              className="flex flex-col rounded-2xl border bg-card p-5 shadow-sm"
+            <Link
+              key={card.href}
+              href={card.href}
+              className="group flex flex-col rounded-2xl border bg-card p-5 shadow-sm transition-colors hover:border-primary/40 hover:bg-accent/40"
             >
               <div className="flex items-start justify-between gap-3">
                 <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                   <Icon className="size-[18px]" />
                 </span>
                 <span className="text-2xl font-bold tabular-nums text-foreground">
-                  {count === null ? "—" : formatNumber(count)}
+                  {formatNumber(count)}
                 </span>
               </div>
 
@@ -129,20 +126,15 @@ export default async function IcerikHubPage() {
               </p>
 
               <div className="mt-4 flex items-center justify-between border-t pt-3">
-                <span className="rounded-full bg-amber/15 px-2.5 py-0.5 text-xs font-semibold text-amber">
-                  Çok yakında tam düzenleme
+                <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                  {formatNumber(count)} kayıt
                 </span>
-                <Link
-                  href={`/admin/collections/${card.collection}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
-                >
-                  Payload
-                  <ExternalLink className="size-3.5" />
-                </Link>
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary">
+                  Düzenle
+                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+                </span>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
