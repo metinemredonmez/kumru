@@ -5,7 +5,7 @@ import {
   Flower2,
   Newspaper,
   Images,
-  ExternalLink,
+  ArrowRight,
   type LucideIcon,
 } from "lucide-react";
 
@@ -16,7 +16,7 @@ export const dynamic = "force-dynamic";
 type PageCard = {
   title: string;
   description: string;
-  global: string;
+  href: string;
   icon: LucideIcon;
 };
 
@@ -24,31 +24,31 @@ const CARDS: PageCard[] = [
   {
     title: "Hero",
     description: "Ana sayfa üst bölüm başlık ve görselleri",
-    global: "hero",
+    href: "/yonetim/sayfalar/hero",
     icon: LayoutTemplate,
   },
   {
     title: "Hakkımda",
     description: "Hakkımda sayfası metinleri",
-    global: "about",
+    href: "/yonetim/sayfalar/hakkimda",
     icon: UserRound,
   },
   {
     title: "Nova Vera",
     description: "Nova Vera tanıtım içeriği",
-    global: "nova-vera",
+    href: "/yonetim/sayfalar/nova-vera",
     icon: Flower2,
   },
   {
     title: "Medya Sayfası",
     description: "Medya sayfası metin ve düzeni",
-    global: "media-content",
+    href: "/yonetim/sayfalar/medya",
     icon: Newspaper,
   },
   {
     title: "Sayfa Görselleri",
     description: "Sayfalarda kullanılan görseller",
-    global: "page-images",
+    href: "/yonetim/sayfalar/gorseller",
     icon: Images,
   },
 ];
@@ -58,16 +58,17 @@ export default function SayfalarHubPage() {
     <div>
       <PageHeader
         title="Sayfa İçerikleri"
-        subtitle="Sabit sayfaların metin ve görsellerini yönetin. Tam düzenleme yakında bu panele taşınacak."
+        subtitle="Sabit sayfaların metin ve görsellerini buradan düzenleyin."
       />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {CARDS.map((card) => {
           const Icon = card.icon;
           return (
-            <div
-              key={card.global}
-              className="flex flex-col rounded-2xl border bg-card p-5 shadow-sm"
+            <Link
+              key={card.href}
+              href={card.href}
+              className="group flex flex-col rounded-2xl border bg-card p-5 shadow-sm transition-colors hover:border-primary/40 hover:bg-accent/40"
             >
               <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                 <Icon className="size-[18px]" />
@@ -80,21 +81,13 @@ export default function SayfalarHubPage() {
                 {card.description}
               </p>
 
-              <div className="mt-4 flex items-center justify-between border-t pt-3">
-                <span className="rounded-full bg-amber/15 px-2.5 py-0.5 text-xs font-semibold text-amber">
-                  Çok yakında
+              <div className="mt-4 flex items-center justify-end border-t pt-3">
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary">
+                  Düzenle
+                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
                 </span>
-                <Link
-                  href={`/admin/globals/${card.global}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
-                >
-                  Payload
-                  <ExternalLink className="size-3.5" />
-                </Link>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
