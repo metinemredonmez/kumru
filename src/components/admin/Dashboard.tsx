@@ -47,9 +47,8 @@ export const Dashboard = async () => {
   return (
     <div className="kumru-dash">
       <header className="kumru-dash__head">
-        <p className="kumru-dash__greeting">Hoş geldiniz, Kumru Hanım</p>
-        <h1 className="kumru-dash__title">Panel</h1>
-        <p className="kumru-dash__date">{dateStr}</p>
+        <h1 className="kumru-dash__title">Merhaba, Kumru Hanım 👋</h1>
+        <p className="kumru-dash__date">{dateStr} · İşte panelinin özeti.</p>
       </header>
 
       <section className="kumru-dash__stats">
