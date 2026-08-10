@@ -43,7 +43,7 @@ export default function Header() {
       <div className="bg-[var(--dark)] text-white py-1">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end items-center gap-2">
           <Link
-            href={member ? "/programlarim" : "/giris"}
+            href={member ? "/panel" : "/giris"}
             className="flex items-center gap-1.5 px-3 py-1 text-sm hover:text-[var(--amber)] transition-colors border-r border-white/20"
           >
             <User size={14} />
@@ -198,7 +198,7 @@ export default function Header() {
               ))}
 
               <Link
-                href={member ? "/programlarim" : "/giris"}
+                href={member ? "/panel" : "/giris"}
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-2 text-[var(--indigo)] font-semibold py-2 px-2 mt-2"
               >

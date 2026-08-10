@@ -45,7 +45,7 @@ function AuthForm() {
   const { login, register } = useMember();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const next = searchParams.get("next") || "/programlarim";
+  const next = searchParams.get("next") || "/panel";
   const c = COPY[language === "en" ? "en" : "tr"];
 
   const [mode, setMode] = useState<"login" | "register">("login");

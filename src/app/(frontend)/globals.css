@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 :root {
   /* Mor/Indigo Renk Paleti - Kumru Yaşam Koçu */
@@ -31,6 +32,34 @@
   /* Theme */
   --background: var(--snow);
   --foreground: var(--text-dark);
+
+  /* shadcn/ui token'ları (üye paneli /panel için) — Kumru markasına göre */
+  --card: #ffffff;
+  --card-foreground: #1B1836;
+  --popover: #ffffff;
+  --popover-foreground: #1B1836;
+  --primary: #5B2EFF;
+  --primary-foreground: #ffffff;
+  --secondary: #F2F0F8;
+  --secondary-foreground: #1B1836;
+  --muted: #F2F0F8;
+  --muted-foreground: #6A6590;
+  --accent: #EEEAFE;
+  --accent-foreground: #5B2EFF;
+  --destructive: #F43F5E;
+  --destructive-foreground: #ffffff;
+  --border: #EBE8F4;
+  --input: #EBE8F4;
+  --ring: #5B2EFF;
+  --sidebar: #F7F6FC;
+  --sidebar-foreground: #3B3760;
+  --sidebar-primary: #5B2EFF;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #EEEAFE;
+  --sidebar-accent-foreground: #5B2EFF;
+  --sidebar-border: #EBE8F4;
+  --sidebar-ring: #5B2EFF;
+  --radius: 0.75rem;
 }
 
 @theme inline {
@@ -55,6 +84,38 @@
   --font-sans: var(--font-plus-jakarta);
   --font-heading: var(--font-plus-jakarta);
   --font-accent: var(--font-caveat);
+
+  /* shadcn/ui renk eşlemeleri */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -150,3 +211,16 @@ html {
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
+
+/* ===================== ÜYE PANELİ (/panel) — shadcn/ui scope ===================== */
+/* Panel her zaman açık tema; shadcn bileşenlerinin bare `border`'ı token rengini alsın. */
+.panel {
+  --background: #ffffff;
+  --foreground: #1B1836;
+  background: var(--sidebar);
+  color: var(--foreground);
+}
+.panel *, .panel *::before, .panel *::after {
+  border-color: var(--border);
+}
+.panel ::selection { background-color: var(--accent); color: var(--primary); }
