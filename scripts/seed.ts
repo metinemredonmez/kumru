@@ -633,6 +633,121 @@ async function main() {
   }
 
   // ---------------------------------------------------------------
+  // 11. about global
+  // ---------------------------------------------------------------
+  {
+    const slug = "about" as const;
+    const existing = (await payload.findGlobal({ slug, locale: "tr" })) as any;
+    if (existing?.storyTitle) {
+      console.log(`[${slug}] storyTitle dolu, atlanıyor.`);
+      summary[slug] = "atlandı (mevcut)";
+    } else {
+      // Belirli bir dilin about içeriğini CMS alanlarına eşler.
+      // values: grup obje olarak; certifications/timeline: dizi olarak; spiritualApproaches: array-of-{item}.
+      const buildAbout = (src: any) => ({
+        subtitle: src.subtitle,
+        title: src.title,
+        name: src.name,
+        heroDescription: src.heroDescription,
+        heroDescription2: src.heroDescription2,
+        appointment: src.appointment,
+        mediaButton: src.mediaButton,
+        storyTitle: src.storyTitle,
+        story1: src.story1,
+        story2: src.story2,
+        story3: src.story3,
+        story4: src.story4,
+        valuesTitle: src.valuesTitle,
+        valuesDescription: src.valuesDescription,
+        values: src.values,
+        certificationsTitle: src.certificationsTitle,
+        certifications: src.certifications,
+        journeyTitle: src.journeyTitle,
+        timeline: src.timeline,
+        spiritualTitle: src.spiritualTitle,
+        spiritual1: src.spiritual1,
+        spiritual2: src.spiritual2,
+        spiritual3: src.spiritual3,
+        spiritualApproaches: (src.spiritualApproaches as string[]).map((s) => ({ item: s })),
+        ctaTitle: src.ctaTitle,
+        ctaDescription: src.ctaDescription,
+        ctaButton: src.ctaButton,
+      });
+      await payload.updateGlobal({
+        slug,
+        locale: "tr",
+        data: buildAbout(tr.about) as any,
+      });
+      await payload.updateGlobal({
+        slug,
+        locale: "en",
+        data: buildAbout(en.about) as any,
+      });
+      console.log(`[${slug}] güncellendi.`);
+      summary[slug] = 1;
+    }
+  }
+
+  // ---------------------------------------------------------------
+  // 12. nova-vera global
+  // ---------------------------------------------------------------
+  {
+    const slug = "nova-vera" as const;
+    const existing = (await payload.findGlobal({ slug, locale: "tr" })) as any;
+    if (existing?.brand) {
+      console.log(`[${slug}] brand dolu, atlanıyor.`);
+      summary[slug] = "atlandı (mevcut)";
+    } else {
+      // Belirli bir dilin novaVera içeriğini CMS alanlarına eşler.
+      // intro/what/journey/notSession/firstStep → array-of-{text}; includes/outcomes/who → array-of-{item}.
+      const buildNovaVera = (src: any) => ({
+        brand: src.brand,
+        tagline: src.tagline,
+        intro: (src.intro as string[]).map((text) => ({ text })),
+        introQuestion: src.introQuestion,
+        introAnswer: src.introAnswer,
+        whatTitle: src.whatTitle,
+        what: (src.what as string[]).map((text) => ({ text })),
+        whatQuestion: src.whatQuestion,
+        journeyTitle: src.journeyTitle,
+        journey: (src.journey as string[]).map((text) => ({ text })),
+        journeyHighlight: src.journeyHighlight,
+        includesTitle: src.includesTitle,
+        includesIntro: src.includesIntro,
+        includes: (src.includes as string[]).map((item) => ({ item })),
+        includesNote: src.includesNote,
+        outcomesTitle: src.outcomesTitle,
+        outcomes: (src.outcomes as string[]).map((item) => ({ item })),
+        outcomesFinal: src.outcomesFinal,
+        outcomesNote: src.outcomesNote,
+        notSessionTitle: src.notSessionTitle,
+        notSession: (src.notSession as string[]).map((text) => ({ text })),
+        whoTitle: src.whoTitle,
+        whoIntro: src.whoIntro,
+        who: (src.who as string[]).map((item) => ({ item })),
+        whoOutro: src.whoOutro,
+        whoNote: src.whoNote,
+        firstStepTitle: src.firstStepTitle,
+        firstStep: (src.firstStep as string[]).map((text) => ({ text })),
+        quote: src.quote,
+        ctaButton: src.ctaButton,
+      });
+      await payload.updateGlobal({
+        slug,
+        locale: "tr",
+        data: buildNovaVera(tr.novaVera) as any,
+      });
+      await payload.updateGlobal({
+        slug,
+        locale: "en",
+        data: buildNovaVera(en.novaVera) as any,
+      });
+      console.log(`[${slug}] güncellendi.`);
+      summary[slug] = 1;
+    }
+  }
+
+  // ---------------------------------------------------------------
   // Özet
   // ---------------------------------------------------------------
   console.log("\n========== SEED ÖZETİ ==========");

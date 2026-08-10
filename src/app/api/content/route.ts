@@ -42,6 +42,8 @@ export const GET = async (req: Request) => {
       siteSettings,
       hero,
       testimonials,
+      about,
+      novaVera,
     ] = await Promise.all([
       payload.find({ collection: "spiritual-sessions", ...findOptions }),
       payload.find({ collection: "coaching-services", ...findOptions }),
@@ -51,6 +53,8 @@ export const GET = async (req: Request) => {
       payload.findGlobal({ slug: "site-settings", locale: lang }),
       payload.findGlobal({ slug: "hero", locale: lang }),
       payload.find({ collection: "testimonials", ...findOptions }),
+      payload.findGlobal({ slug: "about", locale: lang }),
+      payload.findGlobal({ slug: "nova-vera", locale: lang }),
     ]);
 
     const data: Record<string, unknown> = {};
@@ -187,6 +191,118 @@ export const GET = async (req: Request) => {
           rating: doc.rating,
         })),
       };
+    }
+
+    // about (about global — t.about.*)
+    const aboutOut: Record<string, unknown> = {};
+    if (about?.subtitle) aboutOut.subtitle = about.subtitle;
+    if (about?.title) aboutOut.title = about.title;
+    if (about?.name) aboutOut.name = about.name;
+    if (about?.heroDescription) aboutOut.heroDescription = about.heroDescription;
+    if (about?.heroDescription2) aboutOut.heroDescription2 = about.heroDescription2;
+    if (about?.appointment) aboutOut.appointment = about.appointment;
+    if (about?.mediaButton) aboutOut.mediaButton = about.mediaButton;
+    if (about?.storyTitle) aboutOut.storyTitle = about.storyTitle;
+    if (about?.story1) aboutOut.story1 = about.story1;
+    if (about?.story2) aboutOut.story2 = about.story2;
+    if (about?.story3) aboutOut.story3 = about.story3;
+    if (about?.story4) aboutOut.story4 = about.story4;
+    if (about?.valuesTitle) aboutOut.valuesTitle = about.valuesTitle;
+    if (about?.valuesDescription) aboutOut.valuesDescription = about.valuesDescription;
+    if (about?.certificationsTitle) aboutOut.certificationsTitle = about.certificationsTitle;
+    if (about?.journeyTitle) aboutOut.journeyTitle = about.journeyTitle;
+    if (about?.spiritualTitle) aboutOut.spiritualTitle = about.spiritualTitle;
+    if (about?.spiritual1) aboutOut.spiritual1 = about.spiritual1;
+    if (about?.spiritual2) aboutOut.spiritual2 = about.spiritual2;
+    if (about?.spiritual3) aboutOut.spiritual3 = about.spiritual3;
+    if (about?.ctaTitle) aboutOut.ctaTitle = about.ctaTitle;
+    if (about?.ctaDescription) aboutOut.ctaDescription = about.ctaDescription;
+    if (about?.ctaButton) aboutOut.ctaButton = about.ctaButton;
+
+    // about.values — group → object (dizi değil): { empathy: {title, description}, ... }
+    const aboutValues: Record<string, unknown> = {};
+    for (const key of ["empathy", "honesty", "transformation", "excellence"] as const) {
+      const group = about?.values?.[key];
+      if (group && typeof group === "object") {
+        const valueOut: Record<string, unknown> = {};
+        if (group.title) valueOut.title = group.title;
+        if (group.description) valueOut.description = group.description;
+        if (Object.keys(valueOut).length > 0) aboutValues[key] = valueOut;
+      }
+    }
+    if (Object.keys(aboutValues).length > 0) aboutOut.values = aboutValues;
+
+    // about.certifications — array → [{title, organization, year}]
+    if (Array.isArray(about?.certifications) && about.certifications.length > 0) {
+      aboutOut.certifications = about.certifications.map((row) => ({
+        title: row?.title,
+        organization: row?.organization,
+        year: row?.year,
+      }));
+    }
+
+    // about.timeline — array → [{year, title, description}]
+    if (Array.isArray(about?.timeline) && about.timeline.length > 0) {
+      aboutOut.timeline = about.timeline.map((row) => ({
+        year: row?.year,
+        title: row?.title,
+        description: row?.description,
+      }));
+    }
+
+    // about.spiritualApproaches — array-of-{item} → string[]
+    const spiritualApproaches = toStringArray(about?.spiritualApproaches, "item");
+    if (spiritualApproaches) aboutOut.spiritualApproaches = spiritualApproaches;
+
+    if (Object.keys(aboutOut).length > 0) {
+      data.about = aboutOut;
+    }
+
+    // novaVera (nova-vera global — t.novaVera.*)
+    const novaVeraOut: Record<string, unknown> = {};
+    if (novaVera?.brand) novaVeraOut.brand = novaVera.brand;
+    if (novaVera?.tagline) novaVeraOut.tagline = novaVera.tagline;
+    if (novaVera?.introQuestion) novaVeraOut.introQuestion = novaVera.introQuestion;
+    if (novaVera?.introAnswer) novaVeraOut.introAnswer = novaVera.introAnswer;
+    if (novaVera?.whatTitle) novaVeraOut.whatTitle = novaVera.whatTitle;
+    if (novaVera?.whatQuestion) novaVeraOut.whatQuestion = novaVera.whatQuestion;
+    if (novaVera?.journeyTitle) novaVeraOut.journeyTitle = novaVera.journeyTitle;
+    if (novaVera?.journeyHighlight) novaVeraOut.journeyHighlight = novaVera.journeyHighlight;
+    if (novaVera?.includesTitle) novaVeraOut.includesTitle = novaVera.includesTitle;
+    if (novaVera?.includesIntro) novaVeraOut.includesIntro = novaVera.includesIntro;
+    if (novaVera?.includesNote) novaVeraOut.includesNote = novaVera.includesNote;
+    if (novaVera?.outcomesTitle) novaVeraOut.outcomesTitle = novaVera.outcomesTitle;
+    if (novaVera?.outcomesFinal) novaVeraOut.outcomesFinal = novaVera.outcomesFinal;
+    if (novaVera?.outcomesNote) novaVeraOut.outcomesNote = novaVera.outcomesNote;
+    if (novaVera?.notSessionTitle) novaVeraOut.notSessionTitle = novaVera.notSessionTitle;
+    if (novaVera?.whoTitle) novaVeraOut.whoTitle = novaVera.whoTitle;
+    if (novaVera?.whoIntro) novaVeraOut.whoIntro = novaVera.whoIntro;
+    if (novaVera?.whoOutro) novaVeraOut.whoOutro = novaVera.whoOutro;
+    if (novaVera?.whoNote) novaVeraOut.whoNote = novaVera.whoNote;
+    if (novaVera?.firstStepTitle) novaVeraOut.firstStepTitle = novaVera.firstStepTitle;
+    if (novaVera?.quote) novaVeraOut.quote = novaVera.quote;
+    if (novaVera?.ctaButton) novaVeraOut.ctaButton = novaVera.ctaButton;
+
+    // novaVera string[] alanları (array-of-obje → string[])
+    const novaVeraIntro = toStringArray(novaVera?.intro, "text");
+    if (novaVeraIntro) novaVeraOut.intro = novaVeraIntro;
+    const novaVeraWhat = toStringArray(novaVera?.what, "text");
+    if (novaVeraWhat) novaVeraOut.what = novaVeraWhat;
+    const novaVeraJourney = toStringArray(novaVera?.journey, "text");
+    if (novaVeraJourney) novaVeraOut.journey = novaVeraJourney;
+    const novaVeraNotSession = toStringArray(novaVera?.notSession, "text");
+    if (novaVeraNotSession) novaVeraOut.notSession = novaVeraNotSession;
+    const novaVeraFirstStep = toStringArray(novaVera?.firstStep, "text");
+    if (novaVeraFirstStep) novaVeraOut.firstStep = novaVeraFirstStep;
+    const novaVeraIncludes = toStringArray(novaVera?.includes, "item");
+    if (novaVeraIncludes) novaVeraOut.includes = novaVeraIncludes;
+    const novaVeraOutcomes = toStringArray(novaVera?.outcomes, "item");
+    if (novaVeraOutcomes) novaVeraOut.outcomes = novaVeraOutcomes;
+    const novaVeraWho = toStringArray(novaVera?.who, "item");
+    if (novaVeraWho) novaVeraOut.who = novaVeraWho;
+
+    if (Object.keys(novaVeraOut).length > 0) {
+      data.novaVera = novaVeraOut;
     }
 
     return Response.json(data, { headers: CACHE_HEADERS });
