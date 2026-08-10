@@ -38,15 +38,16 @@ export const Dashboard = async () => {
   }).format(new Date());
 
   const stats = [
-    { label: "Yeni Mesaj", value: messages, href: "/admin/collections/contact-messages" },
-    { label: "Spiritüel Seans", value: sessions, href: "/admin/collections/spiritual-sessions" },
-    { label: "Etkinlik", value: events, href: "/admin/collections/events" },
-    { label: "Video", value: videos, href: "/admin/collections/videos" },
+    { label: "Yeni Mesaj", value: messages, href: "/admin/collections/contact-messages", icon: "✉" },
+    { label: "Spiritüel Seans", value: sessions, href: "/admin/collections/spiritual-sessions", icon: "✦" },
+    { label: "Etkinlik", value: events, href: "/admin/collections/events", icon: "❑" },
+    { label: "Video", value: videos, href: "/admin/collections/videos", icon: "▷" },
   ];
 
   return (
     <div className="kumru-dash">
       <header className="kumru-dash__head">
+        <p className="kumru-dash__greeting">Hoş geldiniz, Kumru Hanım</p>
         <h1 className="kumru-dash__title">Panel</h1>
         <p className="kumru-dash__date">{dateStr}</p>
       </header>
@@ -54,6 +55,7 @@ export const Dashboard = async () => {
       <section className="kumru-dash__stats">
         {stats.map((s) => (
           <Link key={s.label} href={s.href} className="kumru-stat">
+            <span className="kumru-stat__icon">{s.icon}</span>
             <span className="kumru-stat__label">{s.label}</span>
             <span className="kumru-stat__value">{s.value}</span>
           </Link>

@@ -125,6 +125,16 @@ body {
 .nav__wrap svg { color: rgba(255,255,255,0.55) !important; }
 .nav .btn svg { color: rgba(255,255,255,0.7) !important; }
 
+/* Geniş ekranda menü hep açık — kapatma butonunu gizle (yalnızca butonu,
+   düzene/tıklamaya dokunmaz) */
+@media (min-width: 768px) {
+  .template-default__nav-toggler,
+  .nav__header .nav-toggler,
+  .app-header__mobile-nav-toggler {
+    display: none !important;
+  }
+}
+
 
 /* ===================== ÜST BAR ===================== */
 .app-header,
@@ -134,31 +144,45 @@ body {
 .kumru-viewsite {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--k-dark) !important;
+  gap: 7px;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: #fff !important;
   font-weight: 600;
-  padding: 8px 16px;
-  border: 1px solid var(--k-soft);
-  border-radius: 9999px;
-  transition: all 0.15s ease;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--k-indigo) 0%, var(--k-purple) 100%);
+  box-shadow: 0 2px 8px rgba(91,46,255,0.22);
+  text-decoration: none !important;
+  transition: filter 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 .kumru-viewsite:hover {
-  background: var(--k-soft);
-  color: var(--k-indigo) !important;
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(91,46,255,0.30);
+  color: #fff !important;
 }
+.kumru-viewsite svg { flex-shrink: 0; }
 
 /* ===================== ÖZEL DASHBOARD (Panel) ===================== */
 .kumru-dash {
   padding: 40px 48px;
   max-width: 1200px;
 }
-.kumru-dash__head { margin-bottom: 32px; }
+.kumru-dash__head { margin-bottom: 36px; }
+.kumru-dash__greeting {
+  color: var(--k-indigo);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
 .kumru-dash__title {
   font-family: var(--k-serif);
-  font-size: 44px;
+  font-size: 48px;
   font-weight: 600;
   color: var(--k-dark);
   margin: 0;
@@ -167,7 +191,7 @@ body {
 .kumru-dash__date {
   color: #8B87A8;
   font-size: 14px;
-  margin-top: 8px;
+  margin-top: 10px;
   text-transform: capitalize;
 }
 
@@ -183,20 +207,37 @@ body {
   .kumru-dash { padding: 28px 20px; }
 }
 .kumru-stat {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
   background: #fff;
   border: 1px solid #EFEAF7;
   border-radius: 16px;
-  padding: 24px 26px;
+  padding: 26px 26px 24px;
   text-decoration: none;
-  transition: all 0.18s ease;
+  overflow: hidden;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+.kumru-stat::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--k-indigo), var(--k-purple));
+  opacity: 0;
+  transition: opacity 0.18s ease;
 }
 .kumru-stat:hover {
   border-color: var(--k-lavender);
-  box-shadow: 0 10px 30px rgba(91,46,255,0.10);
-  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(91,46,255,0.12);
+  transform: translateY(-3px);
+}
+.kumru-stat:hover::before { opacity: 1; }
+.kumru-stat__icon {
+  font-size: 18px;
+  color: var(--k-indigo);
+  opacity: 0.9;
 }
 .kumru-stat__label {
   font-size: 11px;
@@ -207,7 +248,7 @@ body {
 }
 .kumru-stat__value {
   font-family: var(--k-serif);
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 600;
   color: var(--k-dark);
   line-height: 1;
