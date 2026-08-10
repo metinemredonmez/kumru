@@ -748,6 +748,54 @@ async function main() {
   }
 
   // ---------------------------------------------------------------
+  // 13. media-content global
+  // ---------------------------------------------------------------
+  {
+    const slug = "media-content" as const;
+    const existing: any = await payload.findGlobal({ slug, locale: "tr" });
+    if (existing?.title) {
+      console.log(`[${slug}] dolu, atlanıyor.`);
+      summary[slug] = "atlandı (mevcut)";
+    } else {
+      const buildMedia = (src: any) => ({
+        subtitle: src.subtitle,
+        title: src.title,
+        titleHighlight: src.titleHighlight,
+        description: src.description,
+        featuredTitle: src.featuredTitle,
+        mediaItems: {
+          magazine: {
+            title: src.mediaItems?.magazine?.title,
+            subtitle: src.mediaItems?.magazine?.subtitle,
+            date: src.mediaItems?.magazine?.date,
+            description: src.mediaItems?.magazine?.description,
+          },
+          award: {
+            title: src.mediaItems?.award?.title,
+            subtitle: src.mediaItems?.award?.subtitle,
+            date: src.mediaItems?.award?.date,
+            description: src.mediaItems?.award?.description,
+          },
+        },
+        quotesTitle: src.quotesTitle,
+        quotes: (src.quotes ?? []).map((q: any) => ({ quote: q.quote, source: q.source })),
+        awardsTitle: src.awardsTitle,
+        awards: (src.awards ?? []).map((a: any) => ({ title: a.title, organization: a.organization, year: a.year })),
+        instagramTitle: src.instagramTitle,
+        instagramDescription: src.instagramDescription,
+        followInstagram: src.followInstagram,
+        ctaTitle: src.ctaTitle,
+        ctaDescription: src.ctaDescription,
+        ctaButton: src.ctaButton,
+      });
+      await payload.updateGlobal({ slug, locale: "tr", data: buildMedia(tr.media) as any });
+      await payload.updateGlobal({ slug, locale: "en", data: buildMedia(en.media) as any });
+      console.log(`[${slug}] güncellendi.`);
+      summary[slug] = 1;
+    }
+  }
+
+  // ---------------------------------------------------------------
   // Özet
   // ---------------------------------------------------------------
   console.log("\n========== SEED ÖZETİ ==========");

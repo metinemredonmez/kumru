@@ -44,6 +44,8 @@ export const GET = async (req: Request) => {
       testimonials,
       about,
       novaVera,
+      mediaContent,
+      videos,
     ] = await Promise.all([
       payload.find({ collection: "spiritual-sessions", ...findOptions }),
       payload.find({ collection: "coaching-services", ...findOptions }),
@@ -55,6 +57,8 @@ export const GET = async (req: Request) => {
       payload.find({ collection: "testimonials", ...findOptions }),
       payload.findGlobal({ slug: "about", locale: lang }),
       payload.findGlobal({ slug: "nova-vera", locale: lang }),
+      payload.findGlobal({ slug: "media-content", locale: lang }),
+      payload.find({ collection: "videos", ...findOptions, depth: 1 }),
     ]);
 
     const data: Record<string, unknown> = {};
@@ -303,6 +307,61 @@ export const GET = async (req: Request) => {
 
     if (Object.keys(novaVeraOut).length > 0) {
       data.novaVera = novaVeraOut;
+    }
+
+    // media (media-content global — t.media.*)
+    const mediaOut: Record<string, unknown> = {};
+    for (const k of [
+      "subtitle", "title", "titleHighlight", "description", "featuredTitle",
+      "quotesTitle", "awardsTitle", "instagramTitle", "instagramDescription",
+      "followInstagram", "ctaTitle", "ctaDescription", "ctaButton",
+    ] as const) {
+      if (mediaContent?.[k]) mediaOut[k] = mediaContent[k];
+    }
+    // mediaItems group → object { magazine: {...}, award: {...} }
+    const mediaItems: Record<string, unknown> = {};
+    for (const key of ["magazine", "award"] as const) {
+      const g = mediaContent?.mediaItems?.[key];
+      if (g && typeof g === "object") {
+        const itemOut: Record<string, unknown> = {};
+        for (const f of ["title", "subtitle", "date", "description"] as const) {
+          if (g[f]) itemOut[f] = g[f];
+        }
+        if (Object.keys(itemOut).length > 0) mediaItems[key] = itemOut;
+      }
+    }
+    if (Object.keys(mediaItems).length > 0) mediaOut.mediaItems = mediaItems;
+    // quotes array
+    if (Array.isArray(mediaContent?.quotes) && mediaContent.quotes.length > 0) {
+      mediaOut.quotes = mediaContent.quotes.map((r) => ({ quote: r?.quote, source: r?.source }));
+    }
+    // awards array
+    if (Array.isArray(mediaContent?.awards) && mediaContent.awards.length > 0) {
+      mediaOut.awards = mediaContent.awards.map((r) => ({
+        title: r?.title, organization: r?.organization, year: r?.year,
+      }));
+    }
+    if (Object.keys(mediaOut).length > 0) {
+      data.media = mediaOut;
+    }
+
+    // videos (videos koleksiyonu — t.videos)
+    if (videos.docs.length > 0) {
+      const videoList = videos.docs
+        .filter((doc) => doc.published !== false)
+        .map((doc) => {
+          const file = doc.videoFile as { url?: string } | undefined;
+          const thumb = doc.thumbnail as { url?: string } | undefined;
+          return {
+            title: doc.title,
+            description: doc.description,
+            source: doc.source,
+            youtubeUrl: doc.youtubeUrl,
+            fileUrl: file && typeof file === "object" ? file.url : undefined,
+            thumbnail: thumb && typeof thumb === "object" ? thumb.url : undefined,
+          };
+        });
+      if (videoList.length > 0) data.videos = videoList;
     }
 
     return Response.json(data, { headers: CACHE_HEADERS });

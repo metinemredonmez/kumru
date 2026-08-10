@@ -284,6 +284,68 @@ export default function MediaPage() {
           </div>
         </section>
 
+        {/* Videos (CMS) */}
+        {Array.isArray(t.videos) && t.videos.length > 0 && (
+          <section className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-center mb-12"
+              >
+                <h2 className="text-3xl font-bold text-[var(--dark)] mb-4">
+                  {language === "en" ? "Videos" : "Videolar"}
+                </h2>
+              </motion.div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {t.videos.map(
+                  (
+                    v: { title?: string; description?: string; source?: string; youtubeUrl?: string; fileUrl?: string; thumbnail?: string },
+                    i: number,
+                  ) => {
+                    const ytId =
+                      v.source === "youtube" && v.youtubeUrl
+                        ? (v.youtubeUrl.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{11})/)?.[1] ?? null)
+                        : null;
+                    return (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
+                        className="bg-[var(--soft)] rounded-2xl overflow-hidden"
+                      >
+                        <div className="aspect-video bg-black">
+                          {ytId ? (
+                            <iframe
+                              className="w-full h-full"
+                              src={`https://www.youtube.com/embed/${ytId}`}
+                              title={v.title || "Video"}
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          ) : v.fileUrl ? (
+                            <video className="w-full h-full" src={v.fileUrl} controls poster={v.thumbnail || undefined} />
+                          ) : null}
+                        </div>
+                        {(v.title || v.description) && (
+                          <div className="p-5">
+                            {v.title && <h3 className="font-semibold text-[var(--dark)] mb-1">{v.title}</h3>}
+                            {v.description && <p className="text-sm text-[var(--text-muted)]">{v.description}</p>}
+                          </div>
+                        )}
+                      </motion.div>
+                    );
+                  },
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Instagram Posts */}
         <section className="py-20 bg-[var(--soft)]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
