@@ -90,14 +90,10 @@ function SidebarInner({
       {/* Logo */}
       <div className="flex items-center gap-2.5 px-5 h-16 border-b border-sidebar-border">
         <Link href="/yonetim" className="flex items-center gap-2.5">
-          <span className="grid place-items-center size-8 rounded-lg bg-primary text-primary-foreground font-bold">
-            K
-          </span>
-          <span className="font-bold text-sidebar-foreground tracking-tight">
-            Kumru<span className="text-primary">.</span>
-            <span className="ml-1 text-xs font-medium text-muted-foreground">
-              Yönetim
-            </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="Kumru Köseler" className="h-8 w-auto" />
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground rounded bg-muted px-1.5 py-0.5">
+            Yönetim
           </span>
         </Link>
       </div>

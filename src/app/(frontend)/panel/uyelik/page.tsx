@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { Check, Sparkles, Crown, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import UpgradeButton from "@/components/uyelik/UpgradeButton";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useMember } from "@/i18n/MemberContext";
 
@@ -16,7 +17,6 @@ interface Plan {
 
 const RANK: Record<string, number> = { free: 0, premium: 1, vip: 2 };
 const TIER_ICON = { free: Star, premium: Sparkles, vip: Crown };
-const WHATSAPP = "905343675669";
 
 export default function PanelMembershipPage() {
   const { language } = useLanguage();
@@ -82,11 +82,11 @@ export default function PanelMembershipPage() {
                   {isCurrent ? (
                     <Badge variant="soft" className="justify-center py-2">✓ {t.current}</Badge>
                   ) : canUpgrade ? (
-                    <Button asChild className="w-full">
-                      <a href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.wa)}`} target="_blank" rel="noopener noreferrer">
-                        {t.upgrade}
-                      </a>
-                    </Button>
+                    <UpgradeButton
+                      tier={plan.tier}
+                      label={t.upgrade}
+                      className={cn(buttonVariants(), "w-full")}
+                    />
                   ) : (
                     <div className="h-10" />
                   )}

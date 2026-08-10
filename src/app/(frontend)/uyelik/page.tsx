@@ -6,6 +6,7 @@ import { Check, Sparkles, Crown, Star, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import UpgradeButton from "@/components/uyelik/UpgradeButton";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useMember } from "@/i18n/MemberContext";
 
@@ -21,7 +22,6 @@ interface Plan {
 }
 
 const RANK: Record<string, number> = { free: 0, premium: 1, vip: 2 };
-const WHATSAPP = "905343675669";
 
 const COPY = {
   tr: {
@@ -133,18 +133,15 @@ export default function MembershipPage() {
                   );
                 } else if (canUpgrade) {
                   cta = (
-                    <a
-                      href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(c.whatsappMsg)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`block text-center py-3 rounded-xl font-semibold transition-colors ${
+                    <UpgradeButton
+                      tier={plan.tier}
+                      label={c.upgrade}
+                      className={`w-full py-3 rounded-xl font-semibold transition-colors ${
                         highlighted
                           ? "bg-[var(--indigo)] text-white hover:bg-[var(--purple)]"
                           : "bg-[var(--dark)] text-white hover:bg-[var(--dark-secondary)]"
                       }`}
-                    >
-                      {c.upgrade}
-                    </a>
+                    />
                   );
                 } else {
                   cta = (
