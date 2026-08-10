@@ -32,17 +32,20 @@ body { --theme-bg: var(--k-bg); background: var(--k-bg); }
 /* Başlıklar: sistem fontu (serif YOK) */
 .nav *, .dashboard *, .collection-list *, .doc-header * { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
 
-/* ===================== GİRİŞ EKRANI (açık, temiz) ===================== */
+/* ===================== GİRİŞ EKRANI (arka plan görseli) ===================== */
 .template-minimal,
 .login {
-  background: var(--k-sidebar) !important;
+  background:
+    linear-gradient(135deg, rgba(30,27,75,.74) 0%, rgba(91,46,255,.50) 100%),
+    url("/programlar-bg.jpg") center / cover no-repeat !important;
+  min-height: 100vh;
 }
 .login__form {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 16px;
-  border: 1px solid var(--k-line);
-  box-shadow: var(--k-shadow);
+  background: rgba(255,255,255,0.98);
+  padding: 2.25rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.45);
+  box-shadow: 0 24px 70px rgba(20,15,60,.45);
 }
 .login__form label,
 .login__form .field-label { color: var(--k-ink) !important; font-weight: 500; }
@@ -50,8 +53,9 @@ body { --theme-bg: var(--k-bg); background: var(--k-bg); }
   border-radius: 10px !important;
   border-color: var(--k-line) !important;
 }
-.login .kumru-logo__name { color: var(--k-ink); }
-.login .kumru-logo__admin { color: var(--k-ink-faint); }
+/* Başlık kartın dışında, koyu görselin üstünde → beyaz */
+.login .kumru-logo__name { color: #fff !important; text-shadow: 0 1px 14px rgba(0,0,0,.45); }
+.login .kumru-logo__admin { color: rgba(255,255,255,.82) !important; letter-spacing: .22em; }
 
 /* ===================== LOGO (sans wordmark) ===================== */
 .kumru-logo { display: flex; flex-direction: column; line-height: 1.1; }
