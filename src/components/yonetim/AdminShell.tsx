@@ -18,6 +18,7 @@ import {
   Tag,
   Package,
   UserCog,
+  ScrollText,
   LogOut,
   Menu,
   X,
@@ -58,12 +59,19 @@ const MENU: NavItem[] = [
 
 const SYSTEM: NavItem[] = [
   { label: "Sayfa İçerikleri", href: "/yonetim/sayfalar", icon: FileText },
+  { label: "İşlem Kaydı", href: "/yonetim/audit", icon: ScrollText },
   { label: "Kullanıcılar", href: "/yonetim/kullanicilar", icon: UserCog },
   { label: "Ayarlar", href: "/yonetim/ayarlar", icon: Settings },
   { label: "Entegrasyonlar", href: "/yonetim/entegrasyonlar", icon: Plug },
 ];
 
-export type AdminUser = { name?: string | null; email: string };
+// Editör rolünün göremeyeceği sistem öğeleri (sadece super-admin görür).
+const EDITOR_HIDDEN_HREFS = new Set([
+  "/yonetim/kullanicilar",
+  "/yonetim/entegrasyonlar",
+]);
+
+export type AdminUser = { name?: string | null; email: string; role?: string };
 
 function isActive(pathname: string | null, href: string) {
   if (href === "/yonetim") return pathname === "/yonetim";
@@ -109,6 +117,12 @@ function SidebarInner({
     .slice(0, 2)
     .toUpperCase();
 
+  // Rol gate: editör "Kullanıcılar" ve "Entegrasyonlar" öğelerini görmez.
+  const systemItems =
+    user.role === "editor"
+      ? SYSTEM.filter((item) => !EDITOR_HIDDEN_HREFS.has(item.href))
+      : SYSTEM;
+
   return (
     <div className="flex h-full flex-col">
       {/* Logo */}
@@ -139,7 +153,7 @@ function SidebarInner({
           Sistem
         </div>
         <div className="flex flex-col gap-1">
-          {SYSTEM.map((item) => (
+          {systemItems.map((item) => (
             <NavLink key={item.href} item={item} pathname={pathname} />
           ))}
         </div>

@@ -10,6 +10,7 @@ import * as migration_20260810_122329_localized_plan_price from './20260810_1223
 import * as migration_20260810_133926_google_oauth_sub from './20260810_133926_google_oauth_sub';
 import * as migration_20260810_135903_subscriptions from './20260810_135903_subscriptions';
 import * as migration_20260810_194138_live_streams from './20260810_194138_live_streams';
+import * as migration_20260810_195431_audit_roles from './20260810_195431_audit_roles';
 
 export const migrations = [
   {
@@ -70,6 +71,11 @@ export const migrations = [
   {
     up: migration_20260810_194138_live_streams.up,
     down: migration_20260810_194138_live_streams.down,
-    name: '20260810_194138_live_streams'
+    name: '20260810_194138_live_streams',
+  },
+  {
+    up: migration_20260810_195431_audit_roles.up,
+    down: migration_20260810_195431_audit_roles.down,
+    name: '20260810_195431_audit_roles'
   },
 ];

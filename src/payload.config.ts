@@ -14,6 +14,49 @@ const sharp = await import("sharp")
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+// Yeniden kullanılabilir denetim (audit) hook'ları — belirtilen koleksiyonlarda
+// oluşturma/güncelleme/silme işlemlerini "audit-logs" koleksiyonuna yazar.
+function auditHooks(label: string) {
+  return {
+    afterChange: [
+      ({ req, doc, operation }: any) => {
+        if (operation !== "create" && operation !== "update") return;
+        req.payload
+          .create({
+            collection: "audit-logs",
+            data: {
+              actor: req.user?.email || req.user?.name || "sistem",
+              action: operation === "create" ? "created" : "updated",
+              collectionLabel: label,
+              docId: String(doc.id),
+              summary: label + " #" + doc.id,
+            },
+            overrideAccess: true,
+          })
+          .catch(() => {});
+        return doc;
+      },
+    ],
+    afterDelete: [
+      ({ req, doc }: any) => {
+        req.payload
+          .create({
+            collection: "audit-logs",
+            data: {
+              actor: req.user?.email || "sistem",
+              action: "deleted",
+              collectionLabel: label,
+              docId: String(doc?.id),
+              summary: label + " #" + doc?.id + " silindi",
+            },
+            overrideAccess: true,
+          })
+          .catch(() => {});
+      },
+    ],
+  };
+}
+
 export default buildConfig({
   admin: {
     user: "users",
@@ -61,6 +104,51 @@ export default buildConfig({
       labels: { singular: "Kullanıcı", plural: "Kullanıcılar" },
       fields: [
         { name: "name", type: "text", label: "Ad Soyad" },
+        {
+          name: "role",
+          type: "select",
+          defaultValue: "super-admin",
+          label: "Yetki",
+          options: [
+            { label: "Süper Yönetici", value: "super-admin" },
+            { label: "Editör", value: "editor" },
+          ],
+          admin: {
+            description:
+              "Süper Yönetici: her şey. Editör: içerik düzenler, Kullanıcılar/Entegrasyonlar göremez.",
+          },
+        },
+      ],
+    },
+    {
+      slug: "audit-logs",
+      labels: { singular: "Denetim Kaydı", plural: "Denetim Kayıtları" },
+      admin: {
+        useAsTitle: "summary",
+        defaultColumns: ["action", "collectionLabel", "actor", "createdAt"],
+        group: "Ayarlar & Sistem",
+      },
+      access: {
+        read: ({ req: { user } }) => Boolean(user),
+        create: () => true,
+        update: () => false,
+        delete: () => false,
+      },
+      fields: [
+        { name: "actor", type: "text", label: "Yapan" },
+        {
+          name: "action",
+          type: "select",
+          label: "İşlem",
+          options: [
+            { label: "Oluşturuldu", value: "created" },
+            { label: "Güncellendi", value: "updated" },
+            { label: "Silindi", value: "deleted" },
+          ],
+        },
+        { name: "collectionLabel", type: "text", label: "Bölüm" },
+        { name: "docId", type: "text" },
+        { name: "summary", type: "text", label: "Özet" },
       ],
     },
     {
@@ -153,6 +241,7 @@ export default buildConfig({
       labels: { singular: "Program", plural: "Programlar" },
       access: { read: () => true },
       admin: { useAsTitle: "title", defaultColumns: ["title", "duration", "order"], group: "Hizmetler & Programlar" },
+      hooks: { ...auditHooks("Paket") },
       fields: [
         { name: "key", type: "text", required: true, unique: true, label: "Sistem Anahtarı", admin: { description: "Sayfa eşlemesi için - değiştirmeyin (örn. oneOnOne)" } },
         { name: "title", type: "text", required: true, localized: true, label: "Program Adı" },
@@ -196,6 +285,7 @@ export default buildConfig({
         delete: ({ req: { user } }) => Boolean(user),
       },
       admin: { useAsTitle: "title", defaultColumns: ["title", "status", "scheduledAt", "requiredTier"], group: "Hizmetler & Programlar" },
+      hooks: { ...auditHooks("Canlı Yayın") },
       fields: [
         { name: "title", type: "text", required: true, localized: true, label: "Başlık" },
         {
@@ -347,6 +437,7 @@ export default buildConfig({
         update: ({ req: { user } }) => Boolean(user),
         delete: ({ req: { user } }) => Boolean(user),
       },
+      hooks: { ...auditHooks("Üye") },
       fields: [
         { name: "name", type: "text", required: true, label: "Ad Soyad" },
         {
@@ -370,6 +461,7 @@ export default buildConfig({
       labels: { singular: "Üyelik Planı", plural: "Üyelik Planları" },
       access: { read: () => true },
       admin: { useAsTitle: "name", defaultColumns: ["name", "tier", "price", "order"], group: "Üyeler & Satış" },
+      hooks: { ...auditHooks("Üyelik Planı") },
       fields: [
         { name: "name", type: "text", required: true, localized: true, label: "Plan Adı" },
         {
@@ -401,6 +493,7 @@ export default buildConfig({
       labels: { singular: "Program", plural: "İlerlemeli Programlar" },
       access: { read: () => true },
       admin: { useAsTitle: "title", defaultColumns: ["title", "requiredTier", "unlockRule", "order"], group: "Üyeler & Satış" },
+      hooks: { ...auditHooks("Program") },
       fields: [
         { name: "title", type: "text", required: true, localized: true, label: "Program Adı" },
         { name: "slug", type: "text", required: true, unique: true, label: "URL (slug)", admin: { description: "örn. nova-vera-yolculugu" } },
@@ -490,7 +583,9 @@ export default buildConfig({
         description: "Üye abonelikleri. Durum 'Aktif' olunca üyenin seviyesi + bitiş tarihi OTOMATİK güncellenir.",
       },
       hooks: {
+        ...auditHooks("Abonelik"),
         afterChange: [
+          ...auditHooks("Abonelik").afterChange,
           async ({ doc, req }) => {
             try {
               const memberId =

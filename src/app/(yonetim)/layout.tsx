@@ -24,6 +24,7 @@ export default async function YonetimLayout({
   const admin = {
     name: (user as { name?: string | null }).name ?? null,
     email: (user as { email: string }).email,
+    role: (user as { role?: string | null }).role ?? undefined,
   };
 
   return (
