@@ -3,6 +3,7 @@ import { fileURLToPath } from "url";
 import { buildConfig } from "payload";
 import { sqliteAdapter } from "@payloadcms/db-sqlite";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { OAuth2Plugin } from "payload-oauth2";
 
 // sharp bazı sunucularda native modül sorunu çıkarabiliyor; yüklenemezse
 // görsel işleme (crop/resize) kapalı çalışır, uygulama etkilenmez.
@@ -807,6 +808,40 @@ export default buildConfig({
         },
       ],
     },
+  ],
+  plugins: [
+    // Google ile giriş — SADECE "members" (danışan) koleksiyonuna bağlı; admin (users) etkilenmez.
+    // Anahtarlar .env'den okunur; girilene kadar uç noktalar atıl kalır ve /giris'teki buton gizlidir.
+    OAuth2Plugin({
+      enabled: true,
+      strategyName: "google",
+      useEmailAsIdentity: true, // aynı e-posta ile şifre+Google aynı üyeye bağlanır
+      authCollection: "members",
+      serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000",
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      tokenEndpoint: "https://oauth2.googleapis.com/token",
+      providerAuthorizationUrl: "https://accounts.google.com/o/oauth2/v2/auth",
+      scopes: ["openid", "email", "profile"],
+      authorizePath: "/oauth/google",
+      callbackPath: "/oauth/google/callback",
+      onUserNotFoundBehavior: "create", // Google ile ilk girişte üye otomatik oluşturulur
+      getUserInfo: async (accessToken: string) => {
+        const res = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        if (!res.ok) throw new Error("Google kullanıcı bilgisi alınamadı");
+        const p = (await res.json()) as {
+          sub: string; email?: string; email_verified?: boolean; name?: string;
+        };
+        if (!p.email || p.email_verified !== true) {
+          throw new Error("Google e-postası doğrulanmamış");
+        }
+        return { sub: p.sub, email: p.email, name: p.name || p.email.split("@")[0] };
+      },
+      successRedirect: () => "/panel",
+      failureRedirect: () => "/giris?error=google",
+    }),
   ],
   secret: process.env.PAYLOAD_SECRET || "kumru-dev-secret-degistir",
   db: sqliteAdapter({

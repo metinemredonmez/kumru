@@ -7,6 +7,7 @@ import * as migration_20260810_065357_phase5_images from './20260810_065357_phas
 import * as migration_20260810_111624_integrations from './20260810_111624_integrations';
 import * as migration_20260810_120445_members_courses from './20260810_120445_members_courses';
 import * as migration_20260810_122329_localized_plan_price from './20260810_122329_localized_plan_price';
+import * as migration_20260810_133926_google_oauth_sub from './20260810_133926_google_oauth_sub';
 
 export const migrations = [
   {
@@ -52,6 +53,11 @@ export const migrations = [
   {
     up: migration_20260810_122329_localized_plan_price.up,
     down: migration_20260810_122329_localized_plan_price.down,
-    name: '20260810_122329_localized_plan_price'
+    name: '20260810_122329_localized_plan_price',
+  },
+  {
+    up: migration_20260810_133926_google_oauth_sub.up,
+    down: migration_20260810_133926_google_oauth_sub.down,
+    name: '20260810_133926_google_oauth_sub'
   },
 ];
