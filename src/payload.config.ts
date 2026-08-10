@@ -56,7 +56,7 @@ export default buildConfig({
     {
       slug: "users",
       auth: true,
-      admin: { useAsTitle: "email" },
+      admin: { useAsTitle: "email", group: "Ayarlar & Sistem" },
       labels: { singular: "Kullanıcı", plural: "Kullanıcılar" },
       fields: [
         { name: "name", type: "text", label: "Ad Soyad" },
@@ -66,6 +66,7 @@ export default buildConfig({
       slug: "media",
       labels: { singular: "Medya", plural: "Medya Kütüphanesi" },
       access: { read: () => true },
+      admin: { group: "Medya & Görseller" },
       upload: {
         staticDir: path.resolve(dirname, "../uploads"),
         mimeTypes: ["image/*", "video/mp4", "video/webm", "application/pdf"],
@@ -79,7 +80,7 @@ export default buildConfig({
       slug: "videos",
       labels: { singular: "Video", plural: "Videolar" },
       access: { read: () => true },
-      admin: { useAsTitle: "title", defaultColumns: ["title", "source", "published"] },
+      admin: { useAsTitle: "title", defaultColumns: ["title", "source", "published"], group: "Medya & Görseller" },
       fields: [
         { name: "title", type: "text", required: true, localized: true, label: "Başlık" },
         { name: "description", type: "textarea", localized: true, label: "Açıklama" },
@@ -116,7 +117,7 @@ export default buildConfig({
       slug: "spiritual-sessions",
       labels: { singular: "Spiritüel Seans", plural: "Spiritüel Seanslar" },
       access: { read: () => true },
-      admin: { useAsTitle: "title", defaultColumns: ["title", "duration", "price", "order"] },
+      admin: { useAsTitle: "title", defaultColumns: ["title", "duration", "price", "order"], group: "Hizmetler & Programlar" },
       fields: [
         { name: "title", type: "text", required: true, localized: true, label: "Seans Adı" },
         { name: "description", type: "textarea", localized: true, label: "Açıklama" },
@@ -129,7 +130,7 @@ export default buildConfig({
       slug: "coaching-services",
       labels: { singular: "Koçluk Hizmeti", plural: "Koçluk Hizmetleri" },
       access: { read: () => true },
-      admin: { useAsTitle: "title", defaultColumns: ["title", "duration", "order"] },
+      admin: { useAsTitle: "title", defaultColumns: ["title", "duration", "order"], group: "Hizmetler & Programlar" },
       fields: [
         { name: "key", type: "text", required: true, unique: true, label: "Sistem Anahtarı", admin: { description: "Sayfa eşlemesi için - değiştirmeyin (örn. oneOnOne)" } },
         { name: "title", type: "text", required: true, localized: true, label: "Hizmet Adı" },
@@ -150,7 +151,7 @@ export default buildConfig({
       slug: "programs",
       labels: { singular: "Program", plural: "Programlar" },
       access: { read: () => true },
-      admin: { useAsTitle: "title", defaultColumns: ["title", "duration", "order"] },
+      admin: { useAsTitle: "title", defaultColumns: ["title", "duration", "order"], group: "Hizmetler & Programlar" },
       fields: [
         { name: "key", type: "text", required: true, unique: true, label: "Sistem Anahtarı", admin: { description: "Sayfa eşlemesi için - değiştirmeyin (örn. oneOnOne)" } },
         { name: "title", type: "text", required: true, localized: true, label: "Program Adı" },
@@ -174,7 +175,7 @@ export default buildConfig({
       slug: "events",
       labels: { singular: "Etkinlik", plural: "Etkinlikler" },
       access: { read: () => true },
-      admin: { useAsTitle: "title", defaultColumns: ["title", "dateText", "isPast", "order"] },
+      admin: { useAsTitle: "title", defaultColumns: ["title", "dateText", "isPast", "order"], group: "Hizmetler & Programlar" },
       fields: [
         { name: "title", type: "text", required: true, localized: true, label: "Etkinlik Adı" },
         { name: "description", type: "textarea", localized: true, label: "Açıklama" },
@@ -188,7 +189,7 @@ export default buildConfig({
       slug: "faqs",
       labels: { singular: "SSS", plural: "Sık Sorulan Sorular" },
       access: { read: () => true },
-      admin: { useAsTitle: "question" },
+      admin: { useAsTitle: "question", group: "Kaynaklar & Blog" },
       fields: [
         { name: "question", type: "text", required: true, localized: true, label: "Soru" },
         { name: "answer", type: "textarea", localized: true, label: "Cevap" },
@@ -208,6 +209,7 @@ export default buildConfig({
         useAsTitle: "name",
         defaultColumns: ["name", "email", "subject", "createdAt"],
         description: "Web sitesindeki iletişim formundan gelen mesajlar",
+        group: "Etkileşim",
       },
       fields: [
         { name: "name", type: "text", required: true, label: "Ad Soyad" },
@@ -221,7 +223,7 @@ export default buildConfig({
       slug: "resource-items",
       labels: { singular: "Kaynak", plural: "Kaynaklar (E-Kitap/Video)" },
       access: { read: () => true },
-      admin: { useAsTitle: "title", defaultColumns: ["title", "type", "category", "order"] },
+      admin: { useAsTitle: "title", defaultColumns: ["title", "type", "category", "order"], group: "Kaynaklar & Blog" },
       fields: [
         { name: "title", type: "text", required: true, localized: true, label: "Başlık" },
         { name: "description", type: "textarea", localized: true, label: "Açıklama" },
@@ -244,7 +246,7 @@ export default buildConfig({
       slug: "blog-posts",
       labels: { singular: "Blog Yazısı", plural: "Blog Yazıları" },
       access: { read: () => true },
-      admin: { useAsTitle: "title", defaultColumns: ["title", "category", "readTime", "order"] },
+      admin: { useAsTitle: "title", defaultColumns: ["title", "category", "readTime", "order"], group: "Kaynaklar & Blog" },
       fields: [
         { name: "title", type: "text", required: true, localized: true, label: "Başlık" },
         { name: "excerpt", type: "textarea", localized: true, label: "Özet" },
@@ -257,7 +259,7 @@ export default buildConfig({
       slug: "tips",
       labels: { singular: "İpucu", plural: "Günlük İpuçları" },
       access: { read: () => true },
-      admin: { useAsTitle: "title", defaultColumns: ["title", "order"] },
+      admin: { useAsTitle: "title", defaultColumns: ["title", "order"], group: "Kaynaklar & Blog" },
       fields: [
         { name: "title", type: "text", required: true, localized: true, label: "Başlık" },
         { name: "tip", type: "textarea", localized: true, label: "İpucu Metni" },
@@ -268,7 +270,7 @@ export default buildConfig({
       slug: "testimonials",
       labels: { singular: "Danışan Yorumu", plural: "Danışan Yorumları" },
       access: { read: () => true },
-      admin: { useAsTitle: "name", defaultColumns: ["name", "rating", "order"] },
+      admin: { useAsTitle: "name", defaultColumns: ["name", "rating", "order"], group: "Etkileşim" },
       fields: [
         { name: "name", type: "text", required: true, label: "Ad Soyad" },
         { name: "text", type: "textarea", required: true, localized: true, label: "Yorum" },
@@ -281,6 +283,7 @@ export default buildConfig({
     {
       slug: "site-settings",
       label: "Site Ayarları",
+      admin: { group: "Ayarlar & Sistem" },
       access: { read: () => true },
       fields: [
         { name: "email", type: "text", label: "E-posta", defaultValue: "kumrukoseler@gmail.com" },
@@ -298,6 +301,7 @@ export default buildConfig({
     {
       slug: "page-images",
       label: "Sayfa Arka Plan Görselleri",
+      admin: { group: "Medya & Görseller" },
       access: { read: () => true },
       fields: [
         { name: "servicesBg", type: "upload", relationTo: "media", label: "Hizmetler Arka Plan" },
@@ -311,6 +315,7 @@ export default buildConfig({
     {
       slug: "about",
       label: "Hakkımda Sayfası",
+      admin: { group: "Sayfa İçerikleri" },
       access: { read: () => true },
       fields: [
         { name: "profileImage", type: "upload", relationTo: "media", label: "Profil Fotoğrafı" },
@@ -414,6 +419,7 @@ export default buildConfig({
     {
       slug: "nova-vera",
       label: "Nova Vera Sayfası",
+      admin: { group: "Sayfa İçerikleri" },
       access: { read: () => true },
       fields: [
         { name: "brand", type: "text", localized: true, label: "Marka Adı" },
@@ -451,6 +457,7 @@ export default buildConfig({
     {
       slug: "media-content",
       label: "Medya Sayfası",
+      admin: { group: "Sayfa İçerikleri" },
       access: { read: () => true },
       fields: [
         { name: "subtitle", type: "text", localized: true, label: "Üst Başlık" },
@@ -532,6 +539,7 @@ export default buildConfig({
     {
       slug: "hero",
       label: "Ana Sayfa - Hero",
+      admin: { group: "Sayfa İçerikleri" },
       access: { read: () => true },
       fields: [
         { name: "badge", type: "text", localized: true, label: "Üst Rozet" },
@@ -557,6 +565,7 @@ export default buildConfig({
     {
       slug: "chatbot",
       label: "Chatbot Ayarları",
+      admin: { group: "Ayarlar & Sistem" },
       access: { read: () => true },
       fields: [
         {
