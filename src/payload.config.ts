@@ -187,6 +187,53 @@ export default buildConfig({
       ],
     },
     {
+      slug: "live-streams",
+      labels: { singular: "Canlı Yayın", plural: "Canlı Yayınlar" },
+      access: {
+        read: () => true,
+        create: ({ req: { user } }) => Boolean(user),
+        update: ({ req: { user } }) => Boolean(user),
+        delete: ({ req: { user } }) => Boolean(user),
+      },
+      admin: { useAsTitle: "title", defaultColumns: ["title", "status", "scheduledAt", "requiredTier"], group: "Hizmetler & Programlar" },
+      fields: [
+        { name: "title", type: "text", required: true, localized: true, label: "Başlık" },
+        {
+          name: "youtubeUrl",
+          type: "text",
+          required: true,
+          label: "YouTube Linki / ID",
+          admin: { description: "Canlı yayın veya video linki (youtube.com/watch?v=... / youtu.be/... / youtube.com/live/...)" },
+        },
+        { name: "description", type: "textarea", localized: true, label: "Açıklama" },
+        { name: "scheduledAt", type: "date", label: "Yayın Tarihi/Saati" },
+        {
+          name: "status",
+          type: "select",
+          defaultValue: "upcoming",
+          label: "Durum",
+          options: [
+            { label: "Yaklaşan", value: "upcoming" },
+            { label: "Canlı", value: "live" },
+            { label: "Bitti", value: "ended" },
+          ],
+        },
+        {
+          name: "requiredTier",
+          type: "select",
+          defaultValue: "premium",
+          label: "Gereken Üyelik",
+          options: [
+            { label: "free", value: "free" },
+            { label: "premium", value: "premium" },
+            { label: "vip", value: "vip" },
+          ],
+        },
+        { name: "published", type: "checkbox", defaultValue: true, label: "Yayında" },
+        { name: "order", type: "number", defaultValue: 0, label: "Sıra" },
+      ],
+    },
+    {
       slug: "faqs",
       labels: { singular: "SSS", plural: "Sık Sorulan Sorular" },
       access: { read: () => true },

@@ -9,6 +9,7 @@ import * as migration_20260810_120445_members_courses from './20260810_120445_me
 import * as migration_20260810_122329_localized_plan_price from './20260810_122329_localized_plan_price';
 import * as migration_20260810_133926_google_oauth_sub from './20260810_133926_google_oauth_sub';
 import * as migration_20260810_135903_subscriptions from './20260810_135903_subscriptions';
+import * as migration_20260810_194138_live_streams from './20260810_194138_live_streams';
 
 export const migrations = [
   {
@@ -64,6 +65,11 @@ export const migrations = [
   {
     up: migration_20260810_135903_subscriptions.up,
     down: migration_20260810_135903_subscriptions.down,
-    name: '20260810_135903_subscriptions'
+    name: '20260810_135903_subscriptions',
+  },
+  {
+    up: migration_20260810_194138_live_streams.up,
+    down: migration_20260810_194138_live_streams.down,
+    name: '20260810_194138_live_streams'
   },
 ];

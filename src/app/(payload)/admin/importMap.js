@@ -1,7 +1,6 @@
 import { MaskedField as MaskedField_ee3fd553ead56049d5cad3a4c1818d99 } from '../../../components/admin/MaskedField'
 import { Icon as Icon_dfe4008080d895d460898c3a6155e9ba } from '../../../components/admin/Icon'
 import { Logo as Logo_91a09b539d3c86b0aebf520e7564ce08 } from '../../../components/admin/Logo'
-import { ViewSiteAction as ViewSiteAction_65df70cfa93dd124bb8491113ecb5b5a } from '../../../components/admin/ViewSiteAction'
 import { NavOpener as NavOpener_dec128fe4ea102263ebb1444f15a79e1 } from '../../../components/admin/NavOpener'
 import { Dashboard as Dashboard_16b88e9b8c48e393fa86591406efd08f } from '../../../components/admin/Dashboard'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
@@ -11,7 +10,6 @@ export const importMap = {
   "/components/admin/MaskedField#MaskedField": MaskedField_ee3fd553ead56049d5cad3a4c1818d99,
   "/components/admin/Icon#Icon": Icon_dfe4008080d895d460898c3a6155e9ba,
   "/components/admin/Logo#Logo": Logo_91a09b539d3c86b0aebf520e7564ce08,
-  "/components/admin/ViewSiteAction#ViewSiteAction": ViewSiteAction_65df70cfa93dd124bb8491113ecb5b5a,
   "/components/admin/NavOpener#NavOpener": NavOpener_dec128fe4ea102263ebb1444f15a79e1,
   "/components/admin/Dashboard#Dashboard": Dashboard_16b88e9b8c48e393fa86591406efd08f,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1

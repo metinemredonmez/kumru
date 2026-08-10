@@ -9,6 +9,7 @@ import {
   Users,
   CreditCard,
   GraduationCap,
+  Radio,
   Images,
   MessageSquare,
   FileText,
@@ -50,6 +51,7 @@ const MENU: NavItem[] = [
   { label: "Üyelik Planları", href: "/yonetim/planlar", icon: Tag },
   { label: "Programlar", href: "/yonetim/programlar", icon: GraduationCap },
   { label: "Paketler", href: "/yonetim/paketler", icon: Package },
+  { label: "Canlı Yayın", href: "/yonetim/canli", icon: Radio },
   { label: "İçerik & Medya", href: "/yonetim/icerik", icon: Images },
   { label: "Mesajlar", href: "/yonetim/mesajlar", icon: MessageSquare },
 ];

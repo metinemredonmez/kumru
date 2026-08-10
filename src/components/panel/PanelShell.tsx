@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
-  LayoutDashboard, GraduationCap, Sparkles, UserRound, LogOut, Menu, X, ExternalLink,
+  LayoutDashboard, GraduationCap, Sparkles, UserRound, LogOut, Menu, X, ExternalLink, Radio,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -40,6 +40,7 @@ export default function PanelShell({ children }: { children: React.ReactNode }) 
   const nav = [
     { label: lang === "en" ? "Dashboard" : "Panel", href: "/panel", icon: LayoutDashboard },
     { label: lang === "en" ? "My Programs" : "Programlarım", href: "/panel/programlarim", icon: GraduationCap },
+    { label: lang === "en" ? "Live" : "Canlı Yayın", href: "/panel/canli", icon: Radio },
     { label: lang === "en" ? "Membership" : "Üyeliğim", href: "/panel/uyelik", icon: Sparkles },
     { label: lang === "en" ? "Account" : "Hesabım", href: "/panel/hesabim", icon: UserRound },
   ];
