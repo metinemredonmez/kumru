@@ -2,33 +2,40 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Menu, X, Globe, User } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Globe, User, ChevronDown } from "lucide-react";
 import { useLanguage, languageLabels, Language } from "@/i18n/LanguageContext";
 import { useMember } from "@/i18n/MemberContext";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [exploreOpen, setExploreOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const { member } = useMember();
 
   const memberLabels = language === "en"
-    ? { membership: "Membership", myPrograms: "My Programs", login: "Log in" }
-    : { membership: "Üyelik", myPrograms: "Programlarım", login: "Giriş" };
+    ? { membership: "Membership", myPrograms: "My Programs", login: "Log in", explore: "Explore" }
+    : { membership: "Üyelik", myPrograms: "Programlarım", login: "Giriş", explore: "Keşfet" };
 
-  const navItems = [
+  // Ana yolculuk (düz) — Keşfet ve İletişim ayrı ele alınır
+  const primaryNav = [
     { name: t.nav.home, href: "/" },
     { name: t.nav.about, href: "/hakkimda" },
     { name: t.nav.services, href: "/hizmetler" },
     { name: t.nav.programs, href: "/programlar" },
     { name: t.nav.novaVera, href: "/nova-vera" },
     { name: memberLabels.membership, href: "/uyelik" },
+  ];
+  // "Keşfet" açılır menüsü — ikincil sayfalar
+  const exploreNav = [
     { name: t.nav.media, href: "/medya" },
     { name: t.nav.events, href: "/etkinlikler" },
     { name: t.nav.resources, href: "/kaynaklar" },
-    { name: t.nav.contact, href: "/iletisim" },
   ];
+  const contactItem = { name: t.nav.contact, href: "/iletisim" };
+  // Mobil menü için düz liste (tümü)
+  const navItems = [...primaryNav, ...exploreNav, contactItem];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[var(--lavender)]/30">
@@ -92,7 +99,7 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden xl:flex items-center gap-5 2xl:gap-7">
-            {navItems.map((item) => (
+            {primaryNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -101,6 +108,54 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
+
+            {/* Keşfet açılır menüsü */}
+            <div
+              className="relative"
+              onMouseEnter={() => setExploreOpen(true)}
+              onMouseLeave={() => setExploreOpen(false)}
+            >
+              <button
+                onClick={() => setExploreOpen((v) => !v)}
+                className="flex items-center gap-1 text-[var(--text-body)] hover:text-[var(--indigo)] transition-colors font-medium text-sm whitespace-nowrap"
+                aria-expanded={exploreOpen}
+                aria-haspopup="true"
+              >
+                {memberLabels.explore}
+                <ChevronDown size={14} className={`transition-transform ${exploreOpen ? "rotate-180" : ""}`} />
+              </button>
+              <AnimatePresence>
+                {exploreOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute left-1/2 -translate-x-1/2 top-full pt-3"
+                  >
+                    <div className="bg-white rounded-xl shadow-lg border border-[var(--lavender)]/30 overflow-hidden min-w-[180px] py-1.5">
+                      {exploreNav.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setExploreOpen(false)}
+                          className="block px-4 py-2.5 text-sm text-[var(--text-body)] hover:bg-[var(--soft)] hover:text-[var(--indigo)] transition-colors whitespace-nowrap"
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <Link
+              href={contactItem.href}
+              className="text-[var(--text-body)] hover:text-[var(--indigo)] transition-colors font-medium text-sm whitespace-nowrap"
+            >
+              {contactItem.name}
+            </Link>
           </nav>
 
           {/* CTA Button - Desktop */}
