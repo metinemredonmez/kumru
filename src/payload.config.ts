@@ -427,6 +427,120 @@ export default buildConfig({
         ] },
       ],
     },
+    {
+      slug: "subscriptions",
+      labels: { singular: "Abonelik", plural: "Abonelikler" },
+      access: {
+        read: ({ req: { user } }) => Boolean(user),
+        create: ({ req: { user } }) => Boolean(user),
+        update: ({ req: { user } }) => Boolean(user),
+        delete: ({ req: { user } }) => Boolean(user),
+      },
+      admin: {
+        useAsTitle: "id",
+        defaultColumns: ["member", "tier", "status", "provider", "expiresAt"],
+        group: "Üyeler & Satış",
+        description: "Üye abonelikleri. Durum 'Aktif' olunca üyenin seviyesi + bitiş tarihi OTOMATİK güncellenir.",
+      },
+      hooks: {
+        afterChange: [
+          async ({ doc, req }) => {
+            try {
+              const memberId =
+                doc.member && typeof doc.member === "object" ? doc.member.id : doc.member;
+              if (!memberId) return doc;
+              if (doc.status === "active") {
+                await req.payload.update({
+                  collection: "members",
+                  id: memberId,
+                  data: { membershipTier: doc.tier, membershipExpiresAt: doc.expiresAt || null },
+                  overrideAccess: true,
+                  req,
+                });
+              } else if (doc.status === "expired" || doc.status === "cancelled") {
+                // Başka aktif abonelik yoksa Ücretsiz'e düşür
+                const others = await req.payload.find({
+                  collection: "subscriptions",
+                  where: {
+                    and: [
+                      { member: { equals: memberId } },
+                      { status: { equals: "active" } },
+                      { id: { not_equals: doc.id } },
+                    ],
+                  },
+                  limit: 1,
+                  depth: 0,
+                  req,
+                });
+                if (others.totalDocs === 0) {
+                  await req.payload.update({
+                    collection: "members",
+                    id: memberId,
+                    data: { membershipTier: "free" },
+                    overrideAccess: true,
+                    req,
+                  });
+                }
+              }
+            } catch (e) {
+              req.payload.logger.error(`[subscriptions.afterChange] ${String(e)}`);
+            }
+            return doc;
+          },
+        ],
+      },
+      fields: [
+        { name: "member", type: "relationship", relationTo: "members", required: true, label: "Üye" },
+        { name: "plan", type: "relationship", relationTo: "membership-plans", label: "Plan (opsiyonel)" },
+        {
+          name: "tier",
+          type: "select",
+          required: true,
+          defaultValue: "premium",
+          label: "Verilen Seviye",
+          options: [
+            { label: "Ücretsiz", value: "free" },
+            { label: "Premium", value: "premium" },
+            { label: "VIP", value: "vip" },
+          ],
+        },
+        {
+          name: "status",
+          type: "select",
+          required: true,
+          defaultValue: "active",
+          label: "Durum",
+          options: [
+            { label: "Aktif", value: "active" },
+            { label: "Beklemede", value: "pending" },
+            { label: "Süresi doldu", value: "expired" },
+            { label: "İptal edildi", value: "cancelled" },
+          ],
+          admin: { description: "'Aktif' → üye seviyesi verilir. 'Süresi doldu/İptal' → (başka aktif yoksa) Ücretsiz'e düşer." },
+        },
+        {
+          name: "provider",
+          type: "select",
+          defaultValue: "manual",
+          label: "Ödeme Yöntemi",
+          options: [
+            { label: "Elle (admin)", value: "manual" },
+            { label: "İyzico", value: "iyzico" },
+            { label: "Stripe", value: "stripe" },
+          ],
+        },
+        { name: "amount", type: "number", label: "Tutar" },
+        { name: "currency", type: "select", defaultValue: "TRY", label: "Para Birimi", options: [
+          { label: "₺ TRY", value: "TRY" },
+          { label: "$ USD", value: "USD" },
+          { label: "CAD", value: "CAD" },
+        ] },
+        { name: "startedAt", type: "date", label: "Başlangıç" },
+        { name: "expiresAt", type: "date", label: "Bitiş Tarihi", admin: { description: "Boşsa süresiz." } },
+        { name: "reference", type: "text", label: "Ödeme Referansı", admin: { description: "İyzico/Stripe işlem no (otomatik dolar)." } },
+        { name: "note", type: "textarea", label: "Not" },
+      ],
+    },
   ],
   globals: [
     {
