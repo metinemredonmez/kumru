@@ -129,7 +129,9 @@ function SidebarInner({
       <div className="flex items-center gap-2.5 px-5 h-16 border-b border-sidebar-border">
         <Link href="/yonetim" className="flex items-center gap-2.5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="Kumru Köseler" className="h-8 w-auto" />
+          <img src="/logo.png" alt="Kumru Köseler" className="h-8 w-auto logo-light" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-white.png" alt="Kumru Köseler" className="h-8 w-auto logo-dark" />
           <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground rounded bg-muted px-1.5 py-0.5">
             Yönetim
           </span>

@@ -249,3 +249,8 @@ html {
   --background: #ffffff;
   --foreground: #1B1836;
 }
+
+/* Logo: açık temada koyu logo, koyu temada beyaz logo */
+.panel .logo-dark { display: none; }
+.panel[data-theme="dark"] .logo-light { display: none; }
+.panel[data-theme="dark"] .logo-dark { display: inline-block; }
