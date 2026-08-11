@@ -19,6 +19,7 @@ import {
   Package,
   UserCog,
   ScrollText,
+  BookOpen,
   LogOut,
   Menu,
   X,
@@ -63,6 +64,7 @@ const SYSTEM: NavItem[] = [
   { label: "Kullanıcılar", href: "/yonetim/kullanicilar", icon: UserCog },
   { label: "Ayarlar", href: "/yonetim/ayarlar", icon: Settings },
   { label: "Entegrasyonlar", href: "/yonetim/entegrasyonlar", icon: Plug },
+  { label: "Kullanım Kılavuzu", href: "/yonetim/kilavuz", icon: BookOpen },
 ];
 
 // Editör rolünün göremeyeceği sistem öğeleri (sadece super-admin görür).
