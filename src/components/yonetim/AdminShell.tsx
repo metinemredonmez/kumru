@@ -363,6 +363,7 @@ type NotificationItem = {
 };
 
 function NotificationBell() {
+  const router = useRouter();
   const [items, setItems] = useState<NotificationItem[]>([]);
   const [total, setTotal] = useState(0);
 
@@ -410,19 +411,21 @@ function NotificationBell() {
           </div>
         )}
         {items.map((item) => (
-          <DropdownMenuItem key={item.key} asChild>
-            <Link
-              href={item.href}
-              className="flex items-center justify-between gap-2"
+          <DropdownMenuItem
+            key={item.key}
+            onSelect={(e) => {
+              e.preventDefault();
+              router.push(item.href);
+            }}
+            className="flex items-center justify-between gap-2 cursor-pointer"
+          >
+            <span className="truncate">{item.label}</span>
+            <Badge
+              variant={item.count > 0 ? "default" : "secondary"}
+              className="shrink-0"
             >
-              <span className="truncate">{item.label}</span>
-              <Badge
-                variant={item.count > 0 ? "default" : "secondary"}
-                className="shrink-0"
-              >
-                {item.count}
-              </Badge>
-            </Link>
+              {item.count}
+            </Badge>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

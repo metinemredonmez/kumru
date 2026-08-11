@@ -99,7 +99,8 @@ export default buildConfig({
   collections: [
     {
       slug: "users",
-      auth: true,
+      // 30 gün oturum: admin sürekli tekrar giriş yapmasın ("beni hatırla")
+      auth: { tokenExpiration: 60 * 60 * 24 * 30 },
       admin: { useAsTitle: "email", group: "Ayarlar & Sistem" },
       labels: { singular: "Kullanıcı", plural: "Kullanıcılar" },
       fields: [
