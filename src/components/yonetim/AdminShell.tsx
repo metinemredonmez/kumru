@@ -366,6 +366,18 @@ function NotificationBell() {
   const router = useRouter();
   const [items, setItems] = useState<NotificationItem[]>([]);
   const [total, setTotal] = useState(0);
+  const [seen, setSeen] = useState(0);
+
+  // "Görüldü" durumu: zile bakınca badge kaybolur, sayı artınca tekrar çıkar.
+  useEffect(() => {
+    const s = Number(localStorage.getItem("yonetim-notif-seen") || "0");
+    if (Number.isFinite(s)) setSeen(s);
+  }, []);
+  const markSeen = () => {
+    setSeen(total);
+    try { localStorage.setItem("yonetim-notif-seen", String(total)); } catch { /* yoksay */ }
+  };
+  const showBadge = total > 0 && total > seen;
 
   useEffect(() => {
     let active = true;
@@ -386,7 +398,7 @@ function NotificationBell() {
   }, []);
 
   return (
-    <DropdownMenu>
+    <DropdownMenu onOpenChange={(open) => { if (open) markSeen(); }}>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
@@ -395,7 +407,7 @@ function NotificationBell() {
           aria-label="Bildirimler"
         >
           <Bell className="size-5" />
-          {total > 0 && (
+          {showBadge && (
             <span className="absolute right-1 top-1 grid min-w-[18px] place-items-center rounded-full bg-destructive px-1 text-[10px] font-semibold leading-4 text-destructive-foreground">
               {total > 99 ? "99+" : total}
             </span>
